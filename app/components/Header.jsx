@@ -1,7 +1,8 @@
-import {Suspense} from 'react';
-import {Await, NavLink, useAsyncValue} from 'react-router';
+import {Suspense, useState} from 'react';
+import {Await, NavLink, useAsyncValue, Link} from 'react-router';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
+import {ReviewCount} from './reusables/ReviewCount';
 
 /**
  * @param {HeaderProps}
@@ -9,28 +10,38 @@ import {useAside} from '~/components/Aside';
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
+    <>
+      <AnnouncementBanner
+        announcement={
+          <p>
+            <ReviewCount /> - Über 12.000 zufriedene Kunden - Jetzt 20 Tage
+            risikofrei erleben!
+          </p>
+        }
+        link="/products/qione-2-pro"
       />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-    </header>
+      <header className="header">
+        <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+          <img
+            className="NavLink-logo"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_Logo_2020_Qi_Blanco-black.png?v=1637014505"
+            alt="Qi Blanco Logo"
+          />
+        </NavLink>
+        <HeaderMenu
+          menu={menu}
+          viewport="desktop"
+          primaryDomainUrl={header.shop.primaryDomain.url}
+          publicStoreDomain={publicStoreDomain}
+        />
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </header>
+    </>
   );
 }
 
 /**
- * @param {{
- *   menu: HeaderProps['header']['menu'];
- *   primaryDomainUrl: HeaderProps['header']['shop']['primaryDomain']['url'];
- *   viewport: Viewport;
- *   publicStoreDomain: HeaderProps['publicStoreDomain'];
- * }}
+ * Updated HeaderMenu to support nested menu items
  */
 export function HeaderMenu({
   menu,
@@ -57,28 +68,107 @@ export function HeaderMenu({
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
           item.url.includes(publicStoreDomain) ||
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
+
+        const hasChildren = item.items && item.items.length > 0;
+
         return (
-          <NavLink
-            className="header-menu-item"
-            end
+          <MenuItem
             key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
+            item={item}
+            url={url}
+            hasChildren={hasChildren}
+            viewport={viewport}
+            close={close}
+          />
         );
       })}
     </nav>
+  );
+}
+
+/**
+ * Handles parent items with optional children
+ */
+function MenuItem({item, url, hasChildren, viewport, close}) {
+  const [open, setOpen] = useState(false);
+
+  const toggleOpen = () => setOpen((prev) => !prev);
+
+  return (
+    <div className="header-menu-item-wrapper relative">
+      <div className="flex items-center justify-between">
+        <NavLink
+          className="header-menu-item"
+          end
+          onClick={close}
+          prefetch="intent"
+          style={activeLinkStyle}
+          to={url}
+        >
+          {item.title}
+        </NavLink>
+
+        {hasChildren && viewport === 'mobile' && (
+          <button
+            type="button"
+            className="ml-2"
+            onClick={toggleOpen}
+            aria-label="Toggle submenu"
+          >
+            {open ? '−' : '+'}
+          </button>
+        )}
+      </div>
+
+      {/* Desktop dropdown */}
+      {hasChildren && viewport === 'desktop' && (
+        <div className="submenu-wrapper group relative">
+          <ul className="absolute left-0 top-full group-hover:block bg-white shadow-lg p-4 z-50 min-w-[200px]">
+            {item.items.map((child) => (
+              <SubMenuItem key={child.id} item={child} close={close} />
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Mobile accordion */}
+      {hasChildren && viewport === 'mobile' && open && (
+        <ul className="pl-4 border-l border-gray-300">
+          {item.items.map((child) => (
+            <SubMenuItem key={child.id} item={child} close={close} />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Submenu link items
+ */
+function SubMenuItem({item, close}) {
+  if (!item.url) return null;
+
+  const url = new URL(item.url).pathname;
+
+  return (
+    <li className="py-1">
+      <NavLink
+        className="header-submenu-item"
+        onClick={close}
+        prefetch="intent"
+        style={activeLinkStyle}
+        to={url}
+      >
+        {item.title}
+      </NavLink>
+    </li>
   );
 }
 
@@ -132,6 +222,7 @@ function CartBadge({count}) {
 
   return (
     <a
+      className="openCart"
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -144,7 +235,25 @@ function CartBadge({count}) {
         });
       }}
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="lucide lucide-shopping-bag-icon lucide-shopping-bag"
+      >
+        <path d="M16 10a4 4 0 0 1-8 0" />
+        <path d="M3.103 6.034h17.794" />
+        <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
+      </svg>{' '}
+      <span className="cart-count">
+        {count === null ? <span>&nbsp;</span> : count}
+      </span>
     </a>
   );
 }
@@ -159,6 +268,16 @@ function CartToggle({cart}) {
         <CartBanner />
       </Await>
     </Suspense>
+  );
+}
+
+function AnnouncementBanner({announcement, link}) {
+  return (
+    <div className="Header-AnnouncementBanner">
+      <Link prefetch="intent" to={link}>
+        {announcement}
+      </Link>
+    </div>
   );
 }
 

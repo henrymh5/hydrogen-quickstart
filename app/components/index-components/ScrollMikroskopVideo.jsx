@@ -1,0 +1,172 @@
+import { useState, useEffect, useRef } from "react";
+
+export function ScrollMikroskopVideo() {
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+
+  const [progress, setProgress] = useState(0);
+  const [videoSrc, setVideoSrc] = useState("");
+  const metadataLoadedRef = useRef(false);
+  const gesturePrimedRef = useRef(false);
+
+  // Pick source by viewport width (unchanged)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 749) {
+        setVideoSrc("https://cdn.shopify.com/videos/c/o/v/d9d52d90d536415bbb6342ebadb2fe97.mov");
+      } else {
+        setVideoSrc("https://cdn.shopify.com/videos/c/o/v/940d16da99a2452d9aadd57b9711b037.mov");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Make the <video> iOS-friendly and listen for metadata
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Hard-set attributes for iOS Safari
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.muted = true; // programmatic guarantee
+    video.playsInline = true;
+
+    const onLoadedMetadata = () => {
+      metadataLoadedRef.current = true;
+    };
+
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
+    return () => {
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+    };
+  }, []);
+
+  // Reload element when src changes so duration/seekable initialize correctly
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !videoSrc) return;
+    video.load(); // important for Safari after src swap
+  }, [videoSrc]);
+
+  // One-time user-gesture prime for stricter Safari builds
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const primeOnTouch = () => {
+      if (gesturePrimedRef.current) return;
+      gesturePrimedRef.current = true;
+      // Attempt a brief play/pause to unlock autoplay policy
+      const p = video.play();
+      if (p && typeof p.catch === "function") {
+        p.then(() => video.pause()).catch(() => {/* ignore */});
+      } else {
+        // Older browsers
+        try { video.play(); video.pause(); } catch (e) {}
+      }
+    };
+
+    window.addEventListener("touchend", primeOnTouch, { once: true, passive: true });
+    return () => window.removeEventListener("touchend", primeOnTouch);
+  }, []);
+
+  // Scroll logic (calculations unchanged)
+  useEffect(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video || !container) return;
+
+    const handleScroll = () => {
+      if (!metadataLoadedRef.current) return;
+
+      const rect = container.getBoundingClientRect();
+
+      // Only react while fully visible
+      if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+        const scrollTop = window.scrollY;
+        const start = container.offsetTop;
+        const end = start + container.offsetHeight - window.innerHeight;
+
+        const rawProgress = Math.min(Math.max((scrollTop - start) / (end - start), 0), 1);
+        setProgress(rawProgress * 100);
+
+        if (rawProgress < 0.25) {
+          // Scrub (only when seekable is ready)
+          if (video.seekable && video.seekable.length > 0 && Number.isFinite(video.duration)) {
+            const targetTime = video.duration * rawProgress;
+            // Avoid thrashing if value already close
+            if (Math.abs(video.currentTime - targetTime) > 0.03) {
+              try { video.currentTime = targetTime; } catch (e) { /* Safari might ignore until more data */ }
+            }
+          }
+          if (!video.paused) video.pause();
+        } else {
+          // Autoplay after threshold
+          if (video.paused) {
+            const p = video.play();
+            if (p && typeof p.catch === "function") p.catch(() => {/* silently ignore policy rejections */});
+          }
+        }
+      }
+    };
+
+    const handleLoopSection = () => {
+      // Custom loop: when reaching the end, jump back to 3s and continue
+      if (metadataLoadedRef.current && Number.isFinite(video.duration)) {
+        if (video.currentTime >= video.duration) {
+          try {
+            video.currentTime = 3;
+            const p = video.play();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+          } catch (e) { /* ignore */ }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    video.addEventListener("timeupdate", handleLoopSection);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      video.removeEventListener("timeupdate", handleLoopSection);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="ScrollMikroskopvideo">
+      <div className="VideoOverlay">
+        <div className="TextContent-Start" style={{ opacity: progress < 25 ? 1 : 0 }}>
+          <h2>Zellbiologisch geprüft</h2>
+          <p>Entdecke die Effekte auf Zellebene.</p>
+        </div>
+
+        <div className="TextContent-End" style={{ opacity: progress > 30 ? 1 : 0 }}>
+          <div><div className="content"><h2>Ohne Schutz</h2></div></div>
+          <div>
+            <div className="content">
+              <h2>Gitterchip™</h2>
+              <p>Deutlich gesteigerte Zellregeneration, trotz starkem E-Smog Einfluss</p>
+            </div>
+          </div>
+        </div>
+
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          // important attributes for iOS
+          playsInline
+          muted
+          // remove native loop; we loop manually from 3s
+          preload="auto"
+        />
+
+        <div className="VideoProgressTrackerWrapper">
+          <div className="VideoProgressTracker" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}

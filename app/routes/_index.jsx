@@ -2,6 +2,15 @@ import {Await, useLoaderData, Link} from 'react-router';
 import {Suspense} from 'react';
 import {Image} from '@shopify/hydrogen';
 import {ProductItem} from '~/components/ProductItem';
+import {HerobannerFeatured} from '~/components/index-components/HerobannerFeatured';
+import {ZellDiagramme} from '~/components/index-components/ZellDiagramme';
+import {YoutubeIframe} from '~/components/reusables/YoutubeIframe';
+import { LogoBar } from '~/components/reusables/LogoBar';
+import { Richtext } from '~/components/reusables/Richtext';
+import { InfoSlider } from '~/components/index-components/InfoSlider';
+import { ScrollMikroskopVideo } from '~/components/index-components/ScrollMikroskopVideo';
+import { Studien } from '~/components/reusables/Studien';
+import { FeaturedProduct } from '~/components/index-components/FeaturedProduct';
 
 /**
  * @type {MetaFunction}
@@ -64,9 +73,20 @@ export default function Homepage() {
   const data = useLoaderData();
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
-    </div>
+      <HerobannerFeatured />
+      <ZellDiagramme/>
+      <LogoBar/>
+      <Richtext alignment="center" text={<h2>"87 % der Nutzer berichten von positiven <br /> Veränderungen in ihrem Wohlbefinden nach der <br /> Anwendung der Qi Blanco® Produkte."</h2>} />
+      <InfoSlider />
+      <YoutubeIframe link="https://www.youtube.com/embed/jyLyXZqHxaw?si=2ZVH9xtaSaEMmfTQ&amp;controls=0" />
+      <YoutubeIframe link="https://www.youtube.com/embed/aG36zJKxDzg?si=cF6ATzVJfU8kpZUd&amp;controls=0" />
+      <YoutubeIframe link="https://www.youtube.com/embed/zIfDQ1N60fI?si=2ZVH9xtaSaEMmfTQ&amp;controls=0" />
+      <ScrollMikroskopVideo />
+      <Studien headline="Wirkung an menschlichen Zellen bestätigt!" />
+      <FeaturedProduct linkKaufseite="/products/qione-2-pro" linkDetailseite="/pages/qione" title="QiOne® 2 Pro" label="Kompakt. Innovativ. Stark." bildRechts="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-qione-2-pro-transparent_1.webp?v=1666591476" bildLinks="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_02_transparent_1.webp?v=1666591442" />
+      <FeaturedProduct linkKaufseite="/products/qibracelet" linkDetailseite="/pages/qibracelet" title="Das QiBracelet®" label="Eleganz und Schutz - dein Support." bildRechts="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_2048px-Alpha_1.webp?v=1667284638" bildLinks="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/02_2048px-Alpha_1.webp?v=1667284591" />
+      <FeaturedProduct linkKaufseite="/products/qihome" linkDetailseite="/pages/qihome" title="Das QiHome® Air" label="Gesundes Zuhause, produktives Umfeld." bildRechts="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHomeAir-Front-Alpha-Web2_1024x1024_741c3ad5-b5f7-49bf-89d4-c9b4a961545b.webp?v=1669000329" bildLinks="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHome_side_alpha2-800x868-1_1.png?v=1667284770" />
+    </div> 
   );
 }
 

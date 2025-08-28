@@ -10,9 +10,8 @@ export function CartSummary({cart, layout}) {
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
       <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
+        <dt>Zwischensumme:</dt>
         <dd>
           {cart.cost?.subtotalAmount?.amount ? (
             <Money data={cart.cost?.subtotalAmount} />
@@ -21,8 +20,7 @@ export function CartSummary({cart, layout}) {
           )}
         </dd>
       </dl>
-      <CartDiscounts discountCodes={cart.discountCodes} />
-      <CartGiftCard giftCardCodes={cart.appliedGiftCards} />
+
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
   );
@@ -34,11 +32,12 @@ function CartCheckoutActions({checkoutUrl}) {
   if (!checkoutUrl) return null;
 
   return (
-    <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
+    <div className='cartSummaryWrapper'>
+      <a className='btn--primary' href={checkoutUrl} target="_self">
+        <p>Jetzt sicher zur Kasse</p>
       </a>
-      <br />
+      <p className='text-center fw-600 mt-1 mb-1'>Versand, Steuern und Rabatte
+werden im Checkout berechnet</p> 
     </div>
   );
 }
@@ -64,7 +63,7 @@ function CartDiscounts({discountCodes}) {
             <div className="cart-discount">
               <code>{codes?.join(', ')}</code>
               &nbsp;
-              <button>Remove</button>
+              <button>Entfernen</button>
             </div>
           </UpdateDiscountForm>
         </div>
@@ -75,7 +74,7 @@ function CartDiscounts({discountCodes}) {
         <div>
           <input type="text" name="discountCode" placeholder="Discount code" />
           &nbsp;
-          <button type="submit">Apply</button>
+          <button type="submit">Anwenden</button>
         </div>
       </UpdateDiscountForm>
     </div>

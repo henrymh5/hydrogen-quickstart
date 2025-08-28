@@ -14,6 +14,8 @@ import {useVariantUrl} from '~/lib/variants';
 export function ProductItem({product, loading}) {
   const variantUrl = useVariantUrl(product.handle);
   const image = product.featuredImage;
+  const listOfProductImages = product.images;
+  
   return (
     <Link
       className="product-item"

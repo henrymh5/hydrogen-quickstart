@@ -34,6 +34,17 @@ export default {
 
       const response = await handleRequest(request);
 
+      // ✅ Inject Content Security Policy to allow YouTube iframe
+      response.headers.set(
+        'Content-Security-Policy',
+        [
+          "default-src 'self' https://cdn.shopify.com;",
+          "script-src 'self' 'unsafe-inline';",
+          "style-src 'self' 'unsafe-inline';",
+          "frame-src https://www.youtube.com https://www.youtube-nocookie.com;",
+        ].join(' ')
+      );
+
       if (appLoadContext.session.isPending) {
         response.headers.set(
           'Set-Cookie',
