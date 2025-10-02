@@ -77,18 +77,18 @@ function CartLineQuantity({line}) {
 
   return (
     <div className="cart-line-quantity">
-      <small>Menge: {quantity} &nbsp;&nbsp;</small>
+      <div className="quantity-wrapper">
       <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
         <button
           aria-label="Decrease quantity"
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
           value={prevQuantity}
-        >
+          >
           <span>&#8722; </span>
         </button>
       </CartLineUpdateButton>
-      &nbsp;
+      <small>{quantity}</small>
       <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
         <button
           aria-label="Increase quantity"
@@ -99,7 +99,7 @@ function CartLineQuantity({line}) {
           <span>&#43;</span>
         </button>
       </CartLineUpdateButton>
-      &nbsp;
+      </div>
       <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
     </div>
   );
@@ -123,7 +123,7 @@ function CartLineRemoveButton({lineIds, disabled}) {
       inputs={{lineIds}}
     >
       <button disabled={disabled} type="submit">
-        Entfernen
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="none" d="M296 64h-80a7.91 7.91 0 0 0-8 8v24h96V72a7.91 7.91 0 0 0-8-8"></path><path fill="none" d="M292 64h-72a4 4 0 0 0-4 4v28h80V68a4 4 0 0 0-4-4"></path><path fill="currentColor" d="M447.55 96H336V48a16 16 0 0 0-16-16H192a16 16 0 0 0-16 16v48H64.45L64 136h33l20.09 314A32 32 0 0 0 149 480h214a32 32 0 0 0 31.93-29.95L415 136h33ZM176 416l-9-256h33l9 256Zm96 0h-32V160h32Zm24-320h-80V68a4 4 0 0 1 4-4h72a4 4 0 0 1 4 4Zm40 320h-33l9-256h33Z"></path></svg>
       </button>
     </CartForm>
   );
