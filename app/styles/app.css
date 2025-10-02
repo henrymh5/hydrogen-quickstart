@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 :root {
-  --aside-width: 400px;
+  --aside-width: 500px;
   --cart-aside-summary-height-with-discount: 300px;
   --cart-aside-summary-height: 250px;
   --grid-item-width: 355px;
@@ -106,11 +106,20 @@ img.inline-image{
   color: var(--color-accent-primary);
   border: 2px solid var(--color-accent-primary);
 }
+.cartSummaryWrapper .btn--primary{
+  max-width: 100%!important;
+  background: #3ccf77!important;
+  border-radius: 1000px;
+}
+.cartSummaryWrapper .btn--primary div{
+  display: inline-block!important;
+}
 @media screen and (max-width: 749px){
   .btn--primary, .btn--secondary{
     max-width: 100%;
   }
 }
+
 /*
 * --------------------------------------------------
 * components/Aside
@@ -230,7 +239,6 @@ aside {
 
 aside header {
   align-items: center;
-  border-bottom: 1px solid var(--color-dark);
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
@@ -243,13 +251,16 @@ aside header h3 {
 
 aside header .close {
   font-weight: bold;
-  opacity: 0.8;
+  opacity: 0.6;
   text-decoration: none;
   transition: all 200ms;
-  width: 20px;
+  width: 40px;
+  font-size: 1.7rem;
+  font-weight: 400;
 }
 
 aside header .close:hover {
+  text-decoration: none;
   opacity: 1;
 }
 
@@ -346,6 +357,9 @@ button.reset:hover:not(:has(> *)) {
 * components/Header
 * --------------------------------------------------
 */
+aside h3{
+  font-size: 1.8rem;
+}
 .header {
   align-items: center;
   justify-content: space-between;
@@ -511,8 +525,11 @@ button.reset:hover:not(:has(> *)) {
 .cart-line {
   display: flex;
   padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-
+.cart-line:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
 .cart-line img {
   height: 100%;
   display: block;
@@ -524,14 +541,23 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .cart-summary-aside {
-  background: white;
-  border-top: 1px solid var(--color-dark);
+  background: rgb(255, 253, 249);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   bottom: 0;
   padding-top: 0.75rem;
+  padding: 10px;
   position: absolute;
-  width: calc(var(--aside-width) - 40px);
+  width: 100%;
+  left: 0;
 }
-
+.cart-aside-subtotal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 1.2rem;
+}
 .cart-line-quantity {
   display: flex;
   align-items: center;

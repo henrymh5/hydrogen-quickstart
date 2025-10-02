@@ -48,11 +48,13 @@ export function CartLineItem({layout, line}) {
         <ProductPrice price={line?.cost?.totalAmount} />
         <ul>
           {selectedOptions.map((option) => (
+            option.value !== "Default Title" ?
             <li key={option.name}>
               <small>
                 {option.name}: {option.value}
               </small>
-            </li>
+            </li> :
+            <li></li>
           ))}
         </ul>
         <CartLineQuantity line={line} />

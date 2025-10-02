@@ -10,25 +10,15 @@ export function CartSummary({cart, layout}) {
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <dl className="cart-subtotal">
-        <dt>Zwischensumme:</dt>
-        <dd>
-          {cart.cost?.subtotalAmount?.amount ? (
-            <Money data={cart.cost?.subtotalAmount} />
-          ) : (
-            '-'
-          )}
-        </dd>
-      </dl>
-
-      <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
+      <div className="cart-aside-subtotal">Zwischensumme: <Money data={cart.cost?.subtotalAmount} /></div>
+      <CartCheckoutActions subTotal={<Money data={cart.cost?.subtotalAmount} />} checkoutUrl={cart.checkoutUrl} />
     </div>
   );
 }
 /**
  * @param {{checkoutUrl?: string}}
  */
-function CartCheckoutActions({checkoutUrl}) {
+function CartCheckoutActions({subTotal, checkoutUrl}) {
   if (!checkoutUrl) return null;
 
   return (
@@ -36,8 +26,6 @@ function CartCheckoutActions({checkoutUrl}) {
       <a className='btn--primary' href={checkoutUrl} target="_self">
         <p>Jetzt sicher zur Kasse</p>
       </a>
-      <p className='text-center fw-600 mt-1 mb-1'>Versand, Steuern und Rabatte
-werden im Checkout berechnet</p> 
     </div>
   );
 }
