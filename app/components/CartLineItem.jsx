@@ -3,7 +3,8 @@ import {useVariantUrl} from '~/lib/variants';
 import {Link} from 'react-router';
 import {ProductPrice} from './ProductPrice';
 import {useAside} from './Aside';
-
+import {useState} from 'react';
+import {useCart} from '@shopify/hydrogen-react';
 /**
  * A single line item in the cart. It displays the product image, title, price.
  * It also provides controls to update the quantity or remove the line item.
@@ -13,13 +14,19 @@ import {useAside} from './Aside';
  * }}
  */
 export function CartLineItem({layout, line}) {
-  const {id, merchandise} = line;
+  const {id, merchandise, isOptimistic} = line;
   const {product, title, image, selectedOptions} = merchandise;
   const lineItemUrl = useVariantUrl(product.handle, selectedOptions);
   const {close} = useAside();
 
   return (
-    <li key={id} className="cart-line">
+    <li
+      key={id}
+      className={`cart-line ${isOptimistic ? 'cart-line--pending' : ''}`}
+    >
+      {/* Shimmer overlay */}
+      {isOptimistic && <div className="shimmer-overlay"></div>}
+
       {image && (
         <Image
           alt={title}
@@ -36,9 +43,7 @@ export function CartLineItem({layout, line}) {
           prefetch="intent"
           to={lineItemUrl}
           onClick={() => {
-            if (layout === 'aside') {
-              close();
-            }
+            if (layout === 'aside') close();
           }}
         >
           <p>
@@ -47,22 +52,23 @@ export function CartLineItem({layout, line}) {
         </Link>
         <ProductPrice price={line?.cost?.totalAmount} />
         <ul>
-          {selectedOptions.map((option) => (
-            option.value !== "Default Title" ?
-            <li key={option.name}>
-              <small>
-                {option.name}: {option.value}
-              </small>
-            </li> :
-            <li></li>
-          ))}
+          {selectedOptions.map((option) =>
+            option.value !== 'Default Title' ? (
+              <li key={option.name}>
+                <small>
+                  {option.name}: {option.value}
+                </small>
+              </li>
+            ) : (
+              <li key={option.name}></li>
+            )
+          )}
         </ul>
         <CartLineQuantity line={line} />
       </div>
     </li>
   );
 }
-
 /**
  * Provides the controls to update the quantity of a line item in the cart.
  * These controls are disabled when the line item is new, and the server

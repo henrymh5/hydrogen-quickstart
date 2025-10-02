@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {useAside} from '~/components/Aside';
 import {CartLineItem} from '~/components/CartLineItem';
 import {CartSummary} from './CartSummary';
+import {Money} from '@shopify/hydrogen';
 
 /**
  * The main cart component that displays the cart items and summary.
@@ -24,6 +25,7 @@ export function CartMain({layout, cart: originalCart}) {
   return (
     <div className={className}>
       <CartEmpty hidden={linesCount} layout={layout} />
+      {cartHasItems && <FreeShipping cart={cart} />}
       <div className="cart-details">
         <div aria-labelledby="cart-lines">
           <ul>
@@ -32,8 +34,8 @@ export function CartMain({layout, cart: originalCart}) {
             ))}
           </ul>
         </div>
-        {cartHasItems && <CartSummary cart={cart} layout={layout} />}
       </div>
+      {cartHasItems && <CartSummary cart={cart} layout={layout} />}
     </div>
   );
 }
@@ -58,6 +60,54 @@ function CartEmpty({hidden = false}) {
       </Link>
     </div>
   );
+}
+
+function FreeShipping({cart}){
+  let subtotal = parseFloat(cart?.cost?.subtotalAmount?.amount || "0");
+  let difference = 99 - subtotal;
+  let progress = (subtotal / 99) * 100;
+
+  let diffMoney = {
+    amount: difference.toFixed(2),
+    currencyCode: cart?.cost?.subtotalAmount?.currencyCode ?? "EUR",
+  };
+
+  if(difference <= 0){
+    progress = 100;
+    return(
+      <div className="free-shipping-wrapper free-shipping-unlocked">
+      <small className="free-shipping-header"> 
+        <b>Kostenloser Versand! 🎉</b>
+      </small>
+      <div className="freeshipping-tracker-and-icon">
+        <div className="free-shipping-progress">
+          <div className="free-shipping-tracker" style={{width: `${progress}%`}}></div>
+        </div>
+        <div className="svg"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><g fill="currentColor"><path d="M128 129.09V232a8 8 0 0 1-3.84-1l-88-48.18a8 8 0 0 1-4.16-7V80.18a8 8 0 0 1 .7-3.25Z" opacity={0.2}></path><path d="m223.68 66.15l-88-48.15a15.88 15.88 0 0 0-15.36 0l-88 48.17a16 16 0 0 0-8.32 14v95.64a16 16 0 0 0 8.32 14l88 48.17a15.88 15.88 0 0 0 15.36 0l88-48.17a16 16 0 0 0 8.32-14V80.18a16 16 0 0 0-8.32-14.03M128 32l80.34 44l-29.77 16.3l-80.35-44Zm0 88L47.66 76l33.9-18.56l80.34 44ZM40 90l80 43.78v85.79l-80-43.75Zm176 85.78l-80 43.79v-85.75l32-17.51V152a8 8 0 0 0 16 0v-44.45L216 90v85.77Z"></path></g></svg></div>
+      </div>
+      <small className="free-shipping-footer">
+        Versandkosten innerhalb von Deutschland: €4,96
+      </small>
+    </div> 
+    )
+  }
+
+  return (
+    <div className="free-shipping-wrapper">
+      <small className="free-shipping-header"> 
+        Nur noch <b><Money data={diffMoney} /></b> bis zum kostenlosen Versand!
+      </small>
+      <div className="freeshipping-tracker-and-icon">
+        <div className="free-shipping-progress">
+          <div className="free-shipping-tracker" style={{width: `${progress}%`}}></div>
+        </div>
+        <div className="svg"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><g fill="currentColor"><path d="M128 129.09V232a8 8 0 0 1-3.84-1l-88-48.18a8 8 0 0 1-4.16-7V80.18a8 8 0 0 1 .7-3.25Z" opacity={0.2}></path><path d="m223.68 66.15l-88-48.15a15.88 15.88 0 0 0-15.36 0l-88 48.17a16 16 0 0 0-8.32 14v95.64a16 16 0 0 0 8.32 14l88 48.17a15.88 15.88 0 0 0 15.36 0l88-48.17a16 16 0 0 0 8.32-14V80.18a16 16 0 0 0-8.32-14.03M128 32l80.34 44l-29.77 16.3l-80.35-44Zm0 88L47.66 76l33.9-18.56l80.34 44ZM40 90l80 43.78v85.79l-80-43.75Zm176 85.78l-80 43.79v-85.75l32-17.51V152a8 8 0 0 0 16 0v-44.45L216 90v85.77Z"></path></g></svg></div>
+      </div> 
+      <small className="free-shipping-footer">
+        Versandkosten innerhalb von Deutschland: €4,96
+      </small>
+    </div>
+  )
 }
 
 /** @typedef {'page' | 'aside'} CartLayout */

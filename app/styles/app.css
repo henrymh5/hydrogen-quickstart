@@ -70,28 +70,28 @@ img.inline-image{
 
 .btn--primary{
   display: block;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1rem!important;
+  font-weight: 600;
+  font-family: 'Wix Madefor Text Variable', sans-serif;
   padding: 1.25rem;
   text-align: center;
   max-width: 300px;
   width: 100%;
   border: 2px solid var(--color-accent-primary);
-  outline: none!important;
   background: var(--color-accent-primary);
   transition: .2s all linear;
 }
 .btn--secondary{
   display: block;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-family: 'Wix Madefor Text Variable', sans-serif;
+  font-weight: 600;
   padding: 1.25rem;
   text-align: center;
   max-width: 300px;
   width: 100%;
   border: 2px solid var(--color-dark);
   color: var(--color-dark);
-  outline: none!important;
   transition: .2s all linear;
 }
 .btn--primary:hover{
@@ -108,8 +108,20 @@ img.inline-image{
 }
 .cartSummaryWrapper .btn--primary{
   max-width: 100%!important;
+  font-family: 'Wix Madefor Text Variable', sans-serif;
+  opacity: 1;
+  font-size: .9rem!important;
+  transition: .2s opacity ease-in-out;
+  border: none;
   background: #3ccf77!important;
   border-radius: 1000px;
+  margin-top: 15px;
+}
+.cartSummaryWrapper .btn--primary p {
+  font-size: 1rem;
+}
+.cartSummaryWrapper .btn--primary:hover{
+  opacity: .8;
 }
 .cartSummaryWrapper .btn--primary div{
   display: inline-block!important;
@@ -234,15 +246,15 @@ aside {
   position: fixed;
   right: calc(-1 * var(--aside-width));
   top: 0;
+  z-index: 10000;
   transition: transform 200ms ease-in-out;
 }
 
 aside header {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
-  padding: 0 20px;
 }
 
 aside header h3 {
@@ -270,7 +282,10 @@ aside header h2 {
 }
 
 aside main {
-  margin: 1rem;
+  padding: 1rem;
+  max-height: 100vh;
+  padding-bottom: 20vh;
+  overflow: scroll;
 }
 
 aside p {
@@ -358,7 +373,7 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 aside h3{
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 .header {
   align-items: center;
@@ -512,10 +527,14 @@ aside h3{
 * --------------------------------------------------
 */
 .cart-main {
-  height: 100%;
-  max-height: calc(100vh - var(--cart-aside-summary-height));
-  overflow-y: auto;
+  overflow-y: hidden;
   width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  width: 100%;
+  justify-content: space-between;
+
 }
 
 .cart-main.with-discount {
@@ -525,13 +544,20 @@ aside h3{
 .cart-line {
   display: flex;
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .cart-line:first-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.cart-line:last-child {
+  border-bottom: none!important;
 }
 .cart-line div:first-of-type{
   width: 100%!important;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
 }
 .cart-line img {
   height: 100%;
@@ -544,14 +570,15 @@ aside h3{
 }
 
 .cart-summary-aside {
-  background: rgb(255, 253, 249);
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  bottom: 0;
+  background: rgb(255, 255, 255);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 0.75rem;
   padding: 10px;
-  position: absolute;
   width: 100%;
+  position: absolute;
+  bottom: 0;
   left: 0;
+  z-index: 10000;
 }
 .cart-aside-subtotal {
   width: 100%;
@@ -559,7 +586,8 @@ aside h3{
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 .cart-line-quantity {
   display: flex;
@@ -1233,8 +1261,9 @@ aside h3{
 
 .cart-line-quantity .quantity-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: center!important;
+  flex-direction: row!important;
+  justify-content: flex-start!important;
 }
 .cart-line-quantity .quantity-wrapper small{
   display: inline-block;
@@ -1255,9 +1284,104 @@ aside h3{
   border: none;
   background: transparent;
   font-size: 1.3rem;
-  opacity: .4; 
+  opacity: .2; 
   transition: .2s all linear; 
 }
 .cart-line-quantity button[type=submit]:hover{
- opacity: 1;
+ opacity: .5;
+}
+.cart-details{
+  max-height: 80%;
+  overflow: scroll;
+}
+.free-shipping-wrapper{
+  margin: 0 0 30px 0;
+}
+.free-shipping-wrapper .free-shipping-header div{
+  display: inline-block;
+}
+.free-shipping-wrapper small{
+  color: rgba(0, 0, 0, 0.6);
+  font-size: .8em;
+}
+.free-shipping-wrapper small > b{
+  color: rgba(0, 0, 0, .75);
+}
+.freeshipping-tracker-and-icon{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.25rem!important;
+}
+.freeshipping-tracker-and-icon .svg{ 
+  position: relative;
+  right: 5px;
+  z-index: 1000;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10000px;
+  background: rgb(240, 240, 240);
+  transition: .6s background linear;
+}
+.free-shipping-unlocked .svg{
+  background: rgba(0, 0, 0, 1); 
+  color: rgba(255, 255, 255, 1);
+}
+.freeshipping-tracker-and-icon .free-shipping-progress{
+  width: 92%;
+  margin: 10px 0;
+  margin-right: 0;
+  border-radius: 1000px 0 0 1000px;
+  flex-shrink: 0;
+  background: rgb(240, 240, 240);
+  height: 10px;
+  overflow: hidden;
+}
+.freeshipping-tracker-and-icon .free-shipping-progress .free-shipping-tracker{
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 0, 0, 1);
+  transition: .3s width ease-in-out;
+}
+
+.cart-line {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cart-line--pending {
+  opacity: 0.6;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Shimmer overlay */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  pointer-events: none;
+  border-radius: 4px;
 }
