@@ -129,7 +129,7 @@ function MenuItem({item, url, hasChildren, viewport, close}) {
       {/* Desktop dropdown */}
       {hasChildren && viewport === 'desktop' && (
         <div className="submenu-wrapper group relative">
-          <ul className="absolute left-0 top-full group-hover:block bg-white shadow-lg p-4 z-50 min-w-[200px]">
+          <ul className="absolute left-0 top-full group-hover:block bg-white shadow-lg p-4 z-50 min-w-[200px] has--children">
             {item.items.map((child) => (
               <SubMenuItem key={child.id} item={child} close={close} />
             ))}

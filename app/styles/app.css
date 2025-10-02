@@ -110,15 +110,16 @@ img.inline-image{
   max-width: 100%!important;
   font-family: 'Wix Madefor Text Variable', sans-serif;
   opacity: 1;
-  font-size: .9rem!important;
+  font-size: 1.2rem!important;
   transition: .2s opacity ease-in-out;
   border: none;
   background: #3ccf77!important;
   border-radius: 1000px;
   margin-top: 15px;
+  padding: 1rem 1.25rem;
 }
 .cartSummaryWrapper .btn--primary p {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .cartSummaryWrapper .btn--primary:hover{
   opacity: .8;
@@ -284,7 +285,7 @@ aside header h2 {
 aside main {
   padding: 1rem;
   max-height: 100vh;
-  padding-bottom: 20vh;
+  padding-bottom: 30vh;
   overflow: scroll;
 }
 
@@ -490,11 +491,22 @@ aside h3{
   display: none;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 1rem;
+  padding: 1rem; 
   z-index: 50;
   min-width: 200px;
 }
-
+.submenu-wrapper ul.has--children::after {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M16.53 8.97a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06L12 12.44l3.47-3.47a.75.75 0 0 1 1.06 0' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
+.submenu-wrapper ul li a{
+  padding: 5px 0;
+  width: 100%;
+  display: inline-block;
+}
 .header-menu-item-wrapper:hover .submenu-wrapper ul {
   display: block;
 }
@@ -570,7 +582,7 @@ aside h3{
 }
 
 .cart-summary-aside {
-  background: rgb(255, 255, 255);
+  background: rgb(227, 238, 242);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 0.75rem;
   padding: 10px;
@@ -585,9 +597,27 @@ aside h3{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: rgba(0, 0, 0, 0.5);
   padding: 10px;
   font-size: 1.1rem;
   font-weight: 500;
+}
+.cart-delivery-notes{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.cart-delivery-notes .trenner{
+  width: 3px;
+  height: 3px;
+  border-radius: 10000px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.additional-delivery-notice{
+  font-size: .9rem;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.5);
 }
 .cart-line-quantity {
   display: flex;
@@ -1384,4 +1414,11 @@ aside h3{
   animation: shimmer 1.5s infinite;
   pointer-events: none;
   border-radius: 4px;
+}
+.PaymentMethods{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
