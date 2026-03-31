@@ -38,11 +38,14 @@ export default {
       response.headers.set(
         'Content-Security-Policy',
         [
-          "default-src 'self' https://cdn.shopify.com;",
-          "script-src 'self' 'unsafe-inline';",
-          "style-src 'self' 'unsafe-inline';",
-          "frame-src https://www.youtube.com https://www.youtube-nocookie.com;",
-        ].join(' ')
+          "default-src 'self' https://cdn.shopify.com https://qiblanco.com",
+          "script-src 'self' 'unsafe-inline' https://cdn.shopify.com/shopifycloud/perf-kit/shopify-perf-kit-spa.min.js https://cdn.grw.reputon.com https://qiblanco-only-rating-serpapi.vercel.app",
+          "style-src 'self' 'unsafe-inline'",
+          "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+          "connect-src 'self' https://monorail-edge.shopifysvc.com https://qiblanco-only-rating-serpapi.vercel.app",
+          "font-src 'self' data: https://cdn.shopify.com",
+          "img-src 'self' data: https://cdn.shopify.com https://qiblanco.com",
+        ].join('; ')
       );
 
       if (appLoadContext.session.isPending) {

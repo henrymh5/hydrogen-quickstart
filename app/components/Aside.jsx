@@ -46,7 +46,7 @@ export function Aside({children, heading, type}) {
       <aside>
         <main>
         <header>
-          <h3>{heading}</h3>
+          <h3>{heading === "MENU" ? 'Menü' : heading}</h3>
           <button className="close reset" onClick={close} aria-label="Close">
             &times;
           </button>

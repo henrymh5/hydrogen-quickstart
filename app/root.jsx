@@ -1,13 +1,14 @@
-import {Analytics, getShopAnalytics, useNonce} from '@shopify/hydrogen';
+import {Analytics, getShopAnalytics, useNonce, Script} from '@shopify/hydrogen';
 import {
   Outlet,
   useRouteError,
   isRouteErrorResponse,
+  useRouteLoaderData,
+  useNavigation,
   Links,
   Meta,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData,
 } from 'react-router';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
@@ -15,7 +16,7 @@ import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import {PageLayout} from './components/PageLayout';
 import '@fontsource-variable/wix-madefor-text';
-
+import LoadingBar from './components/LoadingBar';
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}
@@ -159,11 +160,12 @@ export function Layout({children}) {
         <Links />
       </head>
       <body>
+        <LoadingBar />
         {data ? (
           <Analytics.Provider
-            cart={data.cart}
-            shop={data.shop}
-            consent={data.consent}
+          cart={data.cart}
+          shop={data.shop}
+          consent={data.consent}
           >
             <PageLayout {...data}>{children}</PageLayout>
           </Analytics.Provider>

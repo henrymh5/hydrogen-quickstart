@@ -3,11 +3,22 @@ body {
   margin: 0;
   padding: 0;
 }
+main:not(aside main){
+  margin-top: 50px!important;
+}
 .NormalSectionSize{
-  max-width: 1250px;
+  max-width: 1350px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 h1,
 h2,
@@ -17,7 +28,7 @@ p {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--color-dark);
@@ -26,7 +37,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--color-dark);
@@ -53,7 +64,7 @@ h5 {
   margin-top: 0.5rem;
 }
 
-p {
+p, li {
   font-size: 1.2rem;
   line-height: 1.4;
   color: var(--color-dark)
@@ -84,6 +95,9 @@ pre {
 body {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0);
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -143,4 +157,43 @@ code {
   border-radius: 4px;
   font-family: monospace;
   padding: 0.25rem;
+}
+aside,
+aside main{
+  background: rgb(247, 241, 232)!important;
+}
+.background-divs{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.background-divs.creme{
+  background: radial-gradient(circle at 20% 20%, rgba(234, 220, 207, 1) 0px, transparent 20%);
+}
+.background-divs.creme-2{
+  background: radial-gradient(circle at 20% 55%, rgba(243, 235, 225, 1) 0px, transparent 20%);
+}
+.background-divs.blue{
+  background: radial-gradient(circle at 0% 40%, rgba(182, 207, 221, 0.5) 0px, transparent 20%);
+}
+.background-divs.blue-2{
+  background: radial-gradient(circle at 99% 27%, rgba(181, 228, 254, 0.5) 0px, transparent 20%);
+}
+.background-divs.neutral{
+  background: radial-gradient(ellipse at 45% 55%, rgba(213, 195, 171, 0.4) 0px, transparent 60%);
+}
+.background-divs.gold{
+  background: radial-gradient(circle at 50% 85%, rgba(255, 182, 72, 0.3) 0px, transparent 20%);
+}
+.new-not-visible{
+  display: none!important;
+}
+
+form, input, button, textarea, select, option, a{
+  -webkit-appearance: none!important;
+ -moz-appearance: none !important;
 }

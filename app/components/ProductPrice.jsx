@@ -1,28 +1,32 @@
 import {Money} from '@shopify/hydrogen';
 
-/**
- * @param {{
- *   price?: MoneyV2;
- *   compareAtPrice?: MoneyV2 | null;
- * }}
- */
-export function ProductPrice({price, compareAtPrice}) {
+export function ProductPrice({ price, compareAtPrice, taxRate = 0.19 }) {
+  const applyTax = (money) => {
+    if (!money) return null;
+    const amount = Math.floor(parseFloat(money.amount) * (1 + taxRate)); // round down
+    return { ...money, amount };
+  };
+
+  const formatGermanPrice = (money) => {
+    if (!money) return null;
+    return `${money.amount},- €`;
+  };
+
+  const taxedPrice = formatGermanPrice(applyTax(price));
+  const taxedCompareAtPrice = formatGermanPrice((compareAtPrice));
+
   return (
     <div className="product-price">
-      {compareAtPrice ? (
+      {taxedCompareAtPrice ? (
         <div className="product-price-on-sale">
-          {price ? <Money data={price} /> : null}
-          <s>
-            <Money data={compareAtPrice} />
-          </s>
+          {taxedPrice ? <span className='gradient-price'>{taxedPrice}</span> : null}
+          <s>{taxedCompareAtPrice}</s>
         </div>
-      ) : price ? (
-        <Money data={price} />
+      ) : taxedPrice ? (
+        <span>{taxedPrice}</span>
       ) : (
         <span>&nbsp;</span>
       )}
     </div>
   );
 }
-
-/** @typedef {import('@shopify/hydrogen/storefront-api-types').MoneyV2} MoneyV2 */

@@ -1,6 +1,6 @@
 import { ReviewCount } from "../reusables/ReviewCount"
 import { Link } from "react-router"
-
+import LazyImage from "../reusables/LazyImage"
 export function HerobannerFeatured(){
     return(
         <div className="HerobannerFeatured NormalSectionSize">
@@ -31,10 +31,15 @@ export function HerobannerFeatured(){
                         <Link prefetch="intent" to="/products/qione-2-pro" className="btn--primary">Jetzt kaufen</Link>
                         <Link prefetch="intent" to="/pages/qione" className="btn--secondary">Mehr erfahren</Link>
                     </div>
-                    <p className="micro-text mt-1"><strong>20 Tage testen · Gratis Versand · 0 % Raten mit PayPal und Klarna</strong></p>
+                    <p className="micro-text mt-1"><strong> 20 Tage risikofrei - Jetzt mit 0% Finanzierung & Käuferschutz </strong></p>
+                    <img style={{margin: "20px 20px 20px 0"}} width={75} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/800px-Klarna_Payment_Badge.svg_7f45bfec-1ac3-4234-9914-98cf49b040f4.png?v=1671199816" alt="" />
+                    <img style={{margin: "20px 20px 20px 0"}} width={75} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/paypal-784404_1280.webp?v=1708904082" alt="" />
                 </div>
                 <div className="featured-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db.webp?v=1673788196" alt="QiOne 2 Pro" />
+                    <LazyImage 
+                     compressedLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db_small.webp?v=1673788196"}
+                     highQualityLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db.webp?v=1673788196"}
+                     />
                 </div>
             </div>
         </div>

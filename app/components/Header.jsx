@@ -1,4 +1,7 @@
-import {Suspense, useState} from 'react';
+"use client"; // required for Hydrogen client components
+
+import {Suspense, useState, useEffect, useRef} from 'react';
+import {createPortal} from 'react-dom';
 import {Await, NavLink, useAsyncValue, Link} from 'react-router';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
@@ -9,6 +12,63 @@ import {ReviewCount} from './reusables/ReviewCount';
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
+  const [scrolled, setScrolled] = useState(false); 
+  const [textColor, setTextColor] = useState('#000');
+  // ✅ Scroll-hide logic
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY !== 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+      if (currentY > lastY && currentY > 100) {
+        setHidden(true);
+      } else if (currentY < lastY) {
+        setHidden(false);
+      }
+
+      lastY = currentY;
+    };
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+useEffect(() => {
+  if (typeof window === 'undefined') return;
+
+  const headerEl = document.querySelector('header.header');
+  if (!headerEl) return;
+
+  const observer = new MutationObserver(() => {
+    const bgColor = getComputedStyle(headerEl).backgroundColor;
+    const rgb = bgColor.match(/\d+/g)?.map(Number);
+    if (!rgb) return;
+    const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+    setTextColor(luminance > 0.5 ? '#000' : '#fff');
+  });
+
+  observer.observe(headerEl, {attributes: true, attributeFilter: ['style']});
+
+  // Run once on mount
+  const bgColor = getComputedStyle(headerEl).backgroundColor;
+  const rgb = bgColor.match(/\d+/g)?.map(Number);
+  if (rgb) {
+    const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+    setTextColor(luminance > 0.5 ? '#000' : '#fff');
+  }
+
+  return () => observer.disconnect();
+}, []);
+
   return (
     <>
       <AnnouncementBanner
@@ -20,7 +80,27 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
         }
         link="/products/qione-2-pro"
       />
-      <header className="header">
+
+      <header
+        className={`header ${hidden ? 'header--hidden' : ''}`}
+        style={{
+          position: 'fixed',
+          top: scrolled ? '5px' : '40px',
+          left: '50%',
+          background: scrolled 
+          ? 'rgba(74, 71, 65, 0.1)' 
+          : 'transparent',
+          backdropFilter: scrolled
+          ? 'blur(32px)'
+          : 'blur(0px)',
+          zIndex: 5,
+          color: textColor,
+          transition: 'transform .8s ease',
+          transform: hidden
+            ? 'translate(-50%, -300px)'
+            : 'translate(-50%, 25px)',
+        }}
+      >
         <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
           <img
             className="NavLink-logo"
@@ -28,12 +108,14 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
             alt="Qi Blanco Logo"
           />
         </NavLink>
+
         <HeaderMenu
           menu={menu}
           viewport="desktop"
           primaryDomainUrl={header.shop.primaryDomain.url}
           publicStoreDomain={publicStoreDomain}
         />
+
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
       </header>
     </>
@@ -96,50 +178,95 @@ export function HeaderMenu({
  * Handles parent items with optional children
  */
 function MenuItem({item, url, hasChildren, viewport, close}) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // mobile accordion
+  const [hover, setHover] = useState(false); // desktop hover/focus
+  const hoverTimeout = useRef(null);
+  const triggerRef = useRef(null);
 
   const toggleOpen = () => setOpen((prev) => !prev);
 
+  // --- Hover control with delay ---
+  const onMouseEnter = () => {
+    if (viewport !== 'desktop') return;
+    clearTimeout(hoverTimeout.current);
+    setHover(true);
+  };
+
+  const onMouseLeave = () => {
+    if (viewport !== 'desktop') return;
+    clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHover(false), 250); // delay close
+  };
+
   return (
-    <div className="header-menu-item-wrapper relative">
-      <div className="flex items-center justify-between">
-        <NavLink
-          className="header-menu-item"
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to={url}
-        >
-          {item.title}
-        </NavLink>
+    <div
+      className="header-menu-item-wrapper"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onMouseEnter}
+      onBlur={onMouseLeave}
+    >
+      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+        {!hasChildren && (
+          <NavLink
+            className="header-menu-item"
+            end
+            onClick={close}
+            prefetch="intent"
+            style={activeLinkStyle}
+            to={url}
+            ref={triggerRef}
+          >
+            {item.title}
+          </NavLink>
+        )}
+
+        {hasChildren && viewport === 'desktop' && (
+          <p
+            className="header-menu-item has--children"
+            ref={triggerRef}
+            tabIndex={0}
+            aria-haspopup="true"
+            aria-expanded={hover}
+            style={{cursor: 'pointer'}}
+          >
+            {item.title}{' '}
+            <svg className='inline' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15">
+              <path
+                fill="currentColor"
+                d="M7.5 9.95a.45.45 0 0 0 .319-.132l3-3a.45.45 0 0 0-.637-.637L7.5 8.863L4.82 6.181l-.07-.057a.451.451 0 0 0-.625.624l.058.07l3 3a.45.45 0 0 0 .318.132"
+              />
+            </svg>
+          </p>
+        )}
 
         {hasChildren && viewport === 'mobile' && (
           <button
             type="button"
-            className="ml-2"
+            className='menu-toggle-mobile'
+            style={{marginLeft: '0.5rem'}}
             onClick={toggleOpen}
             aria-label="Toggle submenu"
           >
+            {item.title} &nbsp;
             {open ? '−' : '+'}
           </button>
         )}
       </div>
 
-      {/* Desktop dropdown */}
       {hasChildren && viewport === 'desktop' && (
-        <div className="submenu-wrapper group relative">
-          <ul className="absolute left-0 top-full group-hover:block bg-white shadow-lg p-4 z-50 min-w-[200px] has--children">
-            {item.items.map((child) => (
-              <SubMenuItem key={child.id} item={child} close={close} />
-            ))}
-          </ul>
-        </div>
+        <SubmenuPortal
+          item={item}
+          hover={hover}
+          setHover={setHover}
+          close={close}
+          triggerRef={triggerRef}
+          hoverTimeout={hoverTimeout}
+        />
       )}
 
-      {/* Mobile accordion */}
       {hasChildren && viewport === 'mobile' && open && (
-        <ul className="pl-4 border-l border-gray-300">
+        <ul style={{paddingLeft: '1rem', borderLeft: '1px solid #ccc'}}>
           {item.items.map((child) => (
             <SubMenuItem key={child.id} item={child} close={close} />
           ))}
@@ -150,15 +277,137 @@ function MenuItem({item, url, hasChildren, viewport, close}) {
 }
 
 /**
- * Submenu link items
+ * Submenu rendered into document.body so position:fixed is viewport-anchored.
+ *
+ * Props:
+ * - item: menu item with children
+ * - hover: whether submenu should be shown
+ * - setHover: function to keep hover alive when moving between trigger and submenu
+ * - close: function to call when clicking a submenu link
+ * - triggerRef: ref to the trigger element to align horizontally
+ */
+function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout}) {
+  const containerRef = useRef(null);
+  const [hoverItem, setHoverItem] = useState("QiOne® 2 Pro");
+
+  useEffect(() => {
+    const el = document.createElement('div');
+    el.className = 'submenu-portal';
+    document.body.appendChild(el);
+    containerRef.current = el;
+    return () => el.remove();
+  }, []);
+
+  if (!containerRef.current) return null;
+
+  const onSubmenuEnter = () => {
+    clearTimeout(hoverTimeout.current);
+    setHover(true);
+  };
+
+  const onSubmenuLeave = () => {
+    clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHover(false), 250);
+  };
+
+  const submenu = (
+    <div
+      className="submenu"
+      role="menu"
+      aria-hidden={!hover}
+      onMouseEnter={onSubmenuEnter}
+      onMouseLeave={onSubmenuLeave}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        backgroundColor: 'rgb(247, 241, 232)',
+        boxShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        padding: '1.5rem',
+        zIndex: 4, // stays under header
+        borderRadius: '0 0 50px 50px',
+        transform: hover ? 'translateY(0)' : 'translateY(-300%)',
+        opacity: 1,
+        transition: 'all .5s ease-out',
+      }}
+    >
+      {item.title === "Shop" && (
+        <>
+        {hoverItem === "QiBracelet®" && (
+        <div className="nav-styling-wrapper">
+          <img 
+          style={{borderRadius: '20px'}} 
+          width={325} 
+          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2023-03-01-qiblanco-milva-martin-1020737.webp?v=1707317356' 
+          />
+          <div className="nav-styling-overlay">
+            QiBracelet®
+          </div>
+        </div>
+        )}
+        {hoverItem === "QiOne® 2 Pro" && (
+        <div className="nav-styling-wrapper">
+          <img 
+          style={{borderRadius: '20px'}} 
+          width={325} 
+          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2021-04-qiblanco-bali-17.webp?v=1765230912' 
+          />
+          <div className="nav-styling-overlay">
+            QiOne 2 Pro®
+          </div>
+        </div>
+        )}
+        {hoverItem === "QiHome® Air" && (
+        <div className="nav-styling-wrapper">
+          <img 
+          style={{borderRadius: '20px'}} 
+          width={325} 
+          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1000819-2.jpg?v=1668999599' 
+          />
+          <div className="nav-styling-overlay">
+            QiHome Air®
+          </div>
+        </div>
+        )}
+        </>
+     )}
+      <ul className="NormalSectionSize" style={{margin: 0, padding: 0, listStyle: 'none'}}>
+        {item.items.map((child) => (
+          <li key={child.id} style={{padding: '0.25rem 0'}}>
+            <NavLink
+              className="header-submenu-item"
+              onClick={close}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={new URL(child.url || '#', window.location.origin).pathname}
+            >
+              {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)} 
+              {child.title === "QiBracelet®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-bracelet.png?v=1760089233" alt="" />)} 
+              {child.title === "QiHome® Air" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-home.png?v=1760089232" alt="" />)} 
+              {child.title === "Necklace für den QiOne®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-necklace.png?v=1760090696" alt="" />)} 
+              {child.title === "BIO - Kristall Kakao®  " && (<img width={35} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-kakao.png?v=1760090696" alt="" />)} 
+              
+              {child.title}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  return createPortal(submenu, containerRef.current);
+}
+
+/**
+ * Submenu link items (used by mobile accordion)
  */
 function SubMenuItem({item, close}) {
   if (!item.url) return null;
-
-  const url = new URL(item.url).pathname;
+  const url = new URL(item.url, typeof window !== 'undefined' ? window.location.origin : 'http://localhost').pathname;
 
   return (
-    <li className="py-1">
+    <li style={{padding: '0.25rem 0'}}>
       <NavLink
         className="header-submenu-item"
         onClick={close}
@@ -179,14 +428,6 @@ function HeaderCtas({isLoggedIn, cart}) {
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );
@@ -245,7 +486,6 @@ function CartBadge({count}) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="lucide lucide-shopping-bag-icon lucide-shopping-bag"
       >
         <path d="M16 10a4 4 0 0 1-8 0" />
         <path d="M3.103 6.034h17.794" />
@@ -336,10 +576,7 @@ const FALLBACK_HEADER_MENU = {
  * }}
  */
 function activeLinkStyle({isActive, isPending}) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
-  };
+  return ({color: isPending ? 'grey' : 'inherit', fontWeight: isActive ? 'bold' : undefined});
 }
 
 /** @typedef {'desktop' | 'mobile'} Viewport */

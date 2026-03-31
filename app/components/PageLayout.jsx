@@ -34,6 +34,12 @@ export function PageLayout({
           publicStoreDomain={publicStoreDomain}
         />
       )}
+      <div className="background-divs creme"></div>
+      <div className="background-divs blue"></div>
+      <div className="background-divs creme-2"></div>
+      <div className="background-divs blue-2"></div>
+      <div className="background-divs neutral"></div>
+      <div className="background-divs gold"></div>
       <main>{children}</main>
       <Footer
         footer={footer}
