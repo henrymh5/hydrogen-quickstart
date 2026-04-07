@@ -47,21 +47,21 @@ function Stars({count}) {
 
 export function GoogleReviews() {
   return (
-    <div className="NormalSectionSize my-[6vh]">
+    <div className="NormalSectionSize my-[6vh]!">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {reviews.map((review) => (
-          <div key={review.name} className="flex flex-col">
+          <div key={review.name} className="flex flex-col gap-5">
             {/* Speech bubble card */}
-            <div className="relative p-2! bg-[#f3f6f9] rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
+            <div className="relative p-4! bg-[#f3f6f9] rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
               {/* Top row: stars + checkmark, Google icon */}
-              <div className="flex items-center justify-between"> 
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <Stars count={review.rating} />
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="#3b82f6">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
                 </div>
-                <GoogleIcon /> 
+                <GoogleIcon />
               </div>
 
               {/* Review text */}

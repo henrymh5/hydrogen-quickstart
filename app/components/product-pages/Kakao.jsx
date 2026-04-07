@@ -83,18 +83,18 @@ function Hero() {
           ✅ Wissenschaftlich geprüft - direkt spürbar!{' '}
         </p>
         <div className="flex gap-3 mt-2">
-          <a href="/products/qione-2-pro" className="btn--primary">
+          <a href="/products/crystal-cacao-create" className="btn--primary">
             Jetzt kaufen
           </a>
-          <a
-            href="/pages/qione"
+          <a target='_blank'
+            href="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Test_report_Create_27.10.2025_english_language.pdf?v=1763061829"
             className="btn--secondary border-none! bg-[#00000025]"
           >
             Analyse anzeigen
           </a>
         </div>
         <div className="text-center mt-2 m-auto self-center">
-          100% Zufriedenheitsgarantie · Geprüfte Bio-Qualität
+          <b>100% Zufriedenheitsgarantie · Geprüfte Bio-Qualität</b>
         </div>
       </div>
       <div className="flex-1 rounded-xl overflow-hidden sm:block hidden">

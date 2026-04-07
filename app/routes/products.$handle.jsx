@@ -126,10 +126,10 @@ export default function Product() {
       </div>
       <div className="product-main">
         <h1>{title}</h1>
-        <div className="product-rating mt-2"><span>4.8</span> ★★★★★ <span>Über 12.000 Nutzer</span></div>
+        <div className="product-rating mt-2"><span>4.8</span> ★★★★★ <span>Über 14.000 Nutzer</span></div>
         <div className="ProductDescription" dangerouslySetInnerHTML={{__html: descriptionHtml}} />
 
-        <p className='mt-2'><b>Mehr als 12.000+ aktive Nutzer</b></p>
+        <p className='mt-2'><b>Mehr als 14.000+ aktive Nutzer</b></p>
 
         <ProductPrice
           price={selectedVariant?.price}

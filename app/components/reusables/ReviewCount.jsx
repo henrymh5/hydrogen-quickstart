@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export function ReviewCount(){
-    const [reviewCount, setReviewCount] = useState(null);
+    const [reviewCount, setReviewCount] = useState(4.7);
     
     fetch('https://qiblanco-only-rating-serpapi.vercel.app/api/getLatestRun')
     .then(response => {
@@ -13,15 +13,15 @@ export function ReviewCount(){
     })
     .then(data => {
       setReviewCount(data.totalScore !== undefined ? data.totalScore : reviewCount);
+
     })
     .catch(error => {
       console.error('Error fetching data:', error);
       setReviewCount(reviewCount);
     });
-
     return (
         <div className="ReviewCount">
             {reviewCount} ★★★★★
         </div>
     )
-}
+} 

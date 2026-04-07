@@ -99,11 +99,13 @@ export default function Product() {
   const [featuredImage, setFeaturedImage] = useState(product?.images.nodes[0]);
   return (
     <>
-      <div className="flex flex-col gap-5 items-center-justify-center text-center max-w-[500px] mx-auto! my-[5vh]! p-2">
-        <LazyImage highQualityLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug.webp?v=1766482188"
-        compressedLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug_small.webp?v=1766482188" />
-        <h2>Wach. Mutig. Kraftvoll.</h2>
-        <h3>High Performance Cacao</h3>
+      <div className="flex flex-col gap-5 items-center-justify-center text-center max-w-[750px] mx-auto! my-[5vh]! p-2">
+        <div className="max-w-[500px] m-center">
+          <LazyImage highQualityLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug.webp?v=1766482188"
+          compressedLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug_small.webp?v=1766482188" />
+        </div>
+        <h2 style={{fontSize: '3em', marginTop: '50px'}}>Wach. Mutig. Kraftvoll.</h2>
+        <h3 style={{fontSize: '2em'}}>High Performance Cacao</h3>
       </div>
       <div className="product">
         <div className="ProductImages">
@@ -118,7 +120,7 @@ export default function Product() {
         <div className="product-main">
           <h1>{title}</h1>
           <div className="product-rating">
-            <span>4.8</span> ★★★★★ <span>Über 12.000 Nutzer</span>
+            <span>4.8</span> ★★★★★ <span>Über 14.000 Nutzer</span>
           </div>
           <div
             className="ProductDescription"
@@ -126,7 +128,7 @@ export default function Product() {
           />
 
           <p className="mt-2">
-            <b>Mehr als 12.000+ aktive Nutzer</b>
+            <b>Mehr als 14.000+ aktive Nutzer</b>
           </p>
 
           <div className="Bestseller-Price">

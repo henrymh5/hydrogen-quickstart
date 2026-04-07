@@ -18,6 +18,7 @@ import { SingleImage } from '~/components/reusables/SingleImage';
 import { CallToAction } from '~/components/index-components/CallToAction';
 import { HeroBanner } from '~/components/reusables/HeroBannerParallax';
 import { GoogleReviews } from '~/components/index-components/GoogleReviews';
+import { ReputonWidget } from '~/components/index-components/ReputonWidget';
 
 /**
  * @type {MetaFunction}
@@ -90,6 +91,7 @@ export default function Homepage() {
         text={<h2>"87 % der Nutzer berichten von positiven <br /> Veränderungen in ihrem Wohlbefinden nach der <br /> Anwendung der Qi Blanco® Produkte."</h2>} />
       <InfoSlider />
     <GoogleReviews /> 
+    <ReputonWidget />
       <YoutubeIframe 
         link="https://www.youtube.com/embed/jyLyXZqHxaw?si=2ZVH9xtaSaEMmfTQ&amp;controls=0" />
       <YoutubeIframe 

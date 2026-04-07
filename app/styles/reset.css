@@ -4,7 +4,7 @@ body {
   padding: 0;
 }
 main:not(aside main){
-  margin-top: 50px!important;
+  margin-top: 75px!important;
 }
 .NormalSectionSize{
   max-width: 1350px;

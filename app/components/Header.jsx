@@ -2,7 +2,7 @@
 
 import {Suspense, useState, useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
-import {Await, NavLink, useAsyncValue, Link} from 'react-router';
+import {Await, NavLink, useAsyncValue, Link, useLocation} from 'react-router';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 import {ReviewCount} from './reusables/ReviewCount';
@@ -69,16 +69,29 @@ useEffect(() => {
   return () => observer.disconnect();
 }, []);
 
+  const {pathname} = useLocation();
+  const isCacaoPage =
+    pathname === '/pages/crystal-cacao' ||
+    pathname === '/products/crystal-cacao-create' ||
+    pathname === '/products/crystal-cacao-awake';
+
   return (
     <>
       <AnnouncementBanner
         announcement={
-          <p>
-            <ReviewCount /> - Über 12.000 zufriedene Kunden - Jetzt 20 Tage
-            risikofrei erleben!
-          </p>
+          isCacaoPage ? (
+            <p>
+              5.0/5.0 ⭐⭐⭐⭐⭐ - Über 1.000 aktive Nutzer - jetzt mit
+              Zufriedenheitsgarantie!
+            </p>
+          ) : (
+            <p>
+              <ReviewCount /> - Über 14.000 zufriedene Kunden - Jetzt 20 Tage
+              risikofrei erleben!
+            </p>
+          )
         }
-        link="/products/qione-2-pro"
+        link={isCacaoPage ? '/pages/crystal-cacao' : '/products/qione-2-pro'}
       />
 
       <header
@@ -180,6 +193,7 @@ export function HeaderMenu({
 function MenuItem({item, url, hasChildren, viewport, close}) {
   const [open, setOpen] = useState(false); // mobile accordion
   const [hover, setHover] = useState(false); // desktop hover/focus
+  const [expandedKakaoMobile, setExpandedKakaoMobile] = useState(false);
   const hoverTimeout = useRef(null);
   const triggerRef = useRef(null);
 
@@ -267,9 +281,51 @@ function MenuItem({item, url, hasChildren, viewport, close}) {
 
       {hasChildren && viewport === 'mobile' && open && (
         <ul style={{paddingLeft: '1rem', borderLeft: '1px solid #ccc'}}>
-          {item.items.map((child) => (
-            <SubMenuItem key={child.id} item={child} close={close} />
-          ))}
+          {item.items.map((child) => {
+            const isKakao = child.title.includes('Kakao');
+            const isShop = item.title === "Shop";
+
+            // Shop: accordion toggle
+            if (isKakao && isShop) {
+              return (
+                <li key={child.id} style={{padding: '0.25rem 0', listStyle: 'none'}}>
+                  <button
+                    type="button"
+                    className="menu-toggle-mobile kakao-toggle-mobile"
+                    onClick={() => setExpandedKakaoMobile((prev) => !prev)}
+                  >
+                    Kristall Kakao® &nbsp;{expandedKakaoMobile ? '−' : '+'}
+                  </button>
+                  {expandedKakaoMobile && (
+                    <ul style={{paddingLeft: '1rem', borderLeft: '1px solid #ccc', marginTop: '0.25rem'}}>
+                      <li style={{padding: '0.2rem 0', listStyle: 'none'}}>
+                        <NavLink className="header-submenu-item" onClick={close} prefetch="intent" style={activeLinkStyle} to="/pages/crystal-cacao">Übersicht</NavLink>
+                      </li>
+                      <li style={{padding: '0.2rem 0', listStyle: 'none'}}>
+                        <NavLink className="header-submenu-item" onClick={close} prefetch="intent" style={activeLinkStyle} to="/products/crystal-cacao-create">Create</NavLink>
+                      </li>
+                      <li style={{padding: '0.2rem 0', listStyle: 'none'}}>
+                        <NavLink className="header-submenu-item" onClick={close} prefetch="intent" style={activeLinkStyle} to="/products/crystal-cacao-awake">Awake</NavLink>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              );
+            }
+
+            // Online Kurse: plain link
+            if (isKakao && !isShop) {
+              return (
+                <li key={child.id} style={{padding: '0.25rem 0', listStyle: 'none'}}>
+                  <NavLink className="header-submenu-item" onClick={close} prefetch="intent" style={activeLinkStyle} to="/pages/zeremonie-kakao-kurs">
+                    Zeremonie Kakao Kurs
+                  </NavLink>
+                </li>
+              );
+            }
+
+            return <SubMenuItem key={child.id} item={child} close={close} />;
+          })}
         </ul>
       )}
     </div>
@@ -289,6 +345,7 @@ function MenuItem({item, url, hasChildren, viewport, close}) {
 function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout}) {
   const containerRef = useRef(null);
   const [hoverItem, setHoverItem] = useState("QiOne® 2 Pro");
+  const [expandedKakao, setExpandedKakao] = useState(false);
 
   useEffect(() => {
     const el = document.createElement('div');
@@ -334,64 +391,122 @@ function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout})
     >
       {item.title === "Shop" && (
         <>
-        {hoverItem === "QiBracelet®" && (
-        <div className="nav-styling-wrapper">
-          <img 
-          style={{borderRadius: '20px'}} 
-          width={325} 
-          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2023-03-01-qiblanco-milva-martin-1020737.webp?v=1707317356' 
-          />
-          <div className="nav-styling-overlay">
-            QiBracelet®
-          </div>
-        </div>
-        )}
-        {hoverItem === "QiOne® 2 Pro" && (
-        <div className="nav-styling-wrapper">
-          <img 
-          style={{borderRadius: '20px'}} 
-          width={325} 
-          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2021-04-qiblanco-bali-17.webp?v=1765230912' 
-          />
-          <div className="nav-styling-overlay">
-            QiOne 2 Pro®
-          </div>
-        </div>
-        )}
-        {hoverItem === "QiHome® Air" && (
-        <div className="nav-styling-wrapper">
-          <img 
-          style={{borderRadius: '20px'}} 
-          width={325} 
-          src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1000819-2.jpg?v=1668999599' 
-          />
-          <div className="nav-styling-overlay">
-            QiHome Air®
-          </div>
-        </div>
-        )}
+          {hoverItem === "QiBracelet®" && (
+            <div className="nav-styling-wrapper">
+              <img style={{borderRadius: '20px'}} width={325} src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2023-03-01-qiblanco-milva-martin-1020737.webp?v=1707317356' />
+              <div className="nav-styling-overlay">QiBracelet®</div>
+            </div>
+          )}
+          {hoverItem === "QiOne® 2 Pro" && (
+            <div className="nav-styling-wrapper">
+              <img style={{borderRadius: '20px'}} width={325} src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2021-04-qiblanco-bali-17.webp?v=1765230912' />
+              <div className="nav-styling-overlay">QiOne 2 Pro®</div>
+            </div>
+          )}
+          {hoverItem === "QiHome® Air" && (
+            <div className="nav-styling-wrapper">
+              <img style={{borderRadius: '20px'}} width={325} src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1000819-2.jpg?v=1668999599' />
+              <div className="nav-styling-overlay">QiHome Air®</div>
+            </div>
+          )}
         </>
-     )}
+      )}
+
+      {item.title === "Online Kurse" && (
+        <div className="nav-styling-wrapper">
+          <img style={{borderRadius: '20px'}} width={325} src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-in-5-stufen-zum-superhuman-masterclass-showcase-app-526x296_400x.png?v=1645756351' />
+        </div>
+      )}
+
+      {item.title === "Mehr" && (
+        <div className="nav-styling-wrapper">
+          <img style={{borderRadius: '20px'}} width={325} src='https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2023-06-qiblanco-kitzbuehel-10.webp?v=1738529579' />
+        </div>
+      )}
+
       <ul className="NormalSectionSize" style={{margin: 0, padding: 0, listStyle: 'none'}}>
-        {item.items.map((child) => (
-          <li key={child.id} style={{padding: '0.25rem 0'}}>
-            <NavLink
-              className="header-submenu-item"
-              onClick={close}
-              prefetch="intent"
-              style={activeLinkStyle}
-              to={new URL(child.url || '#', window.location.origin).pathname}
-            >
-              {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)} 
-              {child.title === "QiBracelet®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-bracelet.png?v=1760089233" alt="" />)} 
-              {child.title === "QiHome® Air" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-home.png?v=1760089232" alt="" />)} 
-              {child.title === "Necklace für den QiOne®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-necklace.png?v=1760090696" alt="" />)} 
-              {child.title === "BIO - Kristall Kakao®  " && (<img width={35} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-kakao.png?v=1760090696" alt="" />)} 
-              
-              {child.title}
-            </NavLink>
-          </li>
-        ))}
+        {item.items.map((child) => {
+          const isKakao = child.title.includes('Kakao');
+          const isShop = item.title === "Shop";
+
+          // Shop: Kristall Kakao® accordion toggle
+          if (isKakao && isShop) {
+            return (
+              <li key={child.id} className="kakao-item">
+                <button
+                  className="header-submenu-item kakao-toggle"
+                  type="button"
+                  onClick={() => setExpandedKakao((prev) => !prev)}
+                >
+                  <img width={35} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-kakao.png?v=1760090696" alt="" />
+                  Kristall Kakao®
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 15 15"
+                    style={{
+                      marginLeft: '0.25rem',
+                      transition: 'transform 0.2s',
+                      transform: expandedKakao ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}
+                  >
+                    <path fill="currentColor" d="M7.5 9.95a.45.45 0 0 0 .319-.132l3-3a.45.45 0 0 0-.637-.637L7.5 8.863L4.82 6.181l-.07-.057a.451.451 0 0 0-.625.624l.058.07l3 3a.45.45 0 0 0 .318.132" />
+                  </svg>
+                </button>
+                {expandedKakao && (
+                  <ul className="kakao-children">
+                    <li>
+                      <NavLink className="header-submenu-item kakao-child" onClick={close} prefetch="intent" style={activeLinkStyle} to="/pages/crystal-cacao">Übersicht</NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="header-submenu-item kakao-child" onClick={close} prefetch="intent" style={activeLinkStyle} to="/products/crystal-cacao-create">Create</NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="header-submenu-item kakao-child" onClick={close} prefetch="intent" style={activeLinkStyle} to="/products/crystal-cacao-awake">Awake</NavLink>
+                    </li>
+                  </ul>
+                )}
+              </li>
+            );
+          }
+
+          // Online Kurse: Kakao child becomes a plain "Zeremonie Kakao Kurs" link
+          if (isKakao && !isShop) {
+            return (
+              <li key={child.id} style={{padding: '0.25rem 0'}}>
+                <NavLink
+                  className="header-submenu-item"
+                  onClick={close}
+                  prefetch="intent"
+                  style={activeLinkStyle}
+                  to="/pages/zeremonie-kakao-kurs"
+                >
+                  <img width={35} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-kakao.png?v=1760090696" alt="" />
+                  Zeremonie Kakao Kurs
+                </NavLink>
+              </li>
+            );
+          }
+
+          return (
+            <li key={child.id} style={{padding: '0.25rem 0'}}>
+              <NavLink
+                className="header-submenu-item"
+                onClick={close}
+                prefetch="intent"
+                style={activeLinkStyle}
+                to={new URL(child.url || '#', window.location.origin).pathname}
+              >
+                {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)}
+                {child.title === "QiBracelet®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-bracelet.png?v=1760089233" alt="" />)}
+                {child.title === "QiHome® Air" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-home.png?v=1760089232" alt="" />)}
+                {child.title === "Necklace für den QiOne®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-necklace.png?v=1760090696" alt="" />)}
+                {child.title}
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
