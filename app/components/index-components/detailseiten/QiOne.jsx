@@ -5,6 +5,7 @@ import {CallToAction} from '../CallToAction';
 import {HeroBannerParallax} from '~/components/reusables/HeroBannerParallaxButton';
 import {ZellDiagramme} from '../ZellDiagramme';
 import {UpsellLineUp} from '~/components/UpsellLineUp';
+import { ImgixVideo } from '~/components/reusables/ImgixVideo';
 export function QiOne() {
   return (
     <div className="Detailseite">
@@ -12,7 +13,8 @@ export function QiOne() {
         <div>
           <h2>Der QiOne® 2 Pro</h2>
           <h3>Messbare Effekte auf Zellebene</h3>
-          {/*VIDEO*/}
+                <ImgixVideo className='w-50 overflow-hidden' videoPath="VIDEO-QiOne60s-DE-2021.mov" fallbackImage="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/fallback-image-qione-detail.webp?v=1747735933" />
+
           <Link className="btn--secondary" to={'/product/qione-2-pro'}>
             Hol dir jetzt deinen QiOne® 2 Pro
           </Link>
