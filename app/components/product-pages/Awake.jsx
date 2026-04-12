@@ -9,7 +9,10 @@ export function BioaktiveInhaltsstoffe() {
   const ingredients = [
     {
       title: 'Theobromin: 950 mg / 100g',
-      bullets: ['sanfte, ausgewogene Aktivierung', 'harmonisches 7,9:1-Verhältnis'],
+      bullets: [
+        'sanfte, ausgewogene Aktivierung',
+        'harmonisches 7,9:1-Verhältnis',
+      ],
     },
     {
       title: 'Phenylethylamin (PEA): 5 mg / 100g',
@@ -43,7 +46,9 @@ export function BioaktiveInhaltsstoffe() {
 
         {/* Right: text */}
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-bold mb-5">7 bioaktive Inhaltsstoffe:</h2>
+          <h2 className="text-2xl font-bold mb-5">
+            7 bioaktive Inhaltsstoffe:
+          </h2>
 
           {/* Mobile-only top image */}
           <img
@@ -174,10 +179,16 @@ const herkunftRows = [
     text: (
       <>
         <p>
-          Aus den <b>goldenen Flusstälern des Piura-Tals im Norden Perus</b> stammt eine heilige Pflanze – in ihrer reinsten Form: unser bio-zertifizierter <b>Awake – Kristall Kakao®.</b>
+          Aus den <b>goldenen Flusstälern des Piura-Tals im Norden Perus</b>{' '}
+          stammt eine heilige Pflanze – in ihrer reinsten Form: unser
+          bio-zertifizierter <b>Awake – Kristall Kakao®.</b>
         </p>
         <p className="mt-3">
-          Die hellen Kakaobohnen aus dieser Region zählen zu den seltensten und aromatischsten der Welt. Sie stammen aus nachhaltigem Anbau, werden von lokalen Kleinbauern mit großer Sorgfalt geerntet und bewahren durch ihre besondere Bohnenstruktur ein außergewöhnlich feines Aromaprofil.
+          Die hellen Kakaobohnen aus dieser Region zählen zu den seltensten und
+          aromatischsten der Welt. Sie stammen aus nachhaltigem Anbau, werden
+          von lokalen Kleinbauern mit großer Sorgfalt geerntet und bewahren
+          durch ihre besondere Bohnenstruktur ein außergewöhnlich feines
+          Aromaprofil.
         </p>
       </>
     ),
@@ -187,10 +198,15 @@ const herkunftRows = [
     text: (
       <>
         <p>
-          Schonend bei niedriger Temperatur vermahlen, gießen wir sie anschließend in eine elegante, quadratische 420 g-Tafel – ein purer Block <b>Bio Kristall Kakao®.</b>
+          Schonend bei niedriger Temperatur vermahlen, gießen wir sie
+          anschließend in eine elegante, quadratische 420 g-Tafel – ein purer
+          Block <b>Bio Kristall Kakao®.</b>
         </p>
         <p className="mt-3">
-          Nach der Formung geben wir dem Kakao die Zeit, die er braucht: In der harmonisierenden <b>QiHome® Air</b> Atmosphäre – unterstützt durch die <b>GitterChip™-Technologie</b> – kristallisiert er langsam aus und entfaltet dabei sein charakteristisches Kristallmuster.
+          Nach der Formung geben wir dem Kakao die Zeit, die er braucht: In der
+          harmonisierenden <b>QiHome® Air</b> Atmosphäre – unterstützt durch
+          die <b>GitterChip™-Technologie</b> – kristallisiert er langsam aus
+          und entfaltet dabei sein charakteristisches Kristallmuster.
         </p>
       </>
     ),
@@ -200,10 +216,17 @@ const herkunftRows = [
     text: (
       <>
         <p>
-          Es ist ein Sinnbild für naturbelassene Qualität, aromatische Tiefe und unsere tiefe Achtung vor dem Ursprung. Versiegelt im Aroma-Schutzpack bleiben das volle Bouquet frischer Fruchtnoten, feiner Kokosnuancen und alle wertvollen Bestandteile optimal bewahrt.
+          Es ist ein Sinnbild für naturbelassene Qualität, aromatische Tiefe und
+          unsere tiefe Achtung vor dem Ursprung. Versiegelt im Aroma-Schutzpack
+          bleiben das volle Bouquet frischer Fruchtnoten, feiner Kokosnuancen
+          und alle wertvollen Bestandteile optimal bewahrt.
         </p>
         <p className="mt-3">
-          <b>Brich dir ein Stück ab, bereite ein warmes Elixier zu und tauche ein in dein persönliches Ritual – mit Achtsamkeit, Herzöffnung und tiefer Verbindung zu dir selbst.</b>
+          <b>
+            Brich dir ein Stück ab, bereite ein warmes Elixier zu und tauche ein
+            in dein persönliches Ritual – mit Achtsamkeit, Herzöffnung und
+            tiefer Verbindung zu dir selbst.
+          </b>
         </p>
       </>
     ),

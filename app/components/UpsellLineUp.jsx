@@ -8,7 +8,7 @@ export function UpsellLineUp(){
 
     return (
         <div className="UpsellLineUp mt-2 NormalSectionSize">
-            <h2 className="text-center">
+            <h2 className="text-5xl! text-center">
                 Über 300 neue Nutzer im Monat. <br />
                 Werde Teil der Qi Blanco® Revolution!
             </h2>

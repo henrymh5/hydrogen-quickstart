@@ -3,8 +3,8 @@ import LazyImage from '../reusables/LazyImage';
 export function Kakao() {
   return (
     <div className="ProductPageKakao">
-      <h1 className="text-7xl text-center mb-[0px]">High Performance Cacao</h1>
-      <h2 className="text-5xl text-center mt-0">Wach. Klar. Mineralisiert.</h2>
+      <h1 className="text-6xl! text-center mb-[0px]!">High Performance Cacao</h1>
+      <h2 className="text-5xl! text-center mt-5!">Wach. Klar. Mineralisiert.</h2>
       <Hero />
       <Benefits />
       <SideToSideWithTable />

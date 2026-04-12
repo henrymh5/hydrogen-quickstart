@@ -559,7 +559,7 @@ export default function TechnologiePage() {
       </section>
 
       {/* ── CTA ── */}
-      <div style={{background: 'var(--color-dark)', color: '#fff', padding: '5rem 1.5rem'}}>
+      <div style={{padding: '5rem 1.5rem'}}>
         <div
           className="NormalSectionSize"
           style={{
@@ -576,7 +576,7 @@ export default function TechnologiePage() {
             style={{width: '100%', height: 'auto'}}
           />
           <div>
-            <h2 style={{color: '#fff', marginBottom: '1.25rem'}}>
+            <h2 style={{marginBottom: '1.25rem'}}>
               Lass deinen QiOne® 2 Pro kohärentes Wasser für dich produzieren
             </h2>
             <p style={{opacity: 0.85, lineHeight: '2', marginBottom: '1.75rem'}}>
