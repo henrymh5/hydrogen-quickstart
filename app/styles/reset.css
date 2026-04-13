@@ -196,5 +196,5 @@ form, input, button, textarea, select, option, a{
  -moz-appearance: none !important;
 }
 .HerobannerFeatured{
-  margin-top: 100px;
+  margin-top: 0;
 }

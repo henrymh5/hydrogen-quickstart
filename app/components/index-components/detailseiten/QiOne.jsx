@@ -9,7 +9,7 @@ import { ImgixVideo } from '~/components/reusables/ImgixVideo';
 export function QiOne() {
   return (
     <div className="Detailseite">
-      <div className="QiOne-Herobanner-Detailseite">
+      <div className="QiOne-Herobanner-Detailseite mt-[-75px]!">
         <div className='max-w-[450px]! flex flex-col items-start justify-start gap-3 py-[85px]! px-[10px]! md:px-0!'>
           <h2 className='mb-0!'>Der QiOne® 2 Pro</h2>
           <h3 className='mt-0!'>Messbare Effekte auf Zellebene</h3>

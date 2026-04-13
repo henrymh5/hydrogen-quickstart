@@ -86,7 +86,7 @@ export function Superhuman() {
     <>
       {/* Hero banner */}
       <div
-        className="relative w-full flex items-center justify-center py-20! min-h-[40vh]! sm:py-24! bg-cover bg-center overflow-hidden"
+        className="relative w-full mt-[-75px]! flex items-center justify-center py-20! min-h-[40vh]! sm:py-24! bg-cover bg-center overflow-hidden"
         style={{backgroundImage: `url("${IMG_HERO_BG}")`}}
       >
         <div className="absolute inset-0! bg-black/40! rounded-xl" />

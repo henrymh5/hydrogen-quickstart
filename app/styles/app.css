@@ -17,6 +17,9 @@
   --color-footer: #0a1127;
   --checkmark-color: #396e25;
 }
+main {
+  padding-top: calc(var(--header-height) + 40px);
+}
 svg, img{
   display: inline;
 }
