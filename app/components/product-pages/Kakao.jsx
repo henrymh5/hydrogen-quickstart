@@ -1,4 +1,5 @@
 import LazyImage from '../reusables/LazyImage';
+import {ActiveCampaignForm} from '../reusables/ActiveCampaignForm';
 
 export function Kakao() {
   return (
@@ -501,9 +502,9 @@ function OnlineKurs() {
         </div>
         <div className="aspect-video overflow-hidden rounded-xl">
           <img
-            className="w-full h-full object-cover"
-            src="https://qiblanco.com/cdn/shop/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1.webp?v=1670867359"
-            alt="Kurs Kakao Zeremonie"
+            className="w-full h-auto"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1_1.webp?v=1760876274"
+            alt="Kurs Kakao Zeremonie" 
           />
         </div>
       </div>
@@ -513,12 +514,11 @@ function OnlineKurs() {
 
 function KursRegistration() {
   return (
-    <div className="my-[100px]! shadow-[0_8px_45px_-3px_rgb(0_0_0_/_16%)] py-[5vh]">
+    <div className="my-[100px]! shadow-[0_8px_45px_-3px_rgb(0_0_0_/_16%)] py-[5vh]!">
       <div className="NormalSectionSize grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
         <div className="flex flex-col gap-4">
           <h2>Jetzt kostenfrei mitmachen!</h2>
-          {/* ActiveCampaign form: _form_21 */}
-          <div className="_form_21" />
+          <ActiveCampaignForm formId="21" />
           <p className="text-sm text-gray-500">
             *Deine Eintragung ist absolut unverbindlich. Wenn dir der Kurs nicht
             gefällt, kannst du dich jederzeit mit nur einem Klick wieder
@@ -526,9 +526,9 @@ function KursRegistration() {
           </p>
         </div>
         <div className="aspect-video overflow-hidden rounded-xl">
-          <img
+          <img 
             className="w-full h-full object-cover"
-            src="https://qiblanco.com/cdn/shop/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1.webp?v=1670867359"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1_1.webp?v=1760876274"
             alt="Kurs Kakao Zeremonie"
           />
         </div>

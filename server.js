@@ -40,9 +40,9 @@ export default {
         [
           "default-src 'self' https://cdn.shopify.com https://qiblanco.com",
           "script-src 'self' 'unsafe-inline' https://cdn.shopify.com https://cdn.shopify.com/shopifycloud/perf-kit/shopify-perf-kit-spa.min.js https://cdn.grw.reputon.com https://qiblanco-only-rating-serpapi.vercel.app https://qiblanco.activehosted.com",
-          "style-src 'self' 'unsafe-inline' https://cdn.shopify.com https://*.reputon.com",
+          "style-src 'self' 'unsafe-inline' https://cdn.shopify.com https://*.reputon.com https://qiblanco.activehosted.com",
           "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://*.reputon.com",
-          "connect-src 'self' https://monorail-edge.shopifysvc.com https://qiblanco-only-rating-serpapi.vercel.app https://*.reputon.com https://qiblanco-video.imgix.video/ https://*.imgix.video/",
+          "connect-src 'self' https://monorail-edge.shopifysvc.com https://qiblanco-only-rating-serpapi.vercel.app https://*.reputon.com https://qiblanco-video.imgix.video/ https://*.imgix.video/ https://qiblanco.activehosted.com",
           "font-src 'self' data: https://cdn.shopify.com https://cdn.grw.reputon.com https://fonts.gstatic.com",
           "img-src 'self' data: https://cdn.shopify.com https://qiblanco.com https://*.googleusercontent.com https://maps.googleapis.com https://maps.gstatic.com https://cdn.grw.reputon.com",
         ].join('; ')
