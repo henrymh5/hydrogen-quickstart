@@ -47,7 +47,7 @@ useEffect(() => {
   if (typeof window === 'undefined') return;
 
   function getBackgroundLuminance() {
-    const headerEl = document.querySelector('header.header');
+    const headerEl = document.querySelector('.header-wrapper .header');
     if (!headerEl) return null;
 
     const rect = headerEl.getBoundingClientRect();
@@ -104,8 +104,11 @@ useEffect(() => {
     pathname === '/products/crystal-cacao-awake';
 
   return (
-    <>
+    <header
+      className={`header-wrapper ${hidden ? 'header--hidden' : ''} ${isDarkBg && !dropdownOpen ? 'header--on-dark' : 'header--on-light'}`}
+    >
       <AnnouncementBanner
+        scrolled={scrolled}
         announcement={
           isCacaoPage ? (
             <p>
@@ -122,23 +125,16 @@ useEffect(() => {
         link={isCacaoPage ? '/pages/crystal-cacao' : '/products/qione-2-pro'}
       />
 
-      <header
-        className={`header ${hidden ? 'header--hidden' : ''} ${isDarkBg && !dropdownOpen ? 'header--on-dark' : 'header--on-light'}`}
+      <div
+        className="header"
         style={{
-          position: 'fixed',
-          top: scrolled ? '5px' : '40px',
-          left: '50%',
-          background: scrolled 
-          ? 'rgba(74, 71, 65, 0.1)' 
-          : 'transparent',
+          marginTop: scrolled ? '10px' : '0',
+          background: scrolled
+            ? 'rgba(74, 71, 65, 0.1)'
+            : 'transparent',
           backdropFilter: scrolled
-          ? 'blur(32px)'
-          : 'blur(0px)',
-          zIndex: 5,
-          transition: 'transform .8s ease, color 0.3s ease',
-          transform: hidden
-            ? 'translate(-50%, -300px)'
-            : 'translate(-50%, 25px)',
+            ? 'blur(32px)'
+            : 'blur(0px)',
         }}
       >
         <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
@@ -162,8 +158,8 @@ useEffect(() => {
         />
 
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-      </header>
-    </>
+      </div>
+    </header>
   );
 }
 
@@ -666,9 +662,17 @@ function CartToggle({cart}) {
   );
 }
 
-function AnnouncementBanner({announcement, link}) {
+function AnnouncementBanner({announcement, link, scrolled}) {
   return (
-    <div className="Header-AnnouncementBanner">
+    <div
+      className="Header-AnnouncementBanner"
+      style={{
+        maxHeight: scrolled ? '0px' : '100px',
+        opacity: scrolled ? 0 : 1,
+        overflow: 'hidden',
+        transition: 'max-height 0.8s ease, opacity 0.8s ease',
+      }}
+    >
       <Link prefetch="intent" to={link}>
         {announcement}
       </Link>

@@ -50,7 +50,6 @@ export default function StudienPage() {
       {/* Hero */}
       <div
         style={{
-          background: 'linear-gradient(135deg, #f7f1e8 0%, #ede4d6 100%)',
           padding: '5rem 1.5rem 4rem',
           textAlign: 'center',
         }}
@@ -311,8 +310,8 @@ export default function StudienPage() {
       <hr style={{border: 'none', borderTop: '1px solid rgba(0,0,0,0.1)', margin: 0}} />
 
       {/* ── DARMZELLEN ── */}
-      <div className="NormalSectionSize" style={{...sectionStyle, maxWidth: '900px', background: '#f7f1e8'}}>
-        <div style={{background: '#f7f1e8', borderRadius: '16px', padding: '0'}}>
+      <div className="NormalSectionSize" style={{...sectionStyle, maxWidth: '900px',}}>
+        <div style={{borderRadius: '16px', padding: '0'}}>
           <h2 id="darmzellen" style={{textAlign: 'center', ...h2Style}}>Zellstudie an Darmepithelzellen</h2>
 
           <a

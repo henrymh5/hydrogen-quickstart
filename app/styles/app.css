@@ -427,15 +427,28 @@ button.reset:hover:not(:has(> *)) {
 aside h3 {
   font-size: 2rem;
 }
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.8s ease, color 0.3s ease;
+}
+.header-wrapper.header--hidden {
+  transform: translateY(-100%);
+}
 .header {
   align-items: center;
   justify-content: space-between;
   display: flex;
-  height: var(--header-height);
   width: 95%;
-  padding: 2.5rem 1rem;
-  z-index: 1;
+  padding: 1rem;
   border-radius: 10px;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, margin-top 0.4s ease;
 }
 .header-ctas a.openCart {
   position: relative;
@@ -492,20 +505,19 @@ aside h3 {
   min-width: fit-content;
 }
 
+.Header-AnnouncementBanner {
+  width: 100%;
+}
 .Header-AnnouncementBanner a {
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 5;
   justify-content: center;
   text-align: center;
-  height: 100%;
   width: 100%;
-  padding: 1rem;
-  opacity: 1;
+  padding: 0.7rem 1rem;
   color: var(--color-light)!important;
-  transition: 0.2s opacity linear;
-  background: var(--color-dark);
+  transition: 0.2s background linear;
+  background: #151515;
 }
 .Header-AnnouncementBanner a p {
   color: var(--color-light);
@@ -517,7 +529,7 @@ aside h3 {
 }
 .Header-AnnouncementBanner a:hover {
   text-decoration: none;
-  opacity: 0.8;
+  background: #000000;
 }
 .header-menu-desktop {
   display: flex;
@@ -1118,7 +1130,7 @@ ul.submenu li a {
 */
 .product {
   display: grid;
-  margin-top: 50px;
+  margin-top: 85px;
   @media (min-width: 45em) {
     grid-template-columns: 1.1fr 1fr;
     grid-gap: 5rem;
@@ -1639,11 +1651,7 @@ ul.submenu li a {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  background: linear-gradient(180deg, #e9e6f700 0%, #f7f4ff35 100%);
-  backdrop-filter: blur(25px);
   margin-top: 50px;
-  box-shadow: 0 13px 20px 0 rgba(0, 0, 0, 0.08);
-  -webkit-box-shadow: 0 13px 20px 0 rgb(0 0 0 / 8%);
   padding-top: 5vh;
 }
 .FeaturedProduct .FeaturedProduct_ImageWrapper img {
@@ -1829,13 +1837,14 @@ ul.submenu li a {
 .UpsellLabel {
   color: var(--color-dark);
   font-weight: 600;
-  padding: 10px;
-  border-radius: 10px;
+  font-size: 1em!important;
+  border-radius: 10px; 
 }
 .UpsellLink {
   font-size: 1.2rem;
   display: block;
-  text-decoration: underline;
+  font-weight: 600;
+  text-decoration: none!important;
 }
 .UpsellItem form {
   width: 100%;
