@@ -15,7 +15,7 @@ import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import {PageLayout} from './components/PageLayout';
-import '@fontsource-variable/wix-madefor-text';
+import '@fontsource-variable/open-sans';
 import LoadingBar from './components/LoadingBar';
 /**
  * This is important to avoid re-fetching root queries on sub-navigations

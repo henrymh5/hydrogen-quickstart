@@ -1,41 +1,62 @@
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 
 export function ReputonWidget() {
-  useEffect(() => {
-    const scriptAlreadyLoaded = document.querySelector('script[src*="reputon"]');
+  const containerRef = useRef(null);
 
-    if (scriptAlreadyLoaded) {
-      // Script already in DOM after SPA navigation — trigger re-scan if the widget exposes an init API
-      if (window.GRW?.init) window.GRW.init();
-      return;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Reputon widget expects a global Shopify object (present on native
+    // Shopify storefronts but missing in Hydrogen). Provide a minimal shim.
+    if (!window.Shopify) {
+      window.Shopify = {
+        shop: 'qi-blanco.myshopify.com',
+        locale: 'de',
+        currency: {active: 'EUR', rate: '1.0'},
+      };
     }
+
+    // Create the widget div
+    const widgetDiv = document.createElement('div');
+    widgetDiv.className = 'reputon-google-reviews-widget';
+    widgetDiv.setAttribute('data-type', 'carousel');
+    widgetDiv.setAttribute('data-content-index', '1');
+    widgetDiv.setAttribute('data-theme', 'light');
+    widgetDiv.setAttribute('data-autoscroll', 'true');
+    widgetDiv.setAttribute('data-review-photos-type', 'small');
+    widgetDiv.setAttribute('data-write-review', 'true');
+    widgetDiv.setAttribute('data-fixed-reviews-height', 'false');
+    widgetDiv.setAttribute('data-delay', '5');
+    widgetDiv.setAttribute('data-transparency', '1');
+    widgetDiv.setAttribute('data-font', 'default');
+    widgetDiv.setAttribute('data-fluid-scrolling', 'false');
+    widgetDiv.setAttribute('data-has-shadow', 'false');
+    widgetDiv.setAttribute('data-solid-shadow', 'false');
+    widgetDiv.setAttribute('data-rating-type', 'stars'); 
+    widgetDiv.setAttribute('data-header-type', 'none');
+    widgetDiv.setAttribute('data-variant', 'carousel');
+    container.appendChild(widgetDiv);
+
+    // Remove old script + globals so a fresh script re-initializes
+    const oldScript = document.querySelector(
+      'script[src*="cdn.grw.reputon.com"]',
+    );
+    if (oldScript) oldScript.remove();
+    if (window.GRW) delete window.GRW;
+    if (window.grw) delete window.grw;
 
     const script = document.createElement('script');
     script.src =
-      'https://cdn.grw.reputon.com/assets/widget.js?shop=qi-blanco.myshopify.com';
-    script.defer = true;
-    document.head.appendChild(script);
+      'https://cdn.grw.reputon.com/assets/widget.js?shop=qi-blanco.myshopify.com&t=' +
+      Date.now();
+    document.body.appendChild(script);
+
+    return () => {
+      container.innerHTML = '';
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
   }, []);
 
-  return (
-    <div
-      className="reputon-google-reviews-widget"
-      data-type="carousel"
-      data-content-index="1"
-      data-theme="light"
-      data-autoscroll="true"
-      data-review-photos-type="small"
-      data-write-review="true"
-      data-fixed-reviews-height="false"
-      data-delay="5"
-      data-transparency="1"
-      data-font="default"
-      data-fluid-scrolling="false"
-      data-has-shadow="false"
-      data-solid-shadow="false"
-      data-rating-type="stars"
-      data-header-type="top"
-      data-variant="carousel"
-    />
-  );
+  return <div ref={containerRef} />;
 }

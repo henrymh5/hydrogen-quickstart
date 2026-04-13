@@ -1,11 +1,9 @@
 body {
-  font-family: 'Wix Madefor Text Variable', sans-serif;
+  font-family: 'Open Sans Variable', sans-serif;
   margin: 0;
   padding: 0;
 }
-main:not(aside main){
-  margin-top: 75px!important;
-}
+
 .NormalSectionSize{
   max-width: 1350px;
   margin-left: auto;
@@ -160,11 +158,11 @@ code {
 }
 aside,
 aside main{
-  background: rgb(247, 241, 232)!important;
+  background: rgb(245, 253, 255)!important; 
 }
 .background-divs{
   height: 100%;
-  width: 100%;
+  width: 100%; 
   position: absolute;
   top: 0;
   left: 0;
@@ -172,28 +170,31 @@ aside main{
   z-index: -1;
 }
 .background-divs.creme{
-  background: radial-gradient(circle at 20% 20%, rgba(234, 220, 207, 1) 0px, transparent 20%);
+  background: radial-gradient(circle at 20% 20%, rgba(175, 230, 255, 0.26) 0px, transparent 20%);
 }
 .background-divs.creme-2{
-  background: radial-gradient(circle at 20% 55%, rgba(243, 235, 225, 1) 0px, transparent 20%);
+  background: radial-gradient(circle at 20% 55%, rgba(182, 206, 226, 0.158) 0px, transparent 20%);
 }
 .background-divs.blue{
-  background: radial-gradient(circle at 0% 40%, rgba(182, 207, 221, 0.5) 0px, transparent 20%);
+  background: radial-gradient(circle at 0% 40%, rgba(182, 207, 221, 0.192) 0px, transparent 20%);
 }
 .background-divs.blue-2{
-  background: radial-gradient(circle at 99% 27%, rgba(181, 228, 254, 0.5) 0px, transparent 20%);
+  background: radial-gradient(circle at 99% 27%, rgba(181, 228, 254, 0.116) 0px, transparent 20%);
 }
 .background-divs.neutral{
-  background: radial-gradient(ellipse at 45% 55%, rgba(213, 195, 171, 0.4) 0px, transparent 60%);
+  background: radial-gradient(ellipse at 45% 55%, rgba(171, 194, 213, 0.103) 0px, transparent 60%);
 }
-.background-divs.gold{
-  background: radial-gradient(circle at 50% 85%, rgba(255, 182, 72, 0.3) 0px, transparent 20%);
+.background-divs.gold{ 
+  background: radial-gradient(circle at 50% 85%, rgba(72, 218, 255, 0.075) 0px, transparent 20%);
 }
 .new-not-visible{
-  display: none!important;
+  display: none!important; 
 }
 
 form, input, button, textarea, select, option, a{
   -webkit-appearance: none!important;
  -moz-appearance: none !important;
+}
+.HerobannerFeatured{
+  margin-top: 100px;
 }

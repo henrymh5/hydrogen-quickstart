@@ -91,7 +91,9 @@ export default function Homepage() {
         text={<h2>"87 % der Nutzer berichten von positiven <br /> Veränderungen in ihrem Wohlbefinden nach der <br /> Anwendung der Qi Blanco® Produkte."</h2>} />
       <InfoSlider />
     <GoogleReviews /> 
-    <ReputonWidget />
+    <div className="NormalSectionSize">
+      <ReputonWidget />
+    </div>
       <YoutubeIframe 
         link="https://www.youtube.com/embed/jyLyXZqHxaw?si=2ZVH9xtaSaEMmfTQ&amp;controls=0" />
       <YoutubeIframe 

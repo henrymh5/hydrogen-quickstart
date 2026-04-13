@@ -13,6 +13,7 @@
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
+    "@fontsource-variable/open-sans": "^5.2.7",
     "@fontsource-variable/wix-madefor-text": "^5.2.8",
     "@fontsource/open-sans": "^5.2.7",
     "@imgix/ix-player-react": "^1.0.0",

@@ -8,11 +8,11 @@ import {UpsellLineUp} from '~/components/UpsellLineUp';
 import { ImgixVideo } from '~/components/reusables/ImgixVideo';
 export function QiOne() {
   return (
-    <div className="Detailseite mt-[-75px]!">
+    <div className="Detailseite">
       <div className="QiOne-Herobanner-Detailseite">
-        <div className='max-w-[450px]! flex flex-col items-start justify-start gap-3 px-[10px]! md:px-0!'>
-          <h2>Der QiOne® 2 Pro</h2>
-          <h3>Messbare Effekte auf Zellebene</h3>
+        <div className='max-w-[450px]! flex flex-col items-start justify-start gap-3 py-[85px]! px-[10px]! md:px-0!'>
+          <h2 className='mb-0!'>Der QiOne® 2 Pro</h2>
+          <h3 className='mt-0!'>Messbare Effekte auf Zellebene</h3>
             <ImgixVideo className='w-full overflow-hidden rounded-2xl' videoPath="VIDEO-QiOne60s-DE-2021.mov" fallbackImage="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/fallback-image-qione-detail.webp?v=1747735933" />
 
           <Link className="btn--secondary w-full! max-w-full!" to={'/products/qione-2-pro'}>

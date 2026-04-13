@@ -95,7 +95,7 @@ footer *{
   display: block;
   font-size: 1.1rem !important;
   font-weight: 600;
-  font-family: 'Wix Madefor Text Variable', sans-serif;
+  font-family: 'Open Sans Variable', sans-serif;
   padding: 1.25rem;
   text-align: center;
   max-width: 500px;
@@ -109,7 +109,7 @@ footer *{
 .btn--secondary {
   display: block;
   font-size: 1.05rem;
-  font-family: 'Wix Madefor Text Variable', sans-serif;
+  font-family: 'Open Sans Variable', sans-serif;
   font-weight: 600;
   padding: 1.25rem;
   text-align: center;
@@ -134,7 +134,7 @@ footer *{
 }
 .cartSummaryWrapper .btn--primary {
   max-width: 100% !important;
-  font-family: 'Wix Madefor Text Variable', sans-serif;
+  font-family: 'Open Sans Variable', sans-serif;
   opacity: 1;
   font-size: 1.2rem !important;
   transition: 0.2s opacity ease-in-out;
@@ -536,7 +536,34 @@ p.header-menu-item {
   padding: 0.5rem 0 !important;
   display: inline-block;
   font-size: 1rem !important;
-  color: var(--color-dark) !important;
+}
+
+/* Light background: dark text */
+.header--on-light {
+  color: #000;
+}
+.header--on-light .header-menu-item,
+.header--on-light p.header-menu-item {
+  color: rgba(0, 0, 0, 0.7) !important;
+  transition: color 0.2s ease;
+}
+.header--on-light .header-menu-item:hover,
+.header--on-light p.header-menu-item:hover {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Dark background: light text */
+.header--on-dark {
+  color: #fff;
+}
+.header--on-dark .header-menu-item,
+.header--on-dark p.header-menu-item {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color 0.2s ease;
+}
+.header--on-dark .header-menu-item:hover,
+.header--on-dark p.header-menu-item:hover {
+  color: rgba(255, 255, 255, 1) !important;
 }
 .submenu {
   position: absolute;
@@ -2086,14 +2113,14 @@ ul.submenu li a {
 }
 .openCart {
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid currentColor;
   border-radius: 1000px;
-  opacity: 0.8;
+  opacity: 0.5;
   transition: 0.2s all linear;
 }
 .openCart:hover {
   opacity: 1;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid currentColor;
 }
 .ProductDescription ul {
   margin-top: 30px;

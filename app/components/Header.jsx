@@ -13,7 +13,8 @@ import {ReviewCount} from './reusables/ReviewCount';
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   const [scrolled, setScrolled] = useState(false); 
-  const [textColor, setTextColor] = useState('#000');
+  const [isDarkBg, setIsDarkBg] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   // ✅ Scroll-hide logic
   const [hidden, setHidden] = useState(false);
 
@@ -45,28 +46,55 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
 useEffect(() => {
   if (typeof window === 'undefined') return;
 
-  const headerEl = document.querySelector('header.header');
-  if (!headerEl) return;
+  function getBackgroundLuminance() {
+    const headerEl = document.querySelector('header.header');
+    if (!headerEl) return null;
 
-  const observer = new MutationObserver(() => {
-    const bgColor = getComputedStyle(headerEl).backgroundColor;
-    const rgb = bgColor.match(/\d+/g)?.map(Number);
-    if (!rgb) return;
-    const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
-    setTextColor(luminance > 0.5 ? '#000' : '#fff');
-  });
+    const rect = headerEl.getBoundingClientRect();
+    // Sample a point at the horizontal center, vertically centered in the header
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-  observer.observe(headerEl, {attributes: true, attributeFilter: ['style']});
+    // Temporarily hide the header so elementFromPoint hits the content behind it
+    const prevVisibility = headerEl.style.visibility;
+    headerEl.style.visibility = 'hidden';
+    const el = document.elementFromPoint(x, y);
+    headerEl.style.visibility = prevVisibility;
 
-  // Run once on mount
-  const bgColor = getComputedStyle(headerEl).backgroundColor;
-  const rgb = bgColor.match(/\d+/g)?.map(Number);
-  if (rgb) {
-    const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
-    setTextColor(luminance > 0.5 ? '#000' : '#fff');
+    if (!el) return null;
+
+    // Walk up the DOM to find the first element with a non-transparent background
+    let current = el;
+    while (current && current !== document.documentElement) {
+      const bg = getComputedStyle(current).backgroundColor;
+      const rgba = bg.match(/[\d.]+/g)?.map(Number);
+      if (rgba && rgba.length >= 3) {
+        const alpha = rgba.length >= 4 ? rgba[3] : 1;
+        if (alpha > 0.1) {
+          const luminance = (0.299 * rgba[0] + 0.587 * rgba[1] + 0.114 * rgba[2]) / 255;
+          return luminance;
+        }
+      }
+      current = current.parentElement;
+    }
+    // Default: assume light background (white)
+    return 1;
   }
 
-  return () => observer.disconnect();
+  function updateTextColor() {
+    const luminance = getBackgroundLuminance();
+    if (luminance === null) return;
+    setIsDarkBg(luminance <= 0.5);
+  }
+
+  updateTextColor();
+  window.addEventListener('scroll', updateTextColor, {passive: true});
+  window.addEventListener('resize', updateTextColor, {passive: true});
+
+  return () => {
+    window.removeEventListener('scroll', updateTextColor);
+    window.removeEventListener('resize', updateTextColor);
+  };
 }, []);
 
   const {pathname} = useLocation();
@@ -95,7 +123,7 @@ useEffect(() => {
       />
 
       <header
-        className={`header ${hidden ? 'header--hidden' : ''}`}
+        className={`header ${hidden ? 'header--hidden' : ''} ${isDarkBg && !dropdownOpen ? 'header--on-dark' : 'header--on-light'}`}
         style={{
           position: 'fixed',
           top: scrolled ? '5px' : '40px',
@@ -107,8 +135,7 @@ useEffect(() => {
           ? 'blur(32px)'
           : 'blur(0px)',
           zIndex: 5,
-          color: textColor,
-          transition: 'transform .8s ease',
+          transition: 'transform .8s ease, color 0.3s ease',
           transform: hidden
             ? 'translate(-50%, -300px)'
             : 'translate(-50%, 25px)',
@@ -119,6 +146,10 @@ useEffect(() => {
             className="NavLink-logo"
             src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_Logo_2020_Qi_Blanco-black.png?v=1637014505"
             alt="Qi Blanco Logo"
+            style={{
+              filter: isDarkBg && !dropdownOpen ? 'invert(1) brightness(2)' : 'none',
+              transition: 'filter 0.3s ease',
+            }}
           />
         </NavLink>
 
@@ -127,6 +158,7 @@ useEffect(() => {
           viewport="desktop"
           primaryDomainUrl={header.shop.primaryDomain.url}
           publicStoreDomain={publicStoreDomain}
+          onDropdownChange={setDropdownOpen}
         />
 
         <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
@@ -143,6 +175,7 @@ export function HeaderMenu({
   primaryDomainUrl,
   viewport,
   publicStoreDomain,
+  onDropdownChange,
 }) {
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
@@ -180,6 +213,7 @@ export function HeaderMenu({
             hasChildren={hasChildren}
             viewport={viewport}
             close={close}
+            onDropdownChange={onDropdownChange}
           />
         );
       })}
@@ -190,7 +224,7 @@ export function HeaderMenu({
 /**
  * Handles parent items with optional children
  */
-function MenuItem({item, url, hasChildren, viewport, close}) {
+function MenuItem({item, url, hasChildren, viewport, close, onDropdownChange}) {
   const [open, setOpen] = useState(false); // mobile accordion
   const [hover, setHover] = useState(false); // desktop hover/focus
   const [expandedKakaoMobile, setExpandedKakaoMobile] = useState(false);
@@ -198,6 +232,12 @@ function MenuItem({item, url, hasChildren, viewport, close}) {
   const triggerRef = useRef(null);
 
   const toggleOpen = () => setOpen((prev) => !prev);
+
+  useEffect(() => {
+    if (hasChildren && onDropdownChange) {
+      onDropdownChange(hover);
+    }
+  }, [hover, hasChildren, onDropdownChange]);
 
   // --- Hover control with delay ---
   const onMouseEnter = () => {
