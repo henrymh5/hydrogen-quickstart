@@ -10,7 +10,7 @@ export function HerobannerFeatured(){
                     <h2>QiOne® 2 Pro</h2>
                     <p className="color-accent-main"><strong><ReviewCount /></strong></p>
                     <p><strong>Mehr als 14.000+ aktive Nutzer</strong></p>
-                    <p class="mt-1"><strong>Erfahre jetzt die Vorteile der kohärenten Wasserstruktur auf Zellebene</strong></p>
+                    <p class="mt-1"><strong>Erfahre jetzt die Vorteile der kohärenten Wasserstruktur</strong></p>
                     <p class="mt-1">
                         <img width="17" height="17" class="inline-image" src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Person_ArmsUp_Icon_79524077-1a55-4f2e-9af6-d2a874f912f2.webp?v=1677002647" alt="Persönliches Wachstum" />
                         &nbsp; Persönliches Wachstum

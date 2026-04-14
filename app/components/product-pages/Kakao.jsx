@@ -514,12 +514,12 @@ function OnlineKurs() {
 
 function KursRegistration() {
   return (
-    <div className="my-[100px]! shadow-[0_8px_45px_-3px_rgb(0_0_0_/_16%)] py-[5vh]!">
+    <div className="my-[100px]! border-y! border-y-[#00000032]! py-[5vh]!">
       <div className="NormalSectionSize grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
         <div className="flex flex-col gap-4">
           <h2>Jetzt kostenfrei mitmachen!</h2>
           <ActiveCampaignForm formId="21" />
-          <p className="text-sm text-gray-500">
+          <p className="text-sm! text-gray-500">
             *Deine Eintragung ist absolut unverbindlich. Wenn dir der Kurs nicht
             gefällt, kannst du dich jederzeit mit nur einem Klick wieder
             austragen und du erhältst keine weiteren E-mails von uns.
