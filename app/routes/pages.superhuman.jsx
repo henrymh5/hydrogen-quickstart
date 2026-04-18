@@ -1,5 +1,5 @@
 import {useLoaderData} from 'react-router';
-import {Superhuman} from '~/components/kurse/superhuman';
+import {Superhuman} from '~/components/kurse/Superhuman';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 /**
