@@ -6,6 +6,8 @@ import {SingleImage} from '../reusables/SingleImage';
 import {Studien} from '../reusables/Studien';
 import {YoutubeIframe} from '../reusables/YoutubeIframe';
 import { UpsellLineUp } from '../UpsellLineUp';
+import {ProductFAQ} from '../ProductFAQ';
+import {FAQ_QIBRACELET} from '~/data/product-faqs';
 
 export function QiBracelet() {
   return (
@@ -76,6 +78,7 @@ export function QiBracelet() {
         img={'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_2048px-Alpha.webp?v=1732220427'}
       />
       <UpsellLineUp />
+      <ProductFAQ items={FAQ_QIBRACELET} />
     </div>
   );
 }

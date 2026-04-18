@@ -195,6 +195,21 @@ form, input, button, textarea, select, option, a{
   -webkit-appearance: none!important;
  -moz-appearance: none !important;
 }
+@media (max-width: 749px) {
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.35;
+  }
+  h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.4;
+  }
+}
+
 .HerobannerFeatured{
   margin-top: 0;
 }

@@ -55,9 +55,6 @@ function CartEmpty({hidden = false}) {
         Dein Warenkorb ist zurzeit leer!
       </p>
       <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
-        Weiter shoppen →
-      </Link>
     </div>
   );
 }

@@ -534,6 +534,19 @@ aside h3 {
   text-decoration: none;
   background: #000000;
 }
+@media (max-width: 749px) {
+  .Header-AnnouncementBanner a p {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
+  }
+  .Header-AnnouncementBanner a {
+    padding: 0.5rem 0.75rem;
+  }
+}
 .header-menu-desktop {
   display: flex;
   gap: 2rem;
@@ -580,6 +593,47 @@ p.header-menu-item {
 .header--on-dark p.header-menu-item:hover {
   color: rgba(255, 255, 255, 1) !important;
 }
+/* Touch target minimums (44x44px) */
+button.close.reset,
+button[aria-label="Close"],
+.close-outside {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 749px) {
+  .header-menu-item,
+  .menu-toggle-mobile {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+/* Tablet nav adjustments (750px–1023px) */
+@media (min-width: 750px) and (max-width: 1023px) {
+  .header-menu-desktop {
+    gap: 0.5rem;
+  }
+  .header-menu-desktop a,
+  .header-menu-desktop button {
+    font-size: 0.85rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .NavLink-logo {
+    max-width: 110px;
+  }
+  .header {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
 .submenu {
   position: absolute;
   left: 0;
@@ -1293,6 +1347,105 @@ ul.submenu li a {
   border-radius: 20px;
   border: none;
 }
+
+.course-lesson-body iframe {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+  border-radius: 20px;
+  display: block;
+  margin: 2rem auto;
+}
+
+/* ── Product FAQ Accordion ── */
+.ProductFAQ__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  user-select: none;
+}
+.ProductFAQ__list {
+  margin-top: 0;
+}
+.ProductFAQ__item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.ProductFAQ__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1rem;
+  color: inherit;
+  gap: 1rem;
+  font-family: inherit;
+}
+.ProductFAQ__question:hover {
+  opacity: 0.7;
+}
+.ProductFAQ__answer {
+  padding: 0 0 1.5rem;
+  line-height: 1.7;
+  color: rgba(0,0,0,0.8);
+}
+
+/* ── Cacao Variant Dropdown ── */
+.CacaoVariantSelect {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: #3a3a3a;
+  background-color: #f5f0e8;
+  border: 1px solid #d4c9b5;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%233a3a3a' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+}
+.CacaoVariantSelect:focus {
+  outline: 2px solid #b8a88a;
+  outline-offset: 1px;
+}
+.CacaoVariantSelect option {
+  font-weight: 600;
+  padding: 0.5rem;
+  background-color: #f5f0e8;
+  color: #3a3a3a;
+}
+
+.CacaoBenefitList {
+  margin-top: 1.5rem;
+}
+.CacaoBenefitList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.CacaoBenefitList li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .LogoBar {
   width: 100%;
   max-height: 15vh;
@@ -1588,7 +1741,7 @@ ul.submenu li a {
     flex: 1 0 100%;
   }
   .ScrollMikroskopvideo {
-    height: 400vh;
+    height: 200vh;
   }
   .ScrollMikroskopvideo video {
     width: auto !important;
@@ -1805,14 +1958,36 @@ ul.submenu li a {
 .UpsellLineUp {
   margin: 100px auto !important;
 }
-.UpsellWrapper {
+.UpsellCarousel {
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.UpsellCarousel:hover {
+  cursor: grab;
+}
+.UpsellCarousel:active {
+  cursor: grabbing;
+}
+.UpsellTrack {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 30px;
+  gap: 20px;
+  transition: 0.4s transform ease-out;
 }
 .UpsellItem {
-  flex: 0 0 28%;
+  flex: 1 1 0;
+  min-width: 0;
+}
+@media (max-width: 749px) {
+  .UpsellTrack {
+    flex-wrap: nowrap;
+  }
+  .UpsellItem {
+    flex: 0 0 calc(100vw - 2rem);
+    min-width: calc(100vw - 2rem);
+  }
 }
 .UpsellItem img {
   height: auto;
@@ -2226,11 +2401,50 @@ ul.submenu li a {
 .Finanzierungsbanner .FinanzierungsInfos p {
   margin: 0 !important;
 }
-@media screen and (min-width: 750px) {
-  .Maxim {
+@media (max-width: 749px) {
+  .Finanzierungsbanner {
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    height: auto;
+    padding: 2rem 1rem;
+  }
+  .Finanzierungsbanner .FinanzierungsInfos {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    gap: 15px;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(15px);
+    width: 100%;
+  }
+}
+.Maxim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 749px) {
+  .Maxim {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+  .Maxim > * {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media screen and (min-width: 750px) {
+  .Maxim {
     gap: 2rem;
   }
   .Finanzierungsbanner .FinanzierungsInfos {
@@ -2271,6 +2485,16 @@ ul.submenu li a {
 .CallToAction img,
 .CallToAction .CallToActionTextContent {
   flex: 1 0 50%;
+}
+@media (max-width: 749px) {
+  .CallToAction {
+    flex-direction: column;
+  }
+  .CallToAction img,
+  .CallToAction .CallToActionTextContent {
+    flex: 1 0 100%;
+    width: 100%;
+  }
 }
 .HeroBanner {
   position: relative;
@@ -2354,9 +2578,6 @@ ul.submenu li a {
   }
   .header-menu-item {
     font-size: 1.5rem !important;
-  }
-  .UpsellWrapper {
-    flex-direction: column;
   }
   .AddToCartWrapper svg.icon__add {
     font-size: 2rem;
@@ -2972,4 +3193,36 @@ ul.kakao-children li {
   padding: 0!important;
   background: transparent!important;
   background-color: transparent!important;
+}
+
+/* Fix #9: ZellDiagramm mobile width */
+@media (max-width: 749px) {
+  .ZellDiagramm {
+    width: 100% !important;
+    max-width: 100%;
+  }
+  .ZellDiagramm img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Fix #11: Logo fluid scaling below 375px */
+@media (max-width: 374px) {
+  .NavLink-logo {
+    max-width: 120px;
+  }
+}
+
+/* Fix #12: Sub-320px minimum width guard */
+@media (max-width: 319px) {
+  .NormalSectionSize,
+  main {
+    min-width: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow-x: hidden;
+  }
+  h1 { font-size: 1.4rem !important; }
+  h2 { font-size: 1.2rem !important; }
 }

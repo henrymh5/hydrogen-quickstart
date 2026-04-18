@@ -7,6 +7,8 @@ import {Studien} from '../reusables/Studien';
 import {ScrollMikroskopVideo} from '../index-components/ScrollMikroskopVideo';
 import {CallToAction} from '../index-components/CallToAction';
 import {UpsellLineUp} from '../UpsellLineUp';
+import {ProductFAQ} from '../ProductFAQ';
+import {FAQ_QIONE_2_PRO} from '~/data/product-faqs';
 import {YoutubeIframe} from '../reusables/YoutubeIframe';
 import {Gitterchip} from '../reusables/Gitterchip';
 import { RatenzahlungHerobanner } from '../reusables/RatenzahlungHerobanner';
@@ -154,6 +156,7 @@ export default function QiOne2Pro() {
         <YoutubeIframe link={'https://www.youtube.com/embed/ugzSE3UXno4'} />
       </div>
       <UpsellLineUp />
+      <ProductFAQ items={FAQ_QIONE_2_PRO} />
     </div>
   );
 }

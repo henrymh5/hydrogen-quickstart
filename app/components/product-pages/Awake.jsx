@@ -1,4 +1,6 @@
 import LazyImage from '../reusables/LazyImage';
+import {ProductFAQ} from '../ProductFAQ';
+import {FAQ_CACAO} from '~/data/product-faqs';
 
 export function BioaktiveInhaltsstoffe() {
   const IMG_FRAU =
@@ -400,6 +402,7 @@ export default function AwakeProductPage() {
         src="https://qiblanco.com/cdn/shop/files/bohne-create.jpg?v=1763083566"
         text=""
       />
+      <ProductFAQ items={FAQ_CACAO} />
     </>
   );
 }

@@ -5,6 +5,9 @@ import {RatenzahlungHerobanner} from '../reusables/RatenzahlungHerobanner';
 import { Studien } from '../reusables/Studien';
 import { YoutubeIframe } from '../reusables/YoutubeIframe';
 import { UpsellLineUp } from '../UpsellLineUp';
+import {ProductFAQ} from '../ProductFAQ';
+import {FAQ_QIHOME_AIR} from '~/data/product-faqs';
+
 export function QiHome() {
   return (
     <div className="ProductPageQiHome">
@@ -69,6 +72,7 @@ export function QiHome() {
         }
       />
       <UpsellLineUp />
+      <ProductFAQ items={FAQ_QIHOME_AIR} />
     </div>
   );
 }

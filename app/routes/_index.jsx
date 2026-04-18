@@ -163,7 +163,7 @@ export default function Homepage() {
       linkStyle={"primary"}
       linkText={"Erlebe jetzt den Unterschied"}
       img={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/ezgif-5-b78604ff40.webp?v=1682415134"} />
-      <div className="Stretched">
+      <div className="Stretched mt-[100px]!">
       <HeroBanner       
         backgroundImage={"qiblanco-com-in-5-stufen-zum-superhuman-hintergrund.png?v=1645178965"}  
         headline="Der Qi Blanco® Video-Kurs:"

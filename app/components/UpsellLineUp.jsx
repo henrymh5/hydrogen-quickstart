@@ -1,58 +1,172 @@
-import {Image} from '@shopify/hydrogen';
-import { Link } from 'react-router';
-import { AddToCartButton } from './AddToCartButton';
-import {useAside} from './Aside';
+import {Link} from 'react-router';
 import {ChevronRight} from 'lucide-react';
+import {useState, useEffect, useRef, useCallback} from 'react';
 
-export function UpsellLineUp(){
-  const {open} = useAside();
+const ITEMS = [
+  {
+    image:
+      'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne1.webp?v=1732874828',
+    label: 'Kompakt. Innovativ. Stark',
+    title: 'QiOne® 2 Pro',
+    description:
+      'Die effiziente Gitterchip™ -Technologie reduziert die Auswirkungen von E-Smog und unterstützt ein Umfeld, das Klarheit und Fokus ermöglicht – perfekt für unterwegs und dem Büro.',
+    detailLink: '/pages/qione',
+    buyLink: '/products/qione-2-pro',
+  },
+  {
+    image:
+      'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiBracelet1.webp?v=1732874909',
+    label: 'Eleganz und Schutz - dein Support.',
+    title: 'QiBracelet®',
+    description:
+      'Der elegant integrierte Gitterchip™ optimiert dein Umfeld und reduziert die Auswirkungen von E-Smog und 5G, das Wohlbefinden und Klarheit ermöglicht – für ein erfülltes Leben, zu Hause und unterwegs.',
+    detailLink: '/pages/qibracelet',
+    buyLink: '/products/qibracelet',
+  },
+  {
+    image:
+      'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHome1.webp?v=1732874979',
+    label: 'Gesundes Zuhause, produktives Umfeld.',
+    title: 'QiHome® Air',
+    description:
+      'Der leistungsstärkste Gitterchip™ in unserem Sortiment schafft ein produktives Umfeld in deinem Zuhause und Büro, das dir helfen kann, dich wohler zu fühlen und in einer harmonischen Atmosphäre fokussierter zu arbeiten.',
+    detailLink: '/pages/qihome',
+    buyLink: '/products/qihome-air',
+  },
+];
 
-    return (
-        <div className="UpsellLineUp mt-2 NormalSectionSize">
-            <h2 className="text-5xl! text-center">
-                Über 300 neue Nutzer im Monat. <br />
-                Werde Teil der Qi Blanco® Revolution!
-            </h2>
-            <div className="UpsellWrapper">
-                <div className="UpsellItem">
-                    <div className="UpsellImage">
-                    <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne1.webp?v=1732874828" />
-                    </div>
-                    <div className="UpsellLabel mt-3 mb-1">
-                    Kompakt. Innovativ. Stark
-                    </div>
-                    <h3>QiOne® 2 Pro</h3>
-                    <p>Die effiziente <b>Gitterchip™</b> -Technologie reduziert die Auswirkungen von E-Smog und unterstützt ein Umfeld, das Klarheit und Fokus ermöglicht – perfekt für unterwegs und dem Büro.</p>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/pages/qione"}>Mehr erfahren <ChevronRight size={20} /></Link>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/products/qione-2-pro"}>Jetzt kaufen <ChevronRight size={20} /></Link>
-                </div>
-                <div className="UpsellItem">
-                    <div className="UpsellImage">
-                    <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiBracelet1.webp?v=1732874909" />
-                    </div>
-                    <div className="UpsellLabel mt-3 mb-1">
-                    Eleganz und Schutz - dein Support.
-                    </div>
-                    <h3>QiBracelet®</h3>
-                    <p>Der elegant integrierte <b>Gitterchip™</b>  optimiert dein Umfeld und reduziert die Auswirkungen von E-Smog und 5G, das Wohlbefinden und Klarheit ermöglicht – für ein erfülltes Leben, zu Hause und unterwegs.</p>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/pages/qibracelet"}>Mehr erfahren <ChevronRight size={20} /></Link>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/products/qibracelet"}>Jetzt kaufen <ChevronRight size={20} /></Link>
+export function UpsellLineUp() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const startX = useRef(0);
+  const trackRef = useRef(null);
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 750);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
-                </div>
-                <div className="UpsellItem">
-                    <div className="UpsellImage">
-                    <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHome1.webp?v=1732874979" />
-                    </div>
-                    <div className="UpsellLabel mt-3 mb-1">
-                    Gesundes Zuhause, produktives Umfeld.
-                    </div>
-                    <h3>QiHome® Air</h3>
-                    <p>Der leistungsstärkste <b>Gitterchip™</b>  in unserem Sortiment schafft ein produktives Umfeld in deinem Zuhause und Büro, das dir helfen kann, dich wohler zu fühlen und in einer harmonischen Atmosphäre fokussierter zu arbeiten. </p>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/pages/qihome"}>Mehr erfahren <ChevronRight size={20} /></Link>
-                    <Link prefetch="render" className='mt-1 UpsellLink' to={"/products/qihome-air"}>Jetzt kaufen <ChevronRight size={20} /></Link>
-                </div>
+  const maxIndex = ITEMS.length - 1;
+
+  const goNext = useCallback(() => {
+    setCurrentIndex((i) => Math.min(i + 1, maxIndex));
+  }, [maxIndex]);
+
+  const goPrev = useCallback(() => {
+    setCurrentIndex((i) => Math.max(i - 1, 0));
+  }, []);
+
+  const handlePointerDown = (e) => {
+    startX.current = e.touches ? e.touches[0].clientX : e.clientX;
+  };
+
+  const handlePointerUp = (e) => {
+    const endX = e.changedTouches
+      ? e.changedTouches[0].clientX
+      : e.clientX;
+    const diff = startX.current - endX;
+    if (diff > 60) goNext();
+    else if (diff < -60) goPrev();
+  };
+
+  const progress = ((currentIndex + 1) / ITEMS.length) * 100;
+
+  // On mobile, translate by one card width per index
+  const translateX = isMobile
+    ? `calc(-${currentIndex} * (100vw - 2rem + 20px))`
+    : '0px';
+
+  return (
+    <div className="UpsellLineUp mt-2 NormalSectionSize">
+      <h2 className="text-5xl! text-center">
+        Über 300 neue Nutzer im Monat. <br />
+        Werde Teil der Qi Blanco® Revolution!
+      </h2>
+      <div
+        className="UpsellCarousel"
+        onMouseDown={handlePointerDown}
+        onMouseUp={handlePointerUp}
+        onTouchStart={handlePointerDown}
+        onTouchEnd={handlePointerUp}
+      >
+        <div
+          className="UpsellTrack"
+          ref={trackRef}
+          style={{transform: `translateX(${translateX})`}}
+        >
+          {ITEMS.map((item, i) => (
+            <div className="UpsellItem" key={i}>
+              <div className="UpsellImage">
+                <img src={item.image} alt={item.title} />
+              </div>
+              <div className="UpsellLabel mt-3 mb-1">{item.label}</div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <Link
+                prefetch="render"
+                className="mt-1 UpsellLink"
+                to={item.detailLink}
+              >
+                Mehr erfahren <ChevronRight size={20} />
+              </Link>
+              <Link
+                prefetch="render"
+                className="mt-1 UpsellLink"
+                to={item.buyLink}
+              >
+                Jetzt kaufen <ChevronRight size={20} />
+              </Link>
             </div>
+          ))}
         </div>
-    )
+      </div>
+
+      {isMobile && (
+        <>
+          <div className="ProgressWrapper">
+            <div
+              className="ProgressTracker"
+              style={{width: `${progress}%`}}
+            />
+          </div>
+          <div className="SliderButtonWrapper">
+            <div
+              className="ButtonPrev SliderButton"
+              onClick={goPrev}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+              >
+                <path
+                  fill="currentColor"
+                  d="M29.52 22.52L18 10.6L6.48 22.52a1.7 1.7 0 0 0 2.45 2.36L18 15.49l9.08 9.39a1.7 1.7 0 0 0 2.45-2.36Z"
+                />
+              </svg>
+            </div>
+            <div
+              className="ButtonNext SliderButton"
+              onClick={goNext}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+              >
+                <path
+                  fill="currentColor"
+                  d="M29.52 22.52L18 10.6L6.48 22.52a1.7 1.7 0 0 0 2.45 2.36L18 15.49l9.08 9.39a1.7 1.7 0 0 0 2.45-2.36Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }

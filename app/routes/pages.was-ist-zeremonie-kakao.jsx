@@ -1,0 +1,60 @@
+import {useLoaderData} from 'react-router';
+import {CourseLesson} from '~/components/kurse/CourseLesson';
+import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+
+export const meta = ({data}) => {
+  return [
+    {title: `Qi Blanco | ${data?.page.title ?? ''}`},
+    {rel: 'canonical', href: '/pages/was-ist-zeremonie-kakao'},
+  ];
+};
+
+export async function loader(args) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args, 'was-ist-zeremonie-kakao');
+  return {...deferredData, ...criticalData};
+}
+
+async function loadCriticalData({context, request}, handle) {
+  const [{page}] = await Promise.all([
+    context.storefront.query(PAGE_QUERY, {variables: {handle}}),
+  ]);
+  if (!page) throw new Response('Not Found', {status: 404});
+  redirectIfHandleIsLocalized(request, {handle, data: page});
+  return {page};
+}
+
+function loadDeferredData() {
+  return {};
+}
+
+export default function WasIstZeremonieKakaoPage() {
+  const {page} = useLoaderData();
+  return (
+    <CourseLesson
+      title={page.title}
+      body={page.body}
+      courseTitle="Zeremonie Kakao Kurs"
+      courseTo="/pages/zeremonie-kakao-kurs"
+      videoEmbed="https://player.vimeo.com/video/877502666?h=a2edc03694"
+      prevLesson={{label: 'Vorherige Lektion', to: '/pages/intuition-erfahren'}}
+      nextLesson={{label: 'Nächste Lektion', to: '/pages/kakao-anwendung'}}
+    />
+  );
+}
+
+const PAGE_QUERY = `#graphql
+  query Page(
+    $language: LanguageCode,
+    $country: CountryCode,
+    $handle: String!
+  ) @inContext(language: $language, country: $country) {
+    page(handle: $handle) {
+      handle
+      id
+      title
+      body
+      seo { description title }
+    }
+  }
+`;

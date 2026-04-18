@@ -13,6 +13,8 @@ import {ProductForm} from '~/components/ProductForm';
 import {ProductImageList} from '~/components/ProductImageList';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import { UpsellLineUp } from '~/components/UpsellLineUp';
+import {ProductFAQ} from '~/components/ProductFAQ';
+import {FAQ_QIONE_KETTE} from '~/data/product-faqs';
 import { useState } from 'react';
 import { SingleImage } from '~/components/reusables/SingleImage';
 import { CallToAction } from '~/components/index-components/CallToAction';
@@ -150,6 +152,7 @@ export default function Product() {
 ✅ Weltweiter Versand </b></p>
     </>}/>
     <UpsellLineUp />
+    <ProductFAQ items={FAQ_QIONE_KETTE} />
     <SingleImage size={"fullscreen"} link={"https://qiblanco.com/cdn/shop/files/QiOne2Pro_White.webp?v=1675209654"} />
     </>
   );

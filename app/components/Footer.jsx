@@ -313,34 +313,26 @@ function PaymentIcons() {
  *   publicStoreDomain: string;
  * }}
  */
+const LEGAL_LINKS = [
+  {to: '/pages/impressum', label: 'Impressum'},
+  {to: '/pages/datenschutz', label: 'Datenschutz'},
+  {to: '/pages/agb', label: 'AGB'},
+];
+
 function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
   return (
     <nav className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
-        if (!item.url) return null;
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        const isExternal = !url.startsWith('/');
-        return isExternal ? (
-          <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
-            {item.title}
-          </a>
-        ) : (
-          <NavLink
-            end
-            key={item.id}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+      {LEGAL_LINKS.map(({to, label}) => (
+        <NavLink
+          end
+          key={to}
+          prefetch="intent"
+          style={activeLinkStyle}
+          to={to}
+        >
+          {label}
+        </NavLink>
+      ))}
     </nav>
   );
 }
