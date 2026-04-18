@@ -7,9 +7,9 @@ import {
   getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
 } from '@shopify/hydrogen';
-import {ProductPrice} from '~/components/ProductPrice';
 import {ProductImage} from '~/components/ProductImage';
 import {CacaoProductForm} from '~/components/CacaoProductForm';
+import {CacaoPriceDisplay} from '~/components/CacaoPriceDisplay';
 import {ProductImageList} from '~/components/ProductImageList';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {useState} from 'react';
@@ -97,6 +97,7 @@ export default function Product() {
 
   const {title, descriptionHtml} = product;
   const [featuredImage, setFeaturedImage] = useState(product?.images.nodes[0]);
+  const [quantity, setQuantity] = useState('3');
   return (
     <>
       <div className="flex flex-col gap-5 items-center-justify-center text-center max-w-[750px] mx-auto! my-[5vh]! p-2">
@@ -131,16 +132,12 @@ export default function Product() {
             <b>Mehr als 14.000+ aktive Nutzer</b>
           </p>
 
-          <div className="Bestseller-Price">
-            <ProductPrice
-              price={selectedVariant?.price}
-              compareAtPrice={selectedVariant?.compareAtPrice}
-            />
-            <div className="BestsellerLabel">Bestseller Angebot</div>
-          </div>
+          <CacaoPriceDisplay quantity={quantity} />
 
           <CacaoProductForm
             selectedVariant={selectedVariant}
+            quantity={quantity}
+            onQuantityChange={setQuantity}
           />
           <CacaoBenefitList />
         </div>
