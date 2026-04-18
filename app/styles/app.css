@@ -566,33 +566,6 @@ p.header-menu-item {
   font-size: 1rem !important;
 }
 
-/* Light background: dark text */
-.header--on-light {
-  color: #000;
-}
-.header--on-light .header-menu-item,
-.header--on-light p.header-menu-item {
-  color: rgba(0, 0, 0, 0.7) !important;
-  transition: color 0.2s ease;
-}
-.header--on-light .header-menu-item:hover,
-.header--on-light p.header-menu-item:hover {
-  color: rgba(0, 0, 0, 1) !important;
-}
-
-/* Dark background: light text */
-.header--on-dark {
-  color: #fff;
-}
-.header--on-dark .header-menu-item,
-.header--on-dark p.header-menu-item {
-  color: rgba(255, 255, 255, 0.7) !important;
-  transition: color 0.2s ease;
-}
-.header--on-dark .header-menu-item:hover,
-.header--on-dark p.header-menu-item:hover {
-  color: rgba(255, 255, 255, 1) !important;
-}
 /* Touch target minimums (44x44px) */
 button.close.reset,
 button[aria-label="Close"],
