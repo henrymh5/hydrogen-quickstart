@@ -58,5 +58,44 @@ export function ReputonWidget() {
     };
   }, []);
 
-  return <div ref={containerRef} />;
+  return (
+    <>
+      <div ref={containerRef} />
+      <GoogleRatingBadge />
+    </>
+  );
+}
+
+function GoogleRatingBadge() {
+  return (
+    <a
+      href="https://maps.google.com/maps?cid=1372717443771750206"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="google-rating-badge"
+    >
+      <img
+        className="google-rating-badge__logo"
+        src="https://lh3.googleusercontent.com/a-/ALV-UjXLeredYrnnfrvaFQ0ffKGgx-Ardf6CLqWTy4t4Tt7pn50g4MI"
+        alt="Qi Blanco"
+        width="48"
+        height="48"
+      />
+      <div className="google-rating-badge__content">
+        <div className="google-rating-badge__score">
+          <span className="google-rating-badge__number">4.8</span>
+          <span className="google-rating-badge__stars">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#F4B400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            ))}
+          </span>
+        </div>
+        <div className="google-rating-badge__powered">
+          Powered by <strong>Google</strong>
+        </div>
+      </div>
+    </a>
+  );
 }

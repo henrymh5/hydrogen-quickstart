@@ -3557,6 +3557,55 @@ ul.kakao-children li {
   }
 }
 
+/* Google Rating Badge */
+.google-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1.5rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.google-rating-badge:hover {
+  opacity: 0.8;
+}
+
+.google-rating-badge__logo {
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+}
+
+.google-rating-badge__score {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.google-rating-badge__number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.google-rating-badge__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.google-rating-badge__powered {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.15rem;
+}
+
+.google-rating-badge__powered strong {
+  color: #333;
+}
+
 /* Product 360° Hero Section */
 .product-360-hero {
   display: flex;

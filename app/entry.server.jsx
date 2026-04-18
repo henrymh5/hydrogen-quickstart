@@ -46,6 +46,7 @@ export default async function handleRequest(
       "'self'",
       'https://i.vimeocdn.com',
       'https://script.hotjar.com',
+      'https://lh3.googleusercontent.com',
     ],
     fontSrc: [
       "'self'",
