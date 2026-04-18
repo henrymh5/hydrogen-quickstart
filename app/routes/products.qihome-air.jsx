@@ -121,7 +121,6 @@ export default function Product() {
         <ProductImage image={featuredImage} />
         <ProductImageList images={product?.images} onSelectImage={(image) => setFeaturedImage(image)} />
       </div>
-        <Video360Button productHandle="qihome-air" />
       </div>
       <div className="product-main">
         <h1>{title}</h1>

@@ -158,6 +158,40 @@ export function Layout({children}) {
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
         <Links />
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="66dc4c98-f24c-4dfe-a18b-ac77444136c5"
+          defer
+          nonce={nonce}
+        />
+        <script
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:1218483,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            `,
+          }}
+        />
+        <script
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: `
+              var head = document.head;
+              var script = document.createElement('script');
+              script.type = 'text/javascript';
+              script.src = "https://t.qiblanco.com/v1/lst/universal-script?ph=5d7ec374b760de265c8e689aea1de481d066f670ad78f9970f2c407e375dcdb6&tag=!clicked&ref_url=" + encodeURI(document.URL);
+              head.appendChild(script);
+            `,
+          }}
+        />
       </head>
       <body>
         <LoadingBar />

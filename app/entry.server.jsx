@@ -18,13 +18,39 @@ export default async function handleRequest(
   context,
 ) {
   const {nonce, header, NonceProvider} = createContentSecurityPolicy({
-    frameSrc: ["'self'", 'https://player.vimeo.com'],
+    scriptSrc: [
+      "'self'",
+      'https://consent.cookiebot.com',
+      'https://consentcdn.cookiebot.com',
+      'https://static.hotjar.com',
+      'https://script.hotjar.com',
+      'https://t.qiblanco.com',
+    ],
+    frameSrc: [
+      "'self'",
+      'https://player.vimeo.com',
+      'https://consentcdn.cookiebot.com',
+      'https://vars.hotjar.com',
+    ],
     connectSrc: [
       "'self'",
       'https://*.vimeo.com',
       'https://*.vimeocdn.com',
+      'https://*.hotjar.com',
+      'https://*.hotjar.io',
+      'wss://*.hotjar.com',
+      'https://t.qiblanco.com',
+      'https://consent.cookiebot.com',
     ],
-    imgSrc: ["'self'", 'https://i.vimeocdn.com'],
+    imgSrc: [
+      "'self'",
+      'https://i.vimeocdn.com',
+      'https://script.hotjar.com',
+    ],
+    fontSrc: [
+      "'self'",
+      'https://script.hotjar.com',
+    ],
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
