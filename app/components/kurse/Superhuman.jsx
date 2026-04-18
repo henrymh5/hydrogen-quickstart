@@ -1,3 +1,5 @@
+import { ActiveCampaignForm } from "../reusables/ActiveCampaignForm";
+
 const IMG_HERO_BG =
   'https://qiblanco.com/cdn/shop/files/qiblanco-com-in-5-stufen-zum-superhuman-hintergrund_1296x.png?v=1645178965';
 const IMG_SHOWCASE =
@@ -64,8 +66,8 @@ function RegistrationSection() {
         {/* Form placeholder */}
         <div>
         <h3 className="font-bold text-xl">HOL' DIR DEN KURS JETZT KOSTENFREI!</h3>
-
-          <div className="_form_13" />
+        
+          <ActiveCampaignForm formId="13" /> 
           <p className="text-xs text-gray-500 mt-4">
             *Deine Eintragung ist absolut unverbindlich. Wenn dir der Kurs nicht gefällt,
             kannst du dich jederzeit mit nur einem Klick wieder austragen und du erhältst
@@ -185,7 +187,7 @@ export function Superhuman() {
       </div>
 
       {/* 5 Videos */}
-      <div className="NormalSectionSize my-[6vh] flex flex-col gap-10">
+      <div className="NormalSectionSize my-[6vh] flex flex-col gap-10 pb-4!">
         {videos.map((video) => (
           <div key={video.label} className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
             {/* Aspect-video image */}
@@ -209,7 +211,6 @@ export function Superhuman() {
       </div>
 
       {/* Bottom registration CTA */}
-      <RegistrationSection />
     </>
   );
 }

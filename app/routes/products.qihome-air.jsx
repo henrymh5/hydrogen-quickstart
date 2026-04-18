@@ -14,6 +14,8 @@ import {ProductImageList} from '~/components/ProductImageList';
 import { useState } from 'react';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import { QiHome } from '~/components/product-pages/QiHome';
+import {Video360Button} from '~/components/reusables/Video360Viewer';
+import {ImgixVideo} from '~/components/reusables/ImgixVideo';
 /**
  * @type {MetaFunction<typeof loader>}
  */
@@ -99,14 +101,27 @@ export default function Product() {
 
   return (
     <>
+    <div className="product-360-hero">
+      <div className="product-360-hero__text">
+        <h2>QiHome® Air</h2>
+        <p>
+          Fördere die Gesundheit deines Zuhauses,
+          <br />
+          schaffe ein produktives Zuhause.
+        </p>
+      </div>
+      <div className="product-360-hero__video">
+        <ImgixVideo videoPath="360-QiHome-1x1.mov" fallbackImage="https://qiblanco.com/cdn/shop/files/3d-animation-qi-home-preview.webp?v=1740224642" />
+      </div>
+    </div>
     <div className="product">
       <div className="ProductImages">
           <div className="ProductImageWrapperSticky">
 
         <ProductImage image={featuredImage} />
         <ProductImageList images={product?.images} onSelectImage={(image) => setFeaturedImage(image)} />
- 
       </div>
+        <Video360Button productHandle="qihome-air" />
       </div>
       <div className="product-main">
         <h1>{title}</h1>

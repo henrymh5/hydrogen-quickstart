@@ -8,6 +8,7 @@ import { UpsellLineUp } from '../UpsellLineUp';
 import {ProductFAQ} from '../ProductFAQ';
 import {FAQ_QIHOME_AIR} from '~/data/product-faqs';
 
+
 export function QiHome() {
   return (
     <div className="ProductPageQiHome">

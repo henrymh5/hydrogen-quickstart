@@ -3204,7 +3204,7 @@ ul.kakao-children li {
   margin-top: 2px;
 }
 
-._form_21 ._form{
+._form_21 ._form, ._form_13 ._form{
   margin: 0!important;
   padding: 0!important;
   background: transparent!important;
@@ -3241,4 +3241,397 @@ ul.kakao-children li {
   }
   h1 { font-size: 1.4rem !important; }
   h2 { font-size: 1.2rem !important; }
+}
+/* QiHome Landing Page */
+.QiHomeHero {
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 60px 5%;
+  margin-top: -104px;
+  padding-top: 150px;
+}
+.QiHomeHero__text {
+  flex: 1;
+}
+.QiHomeHero__text h2,
+.QiHomeHero__text h3 {
+  color: #fff !important;
+}
+.QiHomeHero__video {
+  flex: 1;
+  position: relative;
+  padding-top: 70%;
+  flex-shrink: 0;
+}
+@media (max-width: 749px) {
+  .QiHomeHero {
+    flex-direction: column;
+    padding: 120px 20px 40px;
+  }
+  .QiHomeHero__video {
+    width: 100%;
+  }
+}
+.QiHomeHeroBanner__grid {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+.QiHomeHeroBanner__content {
+  flex: 1;
+}
+.QiHomeHeroBanner__image {
+  flex: 1;
+}
+.QiHomeHeroBanner__image img {
+  width: 100%;
+}
+.QiHomeFeatureList {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+.QiHomeFeatureList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  font-weight: 600;
+}
+@media (max-width: 749px) {
+  .QiHomeHeroBanner__grid {
+    flex-direction: column-reverse;
+  }
+}
+.QiHomeHRV {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+  margin-top: 10vh;
+}
+.QiHomeHRV__item {
+  flex: 1;
+}
+.QiHomeHRV__item img {
+  width: 100%;
+}
+@media (max-width: 749px) {
+  .QiHomeHRV {
+    flex-direction: column;
+  }
+}
+.QiHomeIconFeatures {
+  margin: 150px auto;
+}
+.QiHomeIconFeatures__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.QiHomeIconFeatures__item {
+  text-align: center;
+  width: 120px;
+}
+.QiHomeIconFeatures__item img {
+  border-radius: 0;
+}
+.QiHomeIconFeatures__item h3 {
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.QiHomeExperten__block {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 15vh;
+  align-items: flex-start;
+}
+.QiHomeExperten__image {
+  flex: 1;
+}
+.QiHomeExperten__image img {
+  width: 100%;
+}
+.QiHomeExperten__text {
+  flex: 1;
+}
+.QiHomeExperten__text ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+@media (max-width: 749px) {
+  .QiHomeExperten__block {
+    flex-direction: column;
+  }
+}
+.QiHomeLandingVideo {
+  margin: 100px auto;
+  max-width: 0!important;
+  width: 100%!important;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.QiHomeVideo video{
+  width: 100%!important;
+}
+.QiHomeZellstudienVideo {
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.QiHomeTechnologie {
+  margin: 100px auto;
+}
+.QiHomeTechnologie__grid {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+.QiHomeTechnologie__image {
+  flex: 1;
+}
+.QiHomeTechnologie__image img {
+  width: 100%;
+}
+.QiHomeTechnologie__text {
+  flex: 1;
+}
+@media (max-width: 749px) {
+  .QiHomeTechnologie__grid {
+    flex-direction: column;
+  }
+}
+.QiHomeImageTextBlocks {
+  margin: 100px 0;
+}
+.QiHomeImageTextBlock {
+  display: flex;
+  min-height: 100vh;
+}
+.QiHomeImageTextBlock__img {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 400px;
+}
+.QiHomeImageTextBlock__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5% 10%;
+}
+@media (max-width: 749px) {
+  .QiHomeImageTextBlock {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .QiHomeImageTextBlock--reverse {
+    flex-direction: column;
+  }
+  .QiHomeImageTextBlock__img {
+    min-height: 300px;
+  }
+  .QiHomeImageTextBlock__content {
+    text-align: left !important;
+    padding: 20px;
+  }
+}
+.QiHomeGeopathogen {
+  margin: 100px auto;
+}
+.QiHomeGeopathogen__grid {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+.QiHomeGeopathogen__text {
+  flex: 1;
+  font-size: 1.1rem;
+}
+.QiHomeGeopathogen__image {
+  flex: 1;
+}
+@media (max-width: 749px) {
+  .QiHomeGeopathogen__grid {
+    flex-direction: column;
+  }
+}
+.QiHomeSuperhumanBanner {
+  margin: 100px auto;
+}
+.QiHomeSuperhumanBanner__grid {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.QiHomeSuperhumanBanner__image {
+  flex: 1;
+}
+.QiHomeSuperhumanBanner__content {
+  flex: 1;
+}
+.QiHomeSuperhumanBanner__content p {
+  font-weight: 600;
+}
+@media (max-width: 749px) {
+  .QiHomeSuperhumanBanner__grid {
+    flex-direction: column;
+  }
+}
+/* 360° Video Viewer */
+.video360-button-wrapper {
+  text-align: center;
+  margin-top: 10px;
+}
+.video360-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--color-dark);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.video360-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.video360-overlay {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.62);
+  z-index: 10000000;
+}
+.video360-content {
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  background: transparent;
+}
+.video360-iframe-wrapper {
+  padding: 100% 0 0 0;
+  position: relative;
+}
+.video360-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+.video360-close:hover {
+  opacity: 0.7;
+}
+.video360-hero {
+  position: relative;
+  padding-top: 70%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+@media (max-width: 749px) {
+  .video360-content {
+    width: 100vw;
+    height: 100vw;
+  }
+}
+
+/* Product 360° Hero Section */
+.product-360-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  color: #fff;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+.product-360-hero__text {
+  flex: 1;
+  padding: 4rem 2rem 4rem 6rem;
+}
+
+.product-360-hero__text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.product-360-hero__text h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.product-360-hero__text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.product-360-hero__video {
+  flex: 0 0 50%;
+  max-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.product-360-hero__video video {
+  max-height: 55vh;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .product-360-hero {
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .product-360-hero__text {
+    padding: 2.5rem 1.5rem 1rem;
+    text-align: left;
+  }
+
+  .product-360-hero__text h2 {
+    font-size: 1.75rem;
+  }
+
+  .product-360-hero__video {
+    flex: none;
+    width: 100%;
+    padding: 1rem;
+    max-height: none;
+  }
+
+  .product-360-hero__video video {
+    max-height: 50vh;
+    width: 100%;
+  }
 }

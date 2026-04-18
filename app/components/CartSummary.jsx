@@ -17,18 +17,17 @@ export function CartSummary({cart, layout}) {
     return `${amount.toLocaleString('de-DE')},- €`;
   };
 
-  // Prices from Shopify already include 19% tax.
-  // Cacao products should be 7% tax, so recalculate those lines.
+  // Shopify returns line totals as net prices (without tax).
+  // Apply correct tax rate per product: cacao = 7%, all others = 19%.
   const lines = cart?.lines?.nodes ?? [];
   let correctedTotal = 0;
   for (const line of lines) {
     const handle = line.merchandise?.product?.handle ?? '';
-    const gross = parseFloat(line.cost?.totalAmount?.amount ?? '0');
+    const net = parseFloat(line.cost?.totalAmount?.amount ?? '0');
     if (CACAO_HANDLES.includes(handle)) {
-      // Remove 19% tax, apply 7%
-      correctedTotal += (gross / 1.19) * 1.07;
+      correctedTotal += net * 1.07;
     } else {
-      correctedTotal += gross;
+      correctedTotal += net * 1.19;
     }
   }
 

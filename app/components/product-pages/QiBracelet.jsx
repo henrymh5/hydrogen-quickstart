@@ -9,6 +9,7 @@ import { UpsellLineUp } from '../UpsellLineUp';
 import {ProductFAQ} from '../ProductFAQ';
 import {FAQ_QIBRACELET} from '~/data/product-faqs';
 
+
 export function QiBracelet() {
   return (
     <div className="ProductPageQiBracelet">

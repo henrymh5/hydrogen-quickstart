@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ':*)",
+      "Bash(curl -s \"https://qiblanco.com/pages/qione\")",
+      "Bash(curl -s \"https://qiblanco.com/products/qihome-air\")",
+      "Bash(curl -s \"https://qiblanco.com/products/qibracelet\")",
+      "Bash(curl -s \"https://qiblanco.com/cdn/shop/t/27/assets/theme.css?v=160635424232598019531756822313\")",
+      "Bash(curl -s \"https://qiblanco.com/cdn/shop/t/27/assets/custom.css?v=34260401190492634491765895046\")"
+    ]
+  }
+}

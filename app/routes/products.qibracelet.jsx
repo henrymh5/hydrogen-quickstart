@@ -14,6 +14,8 @@ import {ProductImageList} from '~/components/ProductImageList';
 import { useState } from 'react';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {QiBracelet} from '~/components/product-pages/QiBracelet';
+import {Video360Button} from '~/components/reusables/Video360Viewer';
+import {ImgixVideo} from '~/components/reusables/ImgixVideo';
 /**
  * @type {MetaFunction<typeof loader>}
  */
@@ -99,6 +101,20 @@ export default function Product() {
 
   return (
     <>
+    <div className="product-360-hero">
+      <div className="product-360-hero__text">
+        <h2>QiBracelet®</h2>
+        <h3>Entwickelt für Superhumans</h3>
+        <p>
+          Deine leistungsstarke Unterstützung – edel und dezent.
+          <br />
+          Passend für jede Situation und jeden Style.
+        </p>
+      </div>
+      <div className="product-360-hero__video">
+        <ImgixVideo videoPath="new-360-QiBracelet-1x1.mov" fallbackImage="https://qiblanco.com/cdn/shop/files/JjGdCuv.webp?v=1747927956" />
+      </div>
+    </div>
     <div className="product">
       <div className="ProductImages">
           <div className="ProductImageWrapperSticky">
@@ -106,6 +122,7 @@ export default function Product() {
         <ProductImage image={featuredImage} />
         <ProductImageList images={product?.images} onSelectImage={(image) => setFeaturedImage(image)} />
       </div>
+        <Video360Button productHandle="qibracelet" />
       </div>
       <div className="product-main">
         <h1>{title}</h1>

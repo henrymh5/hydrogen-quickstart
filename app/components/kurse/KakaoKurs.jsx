@@ -210,7 +210,6 @@ export function KakaoKurs() {
       </div>
 
       {/* Bottom registration CTA */}
-      <RegistrationSection />
     </>
   );
 }

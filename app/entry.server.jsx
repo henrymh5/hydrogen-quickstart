@@ -18,6 +18,13 @@ export default async function handleRequest(
   context,
 ) {
   const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+    frameSrc: ["'self'", 'https://player.vimeo.com'],
+    connectSrc: [
+      "'self'",
+      'https://*.vimeo.com',
+      'https://*.vimeocdn.com',
+    ],
+    imgSrc: ["'self'", 'https://i.vimeocdn.com'],
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
