@@ -5,6 +5,16 @@ import {ProductPrice} from './ProductPrice';
 import {useAside} from './Aside';
 import {useState} from 'react';
 import {useCart} from '@shopify/hydrogen-react';
+
+const CACAO_HANDLES = ['crystal-cacao-awake', 'crystal-cacao-create'];
+
+function correctCacaoTax(money) {
+  if (!money?.amount) return money;
+  const gross19 = parseFloat(money.amount);
+  const net = gross19 / 1.19;
+  const gross7 = net * 1.07;
+  return {...money, amount: gross7.toFixed(2)};
+}
 /**
  * A single line item in the cart. It displays the product image, title, price.
  * It also provides controls to update the quantity or remove the line item.
@@ -50,7 +60,7 @@ export function CartLineItem({layout, line}) {
             <strong>{product.title}</strong>
           </p>
         </Link>
-        <ProductPrice price={line?.cost?.totalAmount} />
+        <ProductPrice price={CACAO_HANDLES.includes(product.handle) ? correctCacaoTax(line?.cost?.totalAmount) : line?.cost?.totalAmount} />
         <ul>
           {selectedOptions.map((option) =>
             option.value !== 'Default Title' ? (

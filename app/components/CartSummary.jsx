@@ -1,21 +1,14 @@
 import {CartForm, Money} from '@shopify/hydrogen';
 import {useRef} from 'react';
 
+const CACAO_HANDLES = ['crystal-cacao-awake', 'crystal-cacao-create'];
+
 /**
  * @param {CartSummaryProps}
  */
 export function CartSummary({cart, layout}) {
   const className =
     layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside';
-
-  const taxRate = 0.19; // 19% VAT
-
-  // Helper to add tax manually
-  const applyTax = (money) => {
-    if (!money?.amount) return null;
-    const taxedAmount = parseFloat(money.amount) * (1 + taxRate);
-    return { ...money, amount: taxedAmount.toFixed(2) };
-  };
 
   // Format as 1.087,- €
   const formatEuroPrice = (money) => {
@@ -24,7 +17,23 @@ export function CartSummary({cart, layout}) {
     return `${amount.toLocaleString('de-DE')},- €`;
   };
 
-  const taxedSubtotal = applyTax(cart.cost?.subtotalAmount);
+  // Prices from Shopify already include 19% tax.
+  // Cacao products should be 7% tax, so recalculate those lines.
+  const lines = cart?.lines?.nodes ?? [];
+  let correctedTotal = 0;
+  for (const line of lines) {
+    const handle = line.merchandise?.product?.handle ?? '';
+    const gross = parseFloat(line.cost?.totalAmount?.amount ?? '0');
+    if (CACAO_HANDLES.includes(handle)) {
+      // Remove 19% tax, apply 7%
+      correctedTotal += (gross / 1.19) * 1.07;
+    } else {
+      correctedTotal += gross;
+    }
+  }
+
+  const currencyCode = cart.cost?.subtotalAmount?.currencyCode ?? 'EUR';
+  const taxedSubtotal = {amount: correctedTotal.toFixed(2), currencyCode};
 
   return (
     <div aria-labelledby="cart-summary" className={className}>

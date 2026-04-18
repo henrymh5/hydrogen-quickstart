@@ -1404,7 +1404,7 @@ ul.submenu li a {
 }
 
 .CacaoBenefitList {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem; 
 }
 .CacaoBenefitList ul {
   list-style: none;
@@ -3140,45 +3140,7 @@ ul.kakao-children li {
   width: fit-content;
 }
 /* Cacao dynamic price display */
-.Bestseller-Price {
-  flex-wrap: wrap;
-}
-.CacaoPriceMain {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.CacaoPriceCurrent {
-  font-size: 1.8rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.CacaoPriceCurrent.sale {
-  color: #e00;
-}
-.CacaoPriceCurrent.exclusive {
-  color: #b8943e;
-}
-.CacaoPriceCompare {
-  font-size: 1.8rem;
-  color: var(--color-dark);
-  text-decoration: line-through;
-}
-.BestsellerLabel--gold {
-  background: linear-gradient(90deg, #c9a040, #e0c068) !important;
-}
-.BestsellerLabel--red {
-  background: #e00 !important;
-}
-.BestsellerLabel--gradient {
-  background: linear-gradient(90deg, #f30, #ff6f82) !important;
-}
-.CacaoPricePer100g {
-  width: 100%;
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 2px;
-}
+
 .LeistungsstarkeUnterstutzung{
   display: flex;
   align-items: flex-end;
@@ -3201,6 +3163,47 @@ ul.kakao-children li {
   gap: 50px;
 }
 }
+
+.Bestseller-Price {
+  flex-wrap: wrap;
+}
+.CacaoPriceMain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.CacaoPriceCurrent {
+  font-size: 1.8rem!important;
+  font-weight: 700!important;
+  line-height: 1!important;
+}
+.CacaoPriceCurrent.sale {
+  color: #e00!important;
+}
+.CacaoPriceCurrent.exclusive {
+  color: #b8943e!important; 
+}
+.CacaoPriceCompare {
+  font-size: 1.8rem!important;
+  color: var(--color-dark)!important;
+  text-decoration: line-through!important;
+}
+.BestsellerLabel--gold {
+  background: linear-gradient(90deg, #c9a040, #e0c068) !important;
+}
+.BestsellerLabel--red {
+  background: #e00 !important;
+}
+.BestsellerLabel--gradient {
+  background: linear-gradient(90deg, #f30, #ff6f82) !important;
+}
+.CacaoPricePer100g {
+  width: 100%;
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 2px;
+}
+
 ._form_21 ._form{
   margin: 0!important;
   padding: 0!important;
@@ -3238,35 +3241,4 @@ ul.kakao-children li {
   }
   h1 { font-size: 1.4rem !important; }
   h2 { font-size: 1.2rem !important; }
-}
-/* Imgix Video mute button overlay */
-.imgix-video-wrapper {
-  position: relative;
-}
-.imgix-video-wrapper video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.imgix-video-mute-btn {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(30, 30, 30, 0.7);
-  border: none;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background 0.2s;
-  z-index: 2;
-}
-.imgix-video-mute-btn:hover {
-  background: rgba(30, 30, 30, 0.9);
 }
