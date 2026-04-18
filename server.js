@@ -43,7 +43,7 @@ export default {
           "style-src 'self' 'unsafe-inline' https://cdn.shopify.com https://*.reputon.com https://qiblanco.activehosted.com",
           "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://*.reputon.com",
           "connect-src 'self' https://monorail-edge.shopifysvc.com https://qiblanco-only-rating-serpapi.vercel.app https://*.reputon.com https://qiblanco-video.imgix.video/ https://*.imgix.video/ https://qiblanco.activehosted.com https://*.myshopify.dev",
-          "media-src 'self' blob: https://*.imgix.video/",
+          "media-src 'self' https://cdn.shopify.com blob: https://*.imgix.video/",
           "font-src 'self' data: https://cdn.shopify.com https://cdn.grw.reputon.com https://fonts.gstatic.com",
           "img-src 'self' data: https://cdn.shopify.com https://qiblanco.com https://*.googleusercontent.com https://maps.googleapis.com https://maps.gstatic.com https://cdn.grw.reputon.com",
         ].join('; ')
