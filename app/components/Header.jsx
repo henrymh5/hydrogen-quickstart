@@ -7,6 +7,22 @@ import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 import {ReviewCount} from './reusables/ReviewCount';
 
+function resolveMenuLink(rawUrl) {
+  if (!rawUrl) return {to: '#', isExternal: false};
+  const isInternal =
+    rawUrl.includes('myshopify.com') ||
+    rawUrl.includes('qiblanco.com') ||
+    rawUrl.startsWith('/');
+  if (isInternal) {
+    try {
+      return {to: new URL(rawUrl, 'http://placeholder').pathname, isExternal: false};
+    } catch {
+      return {to: rawUrl, isExternal: false};
+    }
+  }
+  return {to: rawUrl, isExternal: true};
+}
+
 /**
  * @param {HeaderProps}
  */
@@ -459,9 +475,7 @@ function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout})
             );
           }
 
-          const childUrlObj = new URL(child.url || '#', window.location.origin);
-          const isExternalChild = childUrlObj.origin !== window.location.origin;
-          const childTo = isExternalChild ? childUrlObj.href : childUrlObj.pathname;
+          const {to: childTo, isExternal: isExternalChild} = resolveMenuLink(child.url);
           const childIcons = (
             <>
               {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)}
@@ -510,10 +524,7 @@ function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout})
  */
 function SubMenuItem({item, close}) {
   if (!item.url) return null;
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost';
-  const urlObj = new URL(item.url, origin);
-  const isExternal = urlObj.origin !== origin;
-  const to = isExternal ? urlObj.href : urlObj.pathname;
+  const {to, isExternal} = resolveMenuLink(item.url);
 
   return (
     <li style={{padding: '0.25rem 0'}}>
