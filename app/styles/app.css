@@ -3684,3 +3684,20 @@ ul.kakao-children li {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 749px) {
+  .hide-mobile{
+    display: none!important;
+  }
+  .hide-desktop{
+    display: block!important;
+  }
+}
+@media screen and (min-width: 750px) {
+  .hide-mobile{
+    display: block!important;
+  }
+  .hide-desktop{ 
+    display: none!important;
+  }
+}

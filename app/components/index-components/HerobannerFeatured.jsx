@@ -7,6 +7,12 @@ export function HerobannerFeatured(){
             <h1 className="text-center">Tragbares Hightech <br /> mit messbaren Effekten auf Zellebene</h1>
             <div className="herobanner-seperator g-10p flex-container flex-row small--flex-column flex-align-start flex-justify-space-between">
                 <div className="text-content">
+                    <div className="hide-desktop">
+                        <LazyImage
+                         compressedLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db_small.webp?v=1673788196"}
+                         highQualityLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db.webp?v=1673788196"}
+                         />
+                    </div>
                     <h2>QiOne® 2 Pro</h2>
                     <p className="color-accent-main"><strong><ReviewCount /></strong></p>
                     <p><strong>Mehr als 14.000+ aktive Nutzer</strong></p>
@@ -35,12 +41,12 @@ export function HerobannerFeatured(){
                     <img style={{margin: "20px 20px 20px 0"}} width={75} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/800px-Klarna_Payment_Badge.svg_7f45bfec-1ac3-4234-9914-98cf49b040f4.png?v=1671199816" alt="" />
                     <img style={{margin: "20px 20px 20px 0"}} width={75} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/paypal-784404_1280.webp?v=1708904082" alt="" />
                 </div>
-                <div className="featured-image">
+                <div className="featured-image hide-mobile">
                     <LazyImage 
                      compressedLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db_small.webp?v=1673788196"}
                      highQualityLink={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne2Pro_mit-Siegel_2a003117-6b48-42ea-be23-c237a78215db.webp?v=1673788196"}
                      />
-                </div>
+                </div> 
             </div>
         </div>
     )
