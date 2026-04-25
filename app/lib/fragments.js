@@ -202,6 +202,11 @@ export const HEADER_QUERY = `#graphql
           url
         }
       }
+      squareLogo {
+        image {
+          url
+        }
+      }
     }
   }
   query Header(
