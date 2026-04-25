@@ -102,8 +102,8 @@ export default function Product() {
     <>
       <div className="flex flex-col gap-5 items-center-justify-center text-center max-w-[750px] mx-auto! my-[5vh]! p-2">
         <div className="max-w-[500px] m-center">
-          <LazyImage highQualityLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug.webp?v=1766482188"
-          compressedLink="https://qiblanco.com/cdn/shop/files/Awake_Schriftzug_small.webp?v=1766482188" />
+          <LazyImage highQualityLink="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Awake_Schriftzug.webp?v=1766482188"
+          compressedLink="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Awake_Schriftzug_small.webp?v=1766482188" />
         </div>
         <h2 style={{fontSize: '3em', marginTop: '50px'}}>Wach. Mutig. Kraftvoll.</h2>
         <h3 style={{fontSize: '2em'}}>High Performance Cacao</h3>

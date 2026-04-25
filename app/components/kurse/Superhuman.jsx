@@ -1,9 +1,9 @@
 import { ActiveCampaignForm } from "../reusables/ActiveCampaignForm";
 
 const IMG_HERO_BG =
-  'https://qiblanco.com/cdn/shop/files/qiblanco-com-in-5-stufen-zum-superhuman-hintergrund_1296x.png?v=1645178965';
+  'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-in-5-stufen-zum-superhuman-hintergrund_1296x.png?v=1645178965';
 const IMG_SHOWCASE =
-  'https://qiblanco.com/cdn/shop/files/qiblanco-com-in-5-stufen-zum-superhuman-masterclass-showcase-app-526x296_400x.png?v=1645756351';
+  'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-in-5-stufen-zum-superhuman-masterclass-showcase-app-526x296_400x.png?v=1645756351';
 const IMG_CHRISTIAN =
   'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Christian.jpg?v=1668985845';
 
@@ -11,7 +11,7 @@ const videos = [
   {
     label: 'Video 1',
     title: 'Entgiftung',
-    img: 'https://qiblanco.com/cdn/shop/files/entgiftung_720x.png?v=1645197348',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/entgiftung_720x.png?v=1645197348',
     bullets: [
       'Warum Giftstoffe unsere Körperaktivitäten lähmen',
       'Wie du dich effektiv entgiftest und deine Zellen wieder vollfunktionsfähig machst',
@@ -20,7 +20,7 @@ const videos = [
   {
     label: 'Video 2',
     title: 'Mentales Setting',
-    img: 'https://qiblanco.com/cdn/shop/files/mentaleeinstellung_720x.png?v=1645197348',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/mentaleeinstellung_720x.png?v=1645197348',
     bullets: [
       'Wie dein Gehirn deine physische Realität beeinflusst',
       'Wie du dein Gehirn neu programmieren kannst',
@@ -30,7 +30,7 @@ const videos = [
   {
     label: 'Video 3',
     title: 'Mineralien und Vitamine',
-    img: 'https://qiblanco.com/cdn/shop/files/MineralstVitamine_720x.png?v=1645197347',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/MineralstVitamine_720x.png?v=1645197347',
     bullets: [
       'Dein Körper braucht den richtigen Treibstoff',
       'Was zu wenig in unseren Lebensmitteln enthalten ist',
@@ -40,7 +40,7 @@ const videos = [
   {
     label: 'Video 4',
     title: 'E-Smog',
-    img: 'https://qiblanco.com/cdn/shop/files/E-Smog_720x.png?v=1645197348',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/E-Smog_720x.png?v=1645197348',
     bullets: [
       'Wie erhöhte elektromagnetische Strahlung deinen Körper blockiert',
       'Wie du dich effektiv gegen E-Smog schützen kannst',
@@ -49,7 +49,7 @@ const videos = [
   {
     label: 'Video 5',
     title: 'Kohärente Wasserstruktur',
-    img: 'https://qiblanco.com/cdn/shop/files/KohaerentesWasser_720x.png?v=1645197347',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/KohaerentesWasser_720x.png?v=1645197347',
     bullets: [
       'Was der Superzustand des Wassers ist',
       'Welche positiven Effekte dieser Zustand hat',

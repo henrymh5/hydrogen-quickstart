@@ -1,16 +1,16 @@
 import {ActiveCampaignForm} from '../reusables/ActiveCampaignForm';
 
 const IMG_HERO_BG =
-  'https://qiblanco.com/cdn/shop/files/kakaohero_1_4ebdaf6e-683a-40c5-bbfe-d5d83e6b3b4f_1296x.webp?v=1680818117';
+  'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakaohero_1_4ebdaf6e-683a-40c5-bbfe-d5d83e6b3b4f_1296x.webp?v=1680818117';
 const IMG_MOCKUP =
-  'https://qiblanco.com/cdn/shop/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1.webp?v=1670867359';
+  'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Mockup-Kakao-Zeremonie-Kurs-v2-2x-1024x599.jpg_1.webp?v=1670867359';
 const IMG_COUPLE =
-  'https://qiblanco.com/cdn/shop/files/2022-07-26-qiblanco-berlin-1001088.png?v=1679327456';
+  'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1001088.png?v=1679327456';
 
 const videos = [
   {
     title: 'Video 1: Intuition erfahren - Raus aus dem Kopf, rein ins Herz! – 9 min',
-    img: 'https://qiblanco.com/cdn/shop/files/2022-07-26-qiblanco-berlin-1001190-Kopie-1024x589_jpg.webp?v=1666617198',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1001190-Kopie-1024x589_jpg.webp?v=1666617198',
     bullets: [
       'Was ist Intuition?',
       'Welchen Vorteil bringt dir das im Alltag?',
@@ -19,7 +19,7 @@ const videos = [
   },
   {
     title: 'Video 2: Zeremonie-Kakao – Was ist das?! – 8 min',
-    img: 'https://qiblanco.com/cdn/shop/files/2022-07-26-qiblanco-berlin-1001239-Kopie-1024x591.jpg_1_cf7bfbf2-2e9f-4654-a51a-e0f2b618501f.webp?v=1679327538',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1001239-Kopie-1024x591.jpg_1_cf7bfbf2-2e9f-4654-a51a-e0f2b618501f.webp?v=1679327538',
     bullets: [
       'Warum enthält er so viele Inhaltsstoffe?',
       'Wo kommt er her?',
@@ -28,7 +28,7 @@ const videos = [
   },
   {
     title: 'Video 3: Die Zeremonie-Kakao-Kur in der Anwendung – 8 min',
-    img: 'https://qiblanco.com/cdn/shop/files/kakao-ad-01_2.1.1-min.jpg_1_2b439bb6-ccde-4801-a43f-d36eb669cee5.webp?v=1679327670',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakao-ad-01_2.1.1-min.jpg_1_2b439bb6-ccde-4801-a43f-d36eb669cee5.webp?v=1679327670',
     bullets: [
       'Wie erwärmt man ihn richtig?',
       'Wie schont man die Inhaltsstoffe?',
@@ -37,7 +37,7 @@ const videos = [
   },
   {
     title: 'Video 4: Einen Schritt tiefer – mit Zeremonie-Kakao meditieren – 4 min',
-    img: 'https://qiblanco.com/cdn/shop/files/kakao-ad-03_4.2.1-min.jpg_1_329aa829-10d5-4d95-a779-1dd0a92d0397.webp?v=1679328304',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakao-ad-03_4.2.1-min.jpg_1_329aa829-10d5-4d95-a779-1dd0a92d0397.webp?v=1679328304',
     bullets: [
       'Warum überhaupt meditieren?',
       'Wie und wie lange?',

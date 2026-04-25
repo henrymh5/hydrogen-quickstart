@@ -494,7 +494,7 @@ export default function Product() {
         <p className="mt-2">Zeremonie-Kakao ist mehr als ein Getränk – er ist <b>ein Ritual</b>. Ideal für <b>Achtsamkeit, Meditation</b> oder als <b>bewusste Alternative</b> im Alltag.</p>
       </div>
       <UpsellLineUp />
-      <SingleImage size={"fullscreen"} link={"https://qiblanco.com/cdn/shop/files/kakaohero_1_4ebdaf6e-683a-40c5-bbfe-d5d83e6b3b4f.webp?v=1680818117"} />
+      <SingleImage size={"fullscreen"} link={"https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakaohero_1_4ebdaf6e-683a-40c5-bbfe-d5d83e6b3b4f.webp?v=1680818117"} />
     </>
   );
 }

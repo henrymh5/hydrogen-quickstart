@@ -28,7 +28,7 @@ export function QiOne() {
       <ZellDiagramme />
       <CallToAction
         img={
-          'https://qiblanco.com/cdn/shop/files/qiblanco-com-qione-2-pro-transparent_1.webp?v=1666591476'
+          'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-qione-2-pro-transparent_1.webp?v=1666591476'
         }
         link={'/products/qione-2-pro'}
         linkStyle={'secondary'}
@@ -62,7 +62,7 @@ export function QiOne() {
       />
       <CallToAction
         img={
-          'https://qiblanco.com/cdn/shop/files/qiblanco-com-qione-2-pro-transparent_1.webp?v=1666591476'
+          'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-qione-2-pro-transparent_1.webp?v=1666591476'
         }
         link={'/products/qione-2-pro'}
         linkStyle={'secondary'}
@@ -94,7 +94,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/Design-ohne-Titel_1.webp?v=1669011413"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Design-ohne-Titel_1.webp?v=1669011413"
               alt=""
             />
           </div>
@@ -128,7 +128,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/Cebula.webp?v=1675246618"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Cebula.webp?v=1675246618"
               alt=""
             />
           </div>
@@ -175,7 +175,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/image1_1.jpg?v=1707860985"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/image1_1.jpg?v=1707860985"
               alt=""
             />
           </div>
@@ -218,7 +218,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/Screenshot_2024-02-19_at_12.32.50.webp?v=1736366546"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Screenshot_2024-02-19_at_12.32.50.webp?v=1736366546"
               alt=""
             />
           </div>
@@ -274,7 +274,7 @@ function HerzQiOne() {
     <div className="DasHerzDesQiOne NormalSectionSize">
       <div className="Flex-Image mt-2">
         <img
-          src="https://qiblanco.com/cdn/shop/files/QiOne_Gitterchip-1-e1668521164461_1_21efb1fc-4b64-469f-96d2-33dcf70d6506.jpg?v=1670809038"
+          src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne_Gitterchip-1-e1668521164461_1_21efb1fc-4b64-469f-96d2-33dcf70d6506.jpg?v=1670809038"
           alt=""
         />
       </div>
@@ -303,7 +303,7 @@ function HerzQiOne() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
           />
           <b>1. Kohärentes Energiefeld</b>
           <br />
@@ -319,7 +319,7 @@ function HerzQiOne() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
           />
           <b>2. Molekularer E-Smog Schutz</b>
           <br />
@@ -336,7 +336,7 @@ function HerzQiOne() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
           />
           <b>3. Anbindung an das Quantenfeld</b>
           <br />

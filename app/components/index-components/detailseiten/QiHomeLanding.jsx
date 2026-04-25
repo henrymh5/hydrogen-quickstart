@@ -150,7 +150,7 @@ function HeroBannerWithHRV() {
           </ul>
           <p style={{color: '#396e25', marginTop: '20px'}}>
             <img
-              src="https://qiblanco.com/cdn/shop/files/Green_Checkmark.webp?v=1676668861"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Green_Checkmark.webp?v=1676668861"
               className="inline-image"
               style={{width: '20px', height: 'auto', marginRight: '5px'}}
               alt=""
@@ -166,7 +166,7 @@ function HeroBannerWithHRV() {
         </div>
         <div className="QiHomeHeroBanner__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/qihomeaie_2.webp?v=1736352995"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qihomeaie_2.webp?v=1736352995"
             alt="QiHome Air"
             style={{width: '100%'}}
           />
@@ -211,43 +211,43 @@ function HeroBannerWithHRV() {
 function IconFeatures() {
   const features = [
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-10.jpg?v=1659033559',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-10.jpg?v=1659033559',
       label: '5G Schutz',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-11.jpg?v=1659033547',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-11.jpg?v=1659033547',
       label: 'Starkes Pflanzenwachstum',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-2.jpg?v=1659033527',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-2.jpg?v=1659033527',
       label: 'Wohlfühlatmosphäre',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-1.jpg?v=1659033527',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-1.jpg?v=1659033527',
       label: 'Ideal zum Reisen',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter.jpg?v=1659033527',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter.jpg?v=1659033527',
       label: 'Weicher Kalk',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-6.jpg?v=1659033527',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-6.jpg?v=1659033527',
       label: 'Länger haltbare Lebensmittel',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-8.jpg?v=1659033527',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-8.jpg?v=1659033527',
       label: 'Entspannte Haustiere',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-3.jpg?v=1659033526',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-3.jpg?v=1659033526',
       label: 'Schutz vor geopathogener Strahlung',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-4.jpg?v=1659033526',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-4.jpg?v=1659033526',
       label: 'Besucher fühlen sich wohl',
     },
     {
-      img: '//qiblanco.com/cdn/shop/files/lighter-9.jpg?v=1659033526',
+      img: '//cdn.shopify.com/s/files/1/0279/3095/1750/files/lighter-9.jpg?v=1659033526',
       label: 'Kohärentes Wasser',
     },
   ];
@@ -274,7 +274,7 @@ function Expertenmeinungen() {
       <div className="QiHomeExperten__block">
         <div className="QiHomeExperten__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/image1_1.webp?v=1736354146"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/image1_1.webp?v=1736354146"
             alt="Dr. Andreas Kramer & Mindy Sahagun"
             style={{borderRadius: '20px'}}
           />
@@ -315,7 +315,7 @@ function Expertenmeinungen() {
       <div className="QiHomeExperten__block">
         <div className="QiHomeExperten__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/Screenshot_2024-02-19_at_12.32.50.webp?v=1736366546"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/Screenshot_2024-02-19_at_12.32.50.webp?v=1736366546"
             alt="Patrick Thiele"
             style={{borderRadius: '20px'}}
           />
@@ -401,7 +401,7 @@ function TechnologieSection() {
       <div className="QiHomeTechnologie__grid">
         <div className="QiHomeTechnologie__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/QiHome_Chip.jpg_1.webp?v=1670805865"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHome_Chip.jpg_1.webp?v=1670805865"
             alt="QiHome Chip"
             style={{borderRadius: '20px'}}
           />
@@ -424,7 +424,7 @@ function TechnologieSection() {
           </p>
           <p className="mt-2">
             <img
-              src="https://qiblanco.com/cdn/shop/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
               alt=""
               className="inline-image"
               style={{float: 'left', height: '40px', width: '40px', margin: '5px'}}
@@ -435,7 +435,7 @@ function TechnologieSection() {
           </p>
           <p className="mt-2" style={{clear: 'left'}}>
             <img
-              src="https://qiblanco.com/cdn/shop/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
               alt=""
               className="inline-image"
               style={{float: 'left', height: '40px', width: '40px', margin: '5px'}}
@@ -447,7 +447,7 @@ function TechnologieSection() {
           </p>
           <p className="mt-2" style={{clear: 'left'}}>
             <img
-              src="https://qiblanco.com/cdn/shop/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
               alt=""
               className="inline-image"
               style={{float: 'left', height: '40px', width: '40px', margin: '5px'}}
@@ -483,7 +483,7 @@ function ImageTextBlocks() {
           className="QiHomeImageTextBlock__img"
           style={{
             backgroundImage:
-              'url(https://qiblanco.com/cdn/shop/files/qihome-detailseite-wasser.png?v=1661927880)',
+              'url(https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qihome-detailseite-wasser.png?v=1661927880)',
           }}
         />
         <div className="QiHomeImageTextBlock__content" style={{textAlign: 'right'}}>
@@ -531,7 +531,7 @@ function ImageTextBlocks() {
           className="QiHomeImageTextBlock__img"
           style={{
             backgroundImage:
-              'url(https://qiblanco.com/cdn/shop/files/qihome-detailseite-pflanze_55f1ac48-69ed-4e54-9469-f4a40e0bee80.png?v=1661927541)',
+              'url(https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qihome-detailseite-pflanze_55f1ac48-69ed-4e54-9469-f4a40e0bee80.png?v=1661927541)',
             backgroundPosition: 'right',
           }}
         />
@@ -542,7 +542,7 @@ function ImageTextBlocks() {
           className="QiHomeImageTextBlock__img"
           style={{
             backgroundImage:
-              'url(https://qiblanco.com/cdn/shop/files/qihome-detailseite-orange.png?v=1661928388)',
+              'url(https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qihome-detailseite-orange.png?v=1661928388)',
           }}
         />
         <div className="QiHomeImageTextBlock__content" style={{textAlign: 'right'}}>
@@ -588,7 +588,7 @@ function GeopathogeneStrahlung() {
         </div>
         <div className="QiHomeGeopathogen__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/QiHome.webp?v=1675207582"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiHome.webp?v=1675207582"
             alt="QiHome Air"
             style={{borderRadius: '20px', width: '100%'}}
           />
@@ -604,7 +604,7 @@ function SuperhumanBanner() {
       <div className="QiHomeSuperhumanBanner__grid">
         <div className="QiHomeSuperhumanBanner__image">
           <img
-            src="https://qiblanco.com/cdn/shop/files/qiblanco-com-in-5-stufen-zum-superhuman-masterclass-showcase-app-526x296.webp?v=1736371126"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-in-5-stufen-zum-superhuman-masterclass-showcase-app-526x296.webp?v=1736371126"
             alt="Superhuman Masterclass"
             style={{borderRadius: '20px', width: '100%'}}
           />

@@ -30,7 +30,7 @@ export function KursInhalteKakao() {
         <div className="Kursinhalt">
           <div className="Kursinhalt-img">
             <img
-              src="https://qiblanco.com/cdn/shop/files/2022-07-26-qiblanco-berlin-1001190-Kopie-1024x589_jpg.webp?v=1666617198"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1001190-Kopie-1024x589_jpg.webp?v=1666617198"
               alt=""
             />
           </div>
@@ -49,7 +49,7 @@ export function KursInhalteKakao() {
         <div className="Kursinhalt">
           <div className="Kursinhalt-img">
             <img
-              src="https://qiblanco.com/cdn/shop/files/2022-07-26-qiblanco-berlin-1001239-Kopie-1024x591.jpg_1_cf7bfbf2-2e9f-4654-a51a-e0f2b618501f.webp?v=1679327538"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-07-26-qiblanco-berlin-1001239-Kopie-1024x591.jpg_1_cf7bfbf2-2e9f-4654-a51a-e0f2b618501f.webp?v=1679327538"
               alt=""
             />
           </div>
@@ -67,7 +67,7 @@ export function KursInhalteKakao() {
         <div className="Kursinhalt">
           <div className="Kursinhalt-img">
             <img
-              src="https://qiblanco.com/cdn/shop/files/kakao-ad-01_2.1.1-min.jpg_1_2b439bb6-ccde-4801-a43f-d36eb669cee5.webp?v=1679327670"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakao-ad-01_2.1.1-min.jpg_1_2b439bb6-ccde-4801-a43f-d36eb669cee5.webp?v=1679327670"
               alt=""
             />
           </div>
@@ -85,7 +85,7 @@ export function KursInhalteKakao() {
         <div className="Kursinhalt">
           <div className="Kursinhalt-img">
             <img
-              src="https://qiblanco.com/cdn/shop/files/kakao-ad-03_4.2.1-min.jpg_1_329aa829-10d5-4d95-a779-1dd0a92d0397.webp?v=1679328304"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakao-ad-03_4.2.1-min.jpg_1_329aa829-10d5-4d95-a779-1dd0a92d0397.webp?v=1679328304"
               alt=""
             />
           </div>

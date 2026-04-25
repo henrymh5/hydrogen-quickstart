@@ -194,7 +194,7 @@ const herkunftRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/tal-kakao-awake.jpg?v=1764276290',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/tal-kakao-awake.jpg?v=1764276290',
   },
   {
     text: (
@@ -212,7 +212,7 @@ const herkunftRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/DSC02183_1.jpg?v=1764259399',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/DSC02183_1.jpg?v=1764259399',
   },
   {
     text: (
@@ -232,7 +232,7 @@ const herkunftRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/DSC01401.jpg?v=1766919672',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/DSC01401.jpg?v=1766919672',
   },
 ];
 
@@ -301,7 +301,7 @@ const ursprungRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/montegrande.jpg?v=1764260249',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/montegrande.jpg?v=1764260249',
     copyright: COPYRIGHT,
   },
   {
@@ -321,7 +321,7 @@ const ursprungRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/tempel-kakao.jpg?v=1764260567',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/tempel-kakao.jpg?v=1764260567',
     copyright: COPYRIGHT,
   },
   {
@@ -344,7 +344,7 @@ const ursprungRows = [
         </p>
       </>
     ),
-    img: 'https://qiblanco.com/cdn/shop/files/kakao-herkunft.jpg?v=1764260814',
+    img: 'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/kakao-herkunft.jpg?v=1764260814',
     copyright: COPYRIGHT,
   },
 ];
@@ -399,7 +399,7 @@ export default function AwakeProductPage() {
       <Herkunft />
       <Ursprung />
       <HerobannerWithText
-        src="https://qiblanco.com/cdn/shop/files/bohne-create.jpg?v=1763083566"
+        src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/bohne-create.jpg?v=1763083566"
         text=""
       />
       <ProductFAQ items={FAQ_CACAO} />

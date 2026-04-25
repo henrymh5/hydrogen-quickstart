@@ -24,7 +24,7 @@ export function QiBracelet() {
       <Superzustand />
       <CallToAction
         img={
-          'https://qiblanco.com/cdn/shop/files/01_2048px-Alpha-1024x1024.png_1.webp?v=1670806857'
+          'https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_2048px-Alpha-1024x1024.png_1.webp?v=1670806857'
         }
         link={'/products/qibracelet'}
         linkStyle={'secondary'}
@@ -82,7 +82,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/85M0173-new_63389798-effc-45f5-abd5-d2eb0ea2484d.jpg?v=1674072788"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/85M0173-new_63389798-effc-45f5-abd5-d2eb0ea2484d.jpg?v=1674072788"
               alt=""
             />
           </div>
@@ -104,7 +104,7 @@ function Expertenmeinungen() {
         <div className="Expertenmeinung">
           <div className="Expertenmeinung-Bild">
             <img
-              src="https://qiblanco.com/cdn/shop/files/image1_1.jpg?v=1707860985"
+              src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/image1_1.jpg?v=1707860985"
               alt=""
             />
           </div>
@@ -178,7 +178,7 @@ function TechnologieQiBlanco() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/KohaerentesWasser_cd3b0e48-323b-46f5-b537-b6aae9eb2bc9.png?v=1701116490"
           />
           <b>1. Kohärentes Energiefeld</b>
           <br />
@@ -194,7 +194,7 @@ function TechnologieQiBlanco() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/E-Smog_fe53a4d3-a271-4027-873e-74f815e4ff84.png?v=1701114521"
           />
           <b>2. Molekularer E-Smog Schutz</b>
           <br />
@@ -211,7 +211,7 @@ function TechnologieQiBlanco() {
               width: '40px',
               margin: '5px',
             }}
-            src="https://qiblanco.com/cdn/shop/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
+            src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/qiblanco-com-icon-zellschutz-3.png_1-1.webp?v=1676976963"
           />
           <b>3. Anbindung an das Quantenfeld</b>
           <br />
@@ -234,11 +234,11 @@ function TechnologieQiBlanco() {
       </div>
             <div className="Flex-Image mt-2">
         <img
-          src="https://qiblanco.com/cdn/shop/files/QiOne_Gitterchip-1-e1668521164461_1_21efb1fc-4b64-469f-96d2-33dcf70d6506.jpg?v=1670809038"
+          src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiOne_Gitterchip-1-e1668521164461_1_21efb1fc-4b64-469f-96d2-33dcf70d6506.jpg?v=1670809038"
           alt=""
         />
         <img
-          src="https://qiblanco.com/cdn/shop/files/01_2048px.jpg_1_f94bd190-0e41-40bc-aa0c-e94cf253f975.webp?v=1670809046"
+          src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/01_2048px.jpg_1_f94bd190-0e41-40bc-aa0c-e94cf253f975.webp?v=1670809046"
           alt=""
         />
       </div>
@@ -278,7 +278,7 @@ function HerobannerBracelet(){
                     <p className="micro-text mt-1"><strong>20 Tage testen · Gratis Versand · 0 % Raten mit PayPal und Klarna</strong></p>
                 </div>
                 <div className="featured-image">
-                    <img src="https://qiblanco.com/cdn/shop/files/QiBracelet_mit_Siegel_1a200b5e-85ca-4b6f-a176-42af66701b6f.webp?v=1673884874" alt="QiOne 2 Pro" />
+                    <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/QiBracelet_mit_Siegel_1a200b5e-85ca-4b6f-a176-42af66701b6f.webp?v=1673884874" alt="QiOne 2 Pro" />
                 </div>
             </div>
         </div>
@@ -292,10 +292,10 @@ function LeistungsstarkeUnterstutzung(){
       <div>
         <h3>Leistungsstarke Unterstützung. <br />
 Edel & dezent für jede Situation</h3>
-<img src="https://qiblanco.com/cdn/shop/files/2022-11-02-qiblanco-bracelet-L1010752-min-1024x683.jpg_1_e739e5cc-e928-44d4-ad81-09dc74e31110.webp?v=1670807064" alt="" />
+<img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-11-02-qiblanco-bracelet-L1010752-min-1024x683.jpg_1_e739e5cc-e928-44d4-ad81-09dc74e31110.webp?v=1670807064" alt="" />
       </div>
       <div>
-        <img src="https://qiblanco.com/cdn/shop/files/2022-11-02-qiblanco-bracelet-L1010743-min-1025x1536.jpg_1_2f956128-37b9-4c16-a535-dd4c9eabe6d4.webp?v=1670807053" alt="" />
+        <img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/2022-11-02-qiblanco-bracelet-L1010743-min-1025x1536.jpg_1_2f956128-37b9-4c16-a535-dd4c9eabe6d4.webp?v=1670807053" alt="" />
       </div>
     </div>
   )
@@ -321,13 +321,13 @@ function Superzustand() {
     </h2>
     <div className="NormalSectionSize">
       <div className="Superzustand">
-        <div className='mt-2 mb-2'><img src="https://qiblanco.com/cdn/shop/files/InkohaerentesWasser-2_transparent.png?v=1670949073" alt="" /></div>
+        <div className='mt-2 mb-2'><img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/InkohaerentesWasser-2_transparent.png?v=1670949073" alt="" /></div>
         <div className="text-content"><h3>Inkohärentes Wasser</h3>
         <p>Die Wassermoleküle stoßen gelegentlich aneinander und erzeugen ein thermisches Rauschen. Das Rauschen sind Störfrequenzen, da sie die positiven Frequenzen überlagern und damit die Kommunikation beeinflussen.</p>
         </div>
       </div>
       <div className="Superzustand">
-        <div className='mt-2 mb-2'><img src="https://qiblanco.com/cdn/shop/files/KohaerentesWasser-2_transparent.png?v=1670949081" alt="" /></div>
+        <div className='mt-2 mb-2'><img src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/KohaerentesWasser-2_transparent.png?v=1670949081" alt="" /></div>
         <div className="text-content"><h3>Kohärentes Wasser</h3>
         <p>Zusätzliche Wasserstoffbrücken führen dazu, dass sich die Wassermoleküle in einer kristallinen Struktur anordnen und sich stoßfrei zueinander bewegen. Somit kommen alle Signale optimal bei dir an.</p>
         </div>

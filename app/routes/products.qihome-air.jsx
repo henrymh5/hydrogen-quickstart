@@ -111,7 +111,7 @@ export default function Product() {
         </p>
       </div>
       <div className="product-360-hero__video">
-        <ImgixVideo videoPath="360-QiHome-1x1.mov" fallbackImage="https://qiblanco.com/cdn/shop/files/3d-animation-qi-home-preview.webp?v=1740224642" />
+        <ImgixVideo videoPath="360-QiHome-1x1.mov" fallbackImage="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/3d-animation-qi-home-preview.webp?v=1740224642" />
       </div>
     </div>
     <div className="product">
