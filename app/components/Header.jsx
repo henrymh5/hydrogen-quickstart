@@ -459,21 +459,42 @@ function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout})
             );
           }
 
+          const childUrlObj = new URL(child.url || '#', window.location.origin);
+          const isExternalChild = childUrlObj.origin !== window.location.origin;
+          const childTo = isExternalChild ? childUrlObj.href : childUrlObj.pathname;
+          const childIcons = (
+            <>
+              {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)}
+              {child.title === "QiBracelet®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-bracelet.png?v=1760089233" alt="" />)}
+              {child.title === "QiHome® Air" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-home.png?v=1760089232" alt="" />)}
+              {child.title === "Necklace für den QiOne®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-necklace.png?v=1760090696" alt="" />)}
+              {child.title}
+            </>
+          );
+
           return (
             <li key={child.id} style={{padding: '0.25rem 0'}}>
-              <NavLink
-                className="header-submenu-item"
-                onClick={close}
-                prefetch="intent"
-                style={activeLinkStyle}
-                to={new URL(child.url || '#', window.location.origin).pathname}
-              >
-                {child.title === "QiOne® 2 Pro" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-qione.png?v=1760088701" alt="" />)}
-                {child.title === "QiBracelet®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-bracelet.png?v=1760089233" alt="" />)}
-                {child.title === "QiHome® Air" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-home.png?v=1760089232" alt="" />)}
-                {child.title === "Necklace für den QiOne®" && (<img width={45} src="https://cdn.shopify.com/s/files/1/0279/3095/1750/files/icon-necklace.png?v=1760090696" alt="" />)}
-                {child.title}
-              </NavLink>
+              {isExternalChild ? (
+                <a
+                  className="header-submenu-item"
+                  href={childTo}
+                  onClick={close}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {childIcons}
+                </a>
+              ) : (
+                <NavLink
+                  className="header-submenu-item"
+                  onClick={close}
+                  prefetch="intent"
+                  style={activeLinkStyle}
+                  to={childTo}
+                >
+                  {childIcons}
+                </NavLink>
+              )}
             </li>
           );
         })}
@@ -489,19 +510,34 @@ function SubmenuPortal({item, hover, setHover, close, triggerRef, hoverTimeout})
  */
 function SubMenuItem({item, close}) {
   if (!item.url) return null;
-  const url = new URL(item.url, typeof window !== 'undefined' ? window.location.origin : 'http://localhost').pathname;
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost';
+  const urlObj = new URL(item.url, origin);
+  const isExternal = urlObj.origin !== origin;
+  const to = isExternal ? urlObj.href : urlObj.pathname;
 
   return (
     <li style={{padding: '0.25rem 0'}}>
-      <NavLink
-        className="header-submenu-item"
-        onClick={close}
-        prefetch="intent"
-        style={activeLinkStyle}
-        to={url}
-      >
-        {item.title}
-      </NavLink>
+      {isExternal ? (
+        <a
+          className="header-submenu-item"
+          href={to}
+          onClick={close}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {item.title}
+        </a>
+      ) : (
+        <NavLink
+          className="header-submenu-item"
+          onClick={close}
+          prefetch="intent"
+          style={activeLinkStyle}
+          to={to}
+        >
+          {item.title}
+        </NavLink>
+      )}
     </li>
   );
 }
