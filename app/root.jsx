@@ -1,4 +1,4 @@
-import {Analytics, getShopAnalytics, useNonce, Script} from '@shopify/hydrogen';
+import {Analytics, getShopAnalytics, useNonce} from '@shopify/hydrogen';
 import {
   Outlet,
   useRouteError,
@@ -158,24 +158,30 @@ export function Layout({children}) {
         {faviconUrl && <link rel="icon" href={faviconUrl} />}
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
-        <Meta />
-        <Links />
-        <Script
+        <script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="66dc4c98-f24c-4dfe-a18b-ac77444136c5"
-          waitForHydration
+          data-blockingmode="auto"
+          type="text/javascript"
+          nonce={nonce}
+          async
+          suppressHydrationWarning
         />
-        <Script
-          id="cookiebot-shopify-consent-sync"
+        <Meta />
+        <Links />
+        <script
           src="/cookiebot-shopify-consent-sync.js"
-          waitForHydration
+          nonce={nonce}
+          defer
+          suppressHydrationWarning
         />
-        <Script id="hotjar" src="/hotjar.js" waitForHydration />
-        <Script
-          id="qiblanco-tracker"
+        <script src="/hotjar.js" nonce={nonce} defer suppressHydrationWarning />
+        <script
           src="/qiblanco-tracker.js"
-          waitForHydration
+          nonce={nonce}
+          defer
+          suppressHydrationWarning
         />
       </head>
       <body>
