@@ -160,15 +160,29 @@ export function Layout({children}) {
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
         <Links />
-        <script
+      </head>
+      <body>
+        <LoadingBar />
+        {data ? (
+          <Analytics.Provider
+          cart={data.cart}
+          shop={data.shop}
+          consent={data.consent}
+          >
+            <PageLayout {...data}>{children}</PageLayout>
+          </Analytics.Provider>
+        ) : (
+          children
+        )}
+        <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="66dc4c98-f24c-4dfe-a18b-ac77444136c5"
-          defer
-          nonce={nonce}
+          waitForHydration
         />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
@@ -202,6 +216,7 @@ export function Layout({children}) {
         />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function(h,o,t,j,a,r){
@@ -217,6 +232,7 @@ export function Layout({children}) {
         />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               var head = document.head;
@@ -227,20 +243,6 @@ export function Layout({children}) {
             `,
           }}
         />
-      </head>
-      <body>
-        <LoadingBar />
-        {data ? (
-          <Analytics.Provider
-          cart={data.cart}
-          shop={data.shop}
-          consent={data.consent}
-          >
-            <PageLayout {...data}>{children}</PageLayout>
-          </Analytics.Provider>
-        ) : (
-          children
-        )}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
