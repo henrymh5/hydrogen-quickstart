@@ -160,72 +160,22 @@ export function Layout({children}) {
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
         <Links />
-        <script
+        <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="66dc4c98-f24c-4dfe-a18b-ac77444136c5"
-          defer
-          nonce={nonce}
+          waitForHydration
         />
-        <script
-          nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function () {
-                function syncShopifyConsent() {
-                  var cb = window.Cookiebot;
-                  if (!cb || !cb.consent) return false;
-                  var sp = window.Shopify && window.Shopify.customerPrivacy;
-                  if (!sp || typeof sp.setTrackingConsent !== 'function') return false;
-                  sp.setTrackingConsent({
-                    analytics: !!cb.consent.statistics,
-                    marketing: !!cb.consent.marketing,
-                    preferences: !!cb.consent.preferences,
-                    sale_of_data: !!cb.consent.marketing,
-                  }, function () {});
-                  return true;
-                }
-                function trySync() {
-                  if (syncShopifyConsent()) return;
-                  var attempts = 0;
-                  var iv = setInterval(function () {
-                    attempts++;
-                    if (syncShopifyConsent() || attempts > 40) clearInterval(iv);
-                  }, 250);
-                }
-                window.addEventListener('CookiebotOnAccept', trySync);
-                window.addEventListener('CookiebotOnDecline', trySync);
-                window.addEventListener('CookiebotOnConsentReady', trySync);
-              })();
-            `,
-          }}
+        <Script
+          id="cookiebot-shopify-consent-sync"
+          src="/cookiebot-shopify-consent-sync.js"
+          waitForHydration
         />
-        <script
-          nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:1218483,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-            `,
-          }}
-        />
-        <script
-          nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: `
-              var head = document.head;
-              var script = document.createElement('script');
-              script.type = 'text/javascript';
-              script.src = "https://t.qiblanco.com/v1/lst/universal-script?ph=5d7ec374b760de265c8e689aea1de481d066f670ad78f9970f2c407e375dcdb6&tag=!clicked&ref_url=" + encodeURI(document.URL);
-              head.appendChild(script);
-            `,
-          }}
+        <Script id="hotjar" src="/hotjar.js" waitForHydration />
+        <Script
+          id="qiblanco-tracker"
+          src="/qiblanco-tracker.js"
+          waitForHydration
         />
       </head>
       <body>
