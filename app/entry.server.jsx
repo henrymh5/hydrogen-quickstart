@@ -41,6 +41,8 @@ export default async function handleRequest(
       'https://cdn.shopify.com',
       'https://*.reputon.com',
       'https://qiblanco.activehosted.com',
+      'https://consentcdn.cookiebot.com',
+      'https://fonts.googleapis.com',
     ],
     frameSrc: [
       "'self'",
@@ -67,6 +69,7 @@ export default async function handleRequest(
       'wss://*.hotjar.com',
       'https://t.qiblanco.com',
       'https://consent.cookiebot.com',
+      'https://consentcdn.cookiebot.com',
     ],
     mediaSrc: [
       "'self'",
@@ -89,7 +92,7 @@ export default async function handleRequest(
       'https://*.googleusercontent.com',
       'https://lh3.googleusercontent.com',
       'https://maps.googleapis.com',
-      'https://maps.gstatic.com',
+      'https://maps.gstatic.com', 
       'https://cdn.grw.reputon.com',
       'https://i.vimeocdn.com',
       'https://script.hotjar.com',
