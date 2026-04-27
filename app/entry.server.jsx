@@ -41,6 +41,7 @@ export default async function handleRequest(
       'https://cdn.shopify.com',
       'https://*.reputon.com',
       'https://qiblanco.activehosted.com',
+      'https://fonts.googleapis.com',
     ],
     frameSrc: [
       "'self'",
