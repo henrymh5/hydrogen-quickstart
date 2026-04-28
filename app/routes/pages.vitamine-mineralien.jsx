@@ -25,7 +25,7 @@ async function loadCriticalData({context, request}, handle) {
 }
 
 function loadDeferredData() {
-  return {};
+  return {}; 
 }
 
 export default function VitamineMineralienPage() {
