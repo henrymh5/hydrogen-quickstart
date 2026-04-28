@@ -14,7 +14,7 @@ export async function loader(args) {
   const criticalData = await loadCriticalData(args, 'vitamine-mineralien');
   return {...deferredData, ...criticalData};
 }
-
+ 
 async function loadCriticalData({context, request}, handle) {
   const [{page}] = await Promise.all([
     context.storefront.query(PAGE_QUERY, {variables: {handle}}),
