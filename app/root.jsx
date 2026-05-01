@@ -183,6 +183,27 @@ export function Layout({children}) {
           defer
           suppressHydrationWarning
         />
+        <script
+          src="https://config.gorgias.chat/bundle-loader/shopify/qi-blanco.myshopify.com"
+          data-gorgias-loader-chat=""
+          nonce={nonce}
+          defer
+          suppressHydrationWarning
+        />
+        <script
+          src="https://config.gorgias.help/api/contact-forms/replace-mailto-script.js?shopName=qi-blanco"
+          data-gorgias-loader-mailto-replace=""
+          nonce={nonce}
+          defer
+          suppressHydrationWarning
+        />
+        <script
+          src="https://content.9gtb.com/loader.js"
+          data-gorgias-loader-convert=""
+          nonce={nonce}
+          defer
+          suppressHydrationWarning
+        />
       </head>
       <body>
         <LoadingBar />

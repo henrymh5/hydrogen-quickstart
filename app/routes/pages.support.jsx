@@ -1,6 +1,6 @@
-'use client';
-
 import {useState} from 'react';
+import {data} from '@shopify/remix-oxygen';
+import {Form, useActionData, useNavigation} from 'react-router';
 
 export const meta = () => [
   {title: 'Support & FAQ | Qi Blanco'},
@@ -10,6 +10,120 @@ export const meta = () => [
 
 export function loader() {
   return {};
+}
+
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_SECONDS = 60 * 60;
+const memoryRateLimit = new Map();
+
+async function checkRateLimit(kv, ip) {
+  const key = `contact:${ip}`;
+  const now = Math.floor(Date.now() / 1000);
+
+  if (kv) {
+    const raw = await kv.get(key);
+    const count = raw ? Number(raw) : 0;
+    if (count >= RATE_LIMIT_MAX) return false;
+    await kv.put(key, String(count + 1), {expirationTtl: RATE_LIMIT_WINDOW_SECONDS});
+    return true;
+  }
+
+  const entry = memoryRateLimit.get(ip);
+  if (entry && entry.resetAt > now) {
+    if (entry.count >= RATE_LIMIT_MAX) return false;
+    entry.count += 1;
+    return true;
+  }
+  memoryRateLimit.set(ip, {count: 1, resetAt: now + RATE_LIMIT_WINDOW_SECONDS});
+  return true;
+}
+
+function sanitizeHeaderValue(s) {
+  return s.replace(/[\r\n]+/g, ' ').trim();
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * @param {ActionFunctionArgs}
+ */
+export async function action({request, context}) {
+  if (request.method !== 'POST') {
+    return data({ok: false, error: 'Methode nicht erlaubt.'}, {status: 405});
+  }
+
+  const formData = await request.formData();
+  const honeypot = String(formData.get('company') || '');
+  const name = sanitizeHeaderValue(String(formData.get('name') || ''));
+  const email = sanitizeHeaderValue(String(formData.get('email') || '')).toLowerCase();
+  const message = String(formData.get('message') || '').trim();
+
+  if (honeypot) {
+    return data({ok: true});
+  }
+
+  if (name.length < 1 || name.length > 100) {
+    return data({ok: false, error: 'Bitte gib einen gültigen Namen an.'}, {status: 400});
+  }
+  if (!EMAIL_RE.test(email) || email.length > 254) {
+    return data({ok: false, error: 'Bitte gib eine gültige E-Mail-Adresse an.'}, {status: 400});
+  }
+  if (message.length < 10 || message.length > 5000) {
+    return data(
+      {ok: false, error: 'Deine Nachricht muss zwischen 10 und 5000 Zeichen lang sein.'},
+      {status: 400},
+    );
+  }
+
+  const ip =
+    request.headers.get('CF-Connecting-IP') ||
+    request.headers.get('X-Forwarded-For')?.split(',')[0].trim() ||
+    'unknown';
+
+  const allowed = await checkRateLimit(context.env.CONTACT_RATE_LIMIT, ip);
+  if (!allowed) {
+    return data(
+      {ok: false, error: 'Zu viele Anfragen. Bitte versuche es später erneut.'},
+      {status: 429},
+    );
+  }
+
+  const subject = `Kontaktanfrage von ${name}`;
+  const textBody = `${message}\n\n---\nVon: ${name} <${email}>\nIP: ${ip}\n`;
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${context.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: context.env.CONTACT_FROM_EMAIL,
+        to: [context.env.CONTACT_TO_EMAIL],
+        reply_to: email,
+        subject,
+        text: textBody,
+      }),
+    });
+
+    if (!res.ok) {
+      const detail = await res.text();
+      console.error('Resend send failed', res.status, detail);
+      return data(
+        {ok: false, error: 'Versand fehlgeschlagen. Bitte versuche es später erneut.'},
+        {status: 502},
+      );
+    }
+  } catch (err) {
+    console.error('Resend request error', err);
+    return data(
+      {ok: false, error: 'Versand fehlgeschlagen. Bitte versuche es später erneut.'},
+      {status: 502},
+    );
+  }
+
+  return data({ok: true});
 }
 
 const FAQ_ITEMS = [
@@ -137,14 +251,10 @@ function FaqAccordion() {
 }
 
 export default function SupportPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({name: '', email: '', message: ''});
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    // TODO: connect to backend / email service
-    setSubmitted(true);
-  }
+  const actionData = useActionData();
+  const navigation = useNavigation();
+  const submitting = navigation.state !== 'idle';
+  const success = actionData?.ok === true;
 
   return (
     <div className="NormalSectionSize" style={{padding: '3rem 1.5rem 5rem'}}>
@@ -154,7 +264,7 @@ export default function SupportPage() {
           Wir sind für dich da! Wenn du weitere Fragen hast oder über etwas anderes sprechen möchtest, nimm mit uns Kontakt auf.
         </p>
 
-        {submitted ? (
+        {success ? (
           <div
             style={{
               background: 'rgba(57, 110, 37, 0.1)',
@@ -168,34 +278,68 @@ export default function SupportPage() {
             <strong>Danke für deine Nachricht!</strong> Wir melden uns so schnell wie möglich bei dir.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{marginBottom: '4rem'}}>
+          <Form method="post" style={{marginBottom: '4rem'}} noValidate>
+            {actionData?.error ? (
+              <div
+                style={{
+                  background: 'rgba(180, 35, 24, 0.08)',
+                  border: '1px solid rgba(180, 35, 24, 0.3)',
+                  borderRadius: '12px',
+                  padding: '1rem 1.25rem',
+                  marginBottom: '1.25rem',
+                  color: '#b42318',
+                  fontSize: '0.95rem',
+                }}
+                role="alert"
+              >
+                {actionData.error}
+              </div>
+            ) : null}
             <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+              {/* Honeypot field - hidden from users, bots fill it in */}
               <input
                 type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px',
+                  opacity: 0,
+                  pointerEvents: 'none',
+                }}
+              />
+              <input
+                type="text"
+                name="name"
                 placeholder="Dein Name"
                 required
-                value={form.name}
-                onChange={(e) => setForm((f) => ({...f, name: e.target.value}))}
+                maxLength={100}
                 style={inputStyle}
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Deine E-Mail"
                 required
-                value={form.email}
-                onChange={(e) => setForm((f) => ({...f, email: e.target.value}))}
+                maxLength={254}
                 style={inputStyle}
               />
               <textarea
+                name="message"
                 placeholder="Deine Nachricht"
                 required
                 rows={5}
-                value={form.message}
-                onChange={(e) => setForm((f) => ({...f, message: e.target.value}))}
+                minLength={10}
+                maxLength={5000}
                 style={{...inputStyle, resize: 'vertical'}}
               />
               <button
                 type="submit"
+                disabled={submitting}
                 style={{
                   alignSelf: 'flex-start',
                   background: 'var(--color-dark)',
@@ -205,13 +349,14 @@ export default function SupportPage() {
                   padding: '0.75rem 2rem',
                   fontSize: '1rem',
                   fontWeight: '600',
-                  cursor: 'pointer',
+                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  opacity: submitting ? 0.7 : 1,
                 }}
               >
-                Nachricht senden
+                {submitting ? 'Wird gesendet…' : 'Nachricht senden'}
               </button>
             </div>
-          </form>
+          </Form>
         )}
 
         <h2>Häufige Fragen &amp; Antworten</h2>
@@ -233,3 +378,4 @@ const inputStyle = {
 };
 
 /** @template T @typedef {import('react-router').MetaFunction<T>} MetaFunction */
+/** @typedef {import('@shopify/remix-oxygen').ActionFunctionArgs} ActionFunctionArgs */
